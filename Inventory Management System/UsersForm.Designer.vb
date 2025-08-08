@@ -28,24 +28,28 @@ Partial Class UsersForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UsersForm))
         dgUsers = New DataGridView()
         Label1 = New Label()
+        txtID = New TextBox()
+        txtFirstname = New TextBox()
+        txtLastname = New TextBox()
         txtUsername = New TextBox()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
-        TextBox3 = New TextBox()
         Label2 = New Label()
         Label3 = New Label()
         Label4 = New Label()
         Label5 = New Label()
-        ComboBox1 = New ComboBox()
+        cbRole = New ComboBox()
         Label6 = New Label()
-        btnLogin = New Button()
-        Button1 = New Button()
-        Button3 = New Button()
+        btnAdd = New Button()
+        btnUpdate = New Button()
+        btnClear = New Button()
         Label7 = New Label()
-        TextBox4 = New TextBox()
+        txtSearch = New TextBox()
         btnPrint = New Button()
         PrintPreviewDialog1 = New PrintPreviewDialog()
         PrintDocument1 = New Printing.PrintDocument()
+        txtPassword = New TextBox()
+        Label8 = New Label()
+        Label9 = New Label()
+        cbStatus = New ComboBox()
         CType(dgUsers, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -93,6 +97,7 @@ Partial Class UsersForm
         dgUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgUsers.Size = New Size(715, 666)
         dgUsers.TabIndex = 2
+        dgUsers.TabStop = False
         ' 
         ' Label1
         ' 
@@ -105,45 +110,47 @@ Partial Class UsersForm
         Label1.TabIndex = 3
         Label1.Text = "Users"
         ' 
+        ' txtID
+        ' 
+        txtID.BackColor = Color.SandyBrown
+        txtID.Enabled = False
+        txtID.Font = New Font("Lucida Sans Unicode", 12F)
+        txtID.ForeColor = Color.SaddleBrown
+        txtID.Location = New Point(154, 80)
+        txtID.Name = "txtID"
+        txtID.Size = New Size(280, 32)
+        txtID.TabIndex = 4
+        txtID.TabStop = False
+        ' 
+        ' txtFirstname
+        ' 
+        txtFirstname.BackColor = Color.SandyBrown
+        txtFirstname.Font = New Font("Lucida Sans Unicode", 12F)
+        txtFirstname.ForeColor = Color.SaddleBrown
+        txtFirstname.Location = New Point(154, 128)
+        txtFirstname.Name = "txtFirstname"
+        txtFirstname.Size = New Size(280, 32)
+        txtFirstname.TabIndex = 1
+        ' 
+        ' txtLastname
+        ' 
+        txtLastname.BackColor = Color.SandyBrown
+        txtLastname.Font = New Font("Lucida Sans Unicode", 12F)
+        txtLastname.ForeColor = Color.SaddleBrown
+        txtLastname.Location = New Point(154, 176)
+        txtLastname.Name = "txtLastname"
+        txtLastname.Size = New Size(280, 32)
+        txtLastname.TabIndex = 2
+        ' 
         ' txtUsername
         ' 
         txtUsername.BackColor = Color.SandyBrown
         txtUsername.Font = New Font("Lucida Sans Unicode", 12F)
         txtUsername.ForeColor = Color.SaddleBrown
-        txtUsername.Location = New Point(154, 80)
+        txtUsername.Location = New Point(154, 224)
         txtUsername.Name = "txtUsername"
         txtUsername.Size = New Size(280, 32)
-        txtUsername.TabIndex = 4
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.BackColor = Color.SandyBrown
-        TextBox1.Font = New Font("Lucida Sans Unicode", 12F)
-        TextBox1.ForeColor = Color.SaddleBrown
-        TextBox1.Location = New Point(154, 128)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(280, 32)
-        TextBox1.TabIndex = 4
-        ' 
-        ' TextBox2
-        ' 
-        TextBox2.BackColor = Color.SandyBrown
-        TextBox2.Font = New Font("Lucida Sans Unicode", 12F)
-        TextBox2.ForeColor = Color.SaddleBrown
-        TextBox2.Location = New Point(154, 176)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(280, 32)
-        TextBox2.TabIndex = 4
-        ' 
-        ' TextBox3
-        ' 
-        TextBox3.BackColor = Color.SandyBrown
-        TextBox3.Font = New Font("Lucida Sans Unicode", 12F)
-        TextBox3.ForeColor = Color.SaddleBrown
-        TextBox3.Location = New Point(154, 224)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(280, 32)
-        TextBox3.TabIndex = 4
+        txtUsername.TabIndex = 3
         ' 
         ' Label2
         ' 
@@ -185,70 +192,71 @@ Partial Class UsersForm
         Label5.TabIndex = 5
         Label5.Text = "Username:"
         ' 
-        ' ComboBox1
+        ' cbRole
         ' 
-        ComboBox1.BackColor = Color.SandyBrown
-        ComboBox1.Cursor = Cursors.Hand
-        ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
-        ComboBox1.FlatStyle = FlatStyle.Popup
-        ComboBox1.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        ComboBox1.ForeColor = Color.SaddleBrown
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(154, 272)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(280, 28)
-        ComboBox1.TabIndex = 6
+        cbRole.BackColor = Color.SandyBrown
+        cbRole.Cursor = Cursors.Hand
+        cbRole.DropDownStyle = ComboBoxStyle.DropDownList
+        cbRole.FlatStyle = FlatStyle.Popup
+        cbRole.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cbRole.ForeColor = Color.SaddleBrown
+        cbRole.FormattingEnabled = True
+        cbRole.Items.AddRange(New Object() {"", "Admin", "User"})
+        cbRole.Location = New Point(154, 317)
+        cbRole.Name = "cbRole"
+        cbRole.Size = New Size(280, 28)
+        cbRole.TabIndex = 5
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(35, 275)
+        Label6.Location = New Point(35, 320)
         Label6.Name = "Label6"
-        Label6.Size = New Size(69, 20)
+        Label6.Size = New Size(54, 20)
         Label6.TabIndex = 5
-        Label6.Text = "Status:"
+        Label6.Text = "Role:"
         ' 
-        ' btnLogin
+        ' btnAdd
         ' 
-        btnLogin.BackColor = Color.LawnGreen
-        btnLogin.Cursor = Cursors.Hand
-        btnLogin.FlatStyle = FlatStyle.Popup
-        btnLogin.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnLogin.ForeColor = Color.SaddleBrown
-        btnLogin.Location = New Point(35, 325)
-        btnLogin.Name = "btnLogin"
-        btnLogin.Size = New Size(190, 35)
-        btnLogin.TabIndex = 7
-        btnLogin.Text = "Add"
-        btnLogin.UseVisualStyleBackColor = False
+        btnAdd.BackColor = Color.LawnGreen
+        btnAdd.Cursor = Cursors.Hand
+        btnAdd.FlatStyle = FlatStyle.Popup
+        btnAdd.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnAdd.ForeColor = Color.SaddleBrown
+        btnAdd.Location = New Point(35, 431)
+        btnAdd.Name = "btnAdd"
+        btnAdd.Size = New Size(190, 35)
+        btnAdd.TabIndex = 7
+        btnAdd.Text = "Add"
+        btnAdd.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' btnUpdate
         ' 
-        Button1.BackColor = Color.Gold
-        Button1.Cursor = Cursors.Hand
-        Button1.FlatStyle = FlatStyle.Popup
-        Button1.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = Color.SaddleBrown
-        Button1.Location = New Point(244, 325)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(190, 35)
-        Button1.TabIndex = 7
-        Button1.Text = "Update"
-        Button1.UseVisualStyleBackColor = False
+        btnUpdate.BackColor = Color.Gold
+        btnUpdate.Cursor = Cursors.Hand
+        btnUpdate.FlatStyle = FlatStyle.Popup
+        btnUpdate.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnUpdate.ForeColor = Color.SaddleBrown
+        btnUpdate.Location = New Point(244, 431)
+        btnUpdate.Name = "btnUpdate"
+        btnUpdate.Size = New Size(190, 35)
+        btnUpdate.TabIndex = 8
+        btnUpdate.Text = "Update"
+        btnUpdate.UseVisualStyleBackColor = False
         ' 
-        ' Button3
+        ' btnClear
         ' 
-        Button3.Cursor = Cursors.Hand
-        Button3.FlatStyle = FlatStyle.Popup
-        Button3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = Color.SaddleBrown
-        Button3.Location = New Point(35, 378)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(399, 35)
-        Button3.TabIndex = 7
-        Button3.Text = "Clear Selection"
-        Button3.UseVisualStyleBackColor = True
+        btnClear.Cursor = Cursors.Hand
+        btnClear.FlatStyle = FlatStyle.Popup
+        btnClear.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnClear.ForeColor = Color.SaddleBrown
+        btnClear.Location = New Point(35, 484)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(399, 35)
+        btnClear.TabIndex = 9
+        btnClear.Text = "Clear Selection"
+        btnClear.UseVisualStyleBackColor = True
         ' 
         ' Label7
         ' 
@@ -260,16 +268,17 @@ Partial Class UsersForm
         Label7.TabIndex = 9
         Label7.Text = "Search:"
         ' 
-        ' TextBox4
+        ' txtSearch
         ' 
-        TextBox4.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        TextBox4.BackColor = Color.SandyBrown
-        TextBox4.Font = New Font("Lucida Sans Unicode", 12F)
-        TextBox4.ForeColor = Color.SaddleBrown
-        TextBox4.Location = New Point(520, 42)
-        TextBox4.Name = "TextBox4"
-        TextBox4.Size = New Size(514, 32)
-        TextBox4.TabIndex = 8
+        txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtSearch.BackColor = Color.SandyBrown
+        txtSearch.Font = New Font("Lucida Sans Unicode", 12F)
+        txtSearch.ForeColor = Color.SaddleBrown
+        txtSearch.Location = New Point(520, 42)
+        txtSearch.Name = "txtSearch"
+        txtSearch.Size = New Size(514, 32)
+        txtSearch.TabIndex = 8
+        txtSearch.TabStop = False
         ' 
         ' btnPrint
         ' 
@@ -282,6 +291,7 @@ Partial Class UsersForm
         btnPrint.Name = "btnPrint"
         btnPrint.Size = New Size(115, 32)
         btnPrint.TabIndex = 10
+        btnPrint.TabStop = False
         btnPrint.Text = "Print"
         btnPrint.UseVisualStyleBackColor = True
         ' 
@@ -298,6 +308,51 @@ Partial Class UsersForm
         ' PrintDocument1
         ' 
         ' 
+        ' txtPassword
+        ' 
+        txtPassword.BackColor = Color.SandyBrown
+        txtPassword.Font = New Font("Lucida Sans Unicode", 12F)
+        txtPassword.ForeColor = Color.SaddleBrown
+        txtPassword.Location = New Point(154, 271)
+        txtPassword.Name = "txtPassword"
+        txtPassword.Size = New Size(280, 32)
+        txtPassword.TabIndex = 4
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Location = New Point(35, 274)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(97, 20)
+        Label8.TabIndex = 5
+        Label8.Text = "Password:"
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Location = New Point(35, 366)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(69, 20)
+        Label9.TabIndex = 5
+        Label9.Text = "Status:"
+        ' 
+        ' cbStatus
+        ' 
+        cbStatus.BackColor = Color.SandyBrown
+        cbStatus.Cursor = Cursors.Hand
+        cbStatus.DropDownStyle = ComboBoxStyle.DropDownList
+        cbStatus.FlatStyle = FlatStyle.Popup
+        cbStatus.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cbStatus.ForeColor = Color.SaddleBrown
+        cbStatus.FormattingEnabled = True
+        cbStatus.Items.AddRange(New Object() {"", "Active", "Inactive"})
+        cbStatus.Location = New Point(154, 363)
+        cbStatus.Name = "cbStatus"
+        cbStatus.Size = New Size(280, 28)
+        cbStatus.TabIndex = 6
+        ' 
         ' UsersForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -306,20 +361,24 @@ Partial Class UsersForm
         ClientSize = New Size(1167, 758)
         Controls.Add(btnPrint)
         Controls.Add(Label7)
-        Controls.Add(TextBox4)
-        Controls.Add(Button3)
-        Controls.Add(Button1)
-        Controls.Add(btnLogin)
-        Controls.Add(ComboBox1)
+        Controls.Add(txtSearch)
+        Controls.Add(btnClear)
+        Controls.Add(btnUpdate)
+        Controls.Add(btnAdd)
+        Controls.Add(cbStatus)
+        Controls.Add(cbRole)
+        Controls.Add(Label9)
         Controls.Add(Label6)
+        Controls.Add(Label8)
         Controls.Add(Label5)
         Controls.Add(Label4)
         Controls.Add(Label3)
         Controls.Add(Label2)
-        Controls.Add(TextBox3)
-        Controls.Add(TextBox2)
-        Controls.Add(TextBox1)
+        Controls.Add(txtPassword)
         Controls.Add(txtUsername)
+        Controls.Add(txtLastname)
+        Controls.Add(txtFirstname)
+        Controls.Add(txtID)
         Controls.Add(Label1)
         Controls.Add(dgUsers)
         Name = "UsersForm"
@@ -331,22 +390,26 @@ Partial Class UsersForm
 
     Friend WithEvents dgUsers As DataGridView
     Friend WithEvents Label1 As Label
+    Friend WithEvents txtID As TextBox
+    Friend WithEvents txtFirstname As TextBox
+    Friend WithEvents txtLastname As TextBox
     Friend WithEvents txtUsername As TextBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cbRole As ComboBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents btnLogin As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnUpdate As Button
+    Friend WithEvents btnClear As Button
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnPrint As Button
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents txtPassword As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cbStatus As ComboBox
 End Class

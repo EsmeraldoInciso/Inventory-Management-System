@@ -24,10 +24,10 @@ Module MySQLCRUDModule
 
     ' --- LOGIN ---
     Public Function LoginUser(username As String, password As String) As Boolean
-        Dim query As String = "SELECT * FROM users WHERE username = @username AND password = @password"
+        Dim query As String = "SELECT * FROM users WHERE username = @username AND password = @password AND status = 1"
         Dim parameters As New Dictionary(Of String, Object) From {
         {"@username", username},
-        {"@password", password}
+        {"@password", HashPassword(password)}
     }
 
         Dim result As DataTable = Read(query, parameters)
@@ -75,7 +75,7 @@ Module MySQLCRUDModule
 
 
     ' --- CREATE (INSERT) ---
-    Public Function Insert(query As String, parameters As Dictionary(Of String, Object)) As Boolean
+    Public Function InsertDatabase(query As String, parameters As Dictionary(Of String, Object)) As Boolean
         Try
             If Not OpenConn() Then Return False
             Using cmd As New MySqlCommand(query, conn)
@@ -117,7 +117,7 @@ Module MySQLCRUDModule
     End Function
 
     ' --- UPDATE ---
-    Public Function Update(query As String, parameters As Dictionary(Of String, Object)) As Boolean
+    Public Function UpdateDatabase(query As String, parameters As Dictionary(Of String, Object)) As Boolean
         Try
             If Not OpenConn() Then Return False
             Using cmd As New MySqlCommand(query, conn)

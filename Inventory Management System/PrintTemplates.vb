@@ -87,7 +87,7 @@ Public Class PrintTemplates
 
         ' === Draw Footer (Item Count) on Last Page Only ===
         If isLastPage Then
-            Dim footerText As String = "Item Count: " & dgv.Rows.Count.ToString()
+            Dim footerText As String = "Row Count: " & dgv.Rows.Count.ToString()
             Dim footerFont As New Font("Arial", 12, FontStyle.Regular)
             Dim textSize As SizeF = e.Graphics.MeasureString(footerText, footerFont)
             Dim footerX As Single = e.MarginBounds.Right - textSize.Width
