@@ -32,8 +32,6 @@ Partial Class MainForm
         lblTime = New Label()
         lblDate = New Label()
         btnLogout = New Button()
-        btnStockOut = New Button()
-        btnStockIn = New Button()
         btnItemList = New Button()
         btnDashboard = New Button()
         Panel1 = New Panel()
@@ -72,8 +70,6 @@ Partial Class MainForm
         pnlSideBar.Controls.Add(lblTime)
         pnlSideBar.Controls.Add(lblDate)
         pnlSideBar.Controls.Add(btnLogout)
-        pnlSideBar.Controls.Add(btnStockOut)
-        pnlSideBar.Controls.Add(btnStockIn)
         pnlSideBar.Controls.Add(btnItemList)
         pnlSideBar.Controls.Add(btnDashboard)
         pnlSideBar.Controls.Add(Panel1)
@@ -93,7 +89,7 @@ Partial Class MainForm
         btnUsers.ForeColor = Color.SaddleBrown
         btnUsers.Image = My.Resources.Resources.group
         btnUsers.ImageAlign = ContentAlignment.MiddleLeft
-        btnUsers.Location = New Point(15, 479)
+        btnUsers.Location = New Point(15, 383)
         btnUsers.Name = "btnUsers"
         btnUsers.Size = New Size(270, 35)
         btnUsers.TabIndex = 7
@@ -111,7 +107,7 @@ Partial Class MainForm
         btnReports.ForeColor = Color.SaddleBrown
         btnReports.Image = My.Resources.Resources.report
         btnReports.ImageAlign = ContentAlignment.MiddleLeft
-        btnReports.Location = New Point(15, 431)
+        btnReports.Location = New Point(15, 335)
         btnReports.Name = "btnReports"
         btnReports.Size = New Size(270, 35)
         btnReports.TabIndex = 6
@@ -129,7 +125,7 @@ Partial Class MainForm
         btnCategories.ForeColor = Color.SaddleBrown
         btnCategories.Image = My.Resources.Resources.category
         btnCategories.ImageAlign = ContentAlignment.MiddleLeft
-        btnCategories.Location = New Point(15, 383)
+        btnCategories.Location = New Point(15, 287)
         btnCategories.Name = "btnCategories"
         btnCategories.Size = New Size(270, 35)
         btnCategories.TabIndex = 5
@@ -178,42 +174,6 @@ Partial Class MainForm
         btnLogout.TabIndex = 8
         btnLogout.Text = "Logout"
         btnLogout.UseVisualStyleBackColor = False
-        ' 
-        ' btnStockOut
-        ' 
-        btnStockOut.BackColor = Color.Peru
-        btnStockOut.Cursor = Cursors.Hand
-        btnStockOut.FlatAppearance.BorderColor = Color.SandyBrown
-        btnStockOut.FlatAppearance.BorderSize = 0
-        btnStockOut.FlatStyle = FlatStyle.Flat
-        btnStockOut.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnStockOut.ForeColor = Color.SaddleBrown
-        btnStockOut.Image = My.Resources.Resources.out_of_the_box
-        btnStockOut.ImageAlign = ContentAlignment.MiddleLeft
-        btnStockOut.Location = New Point(15, 335)
-        btnStockOut.Name = "btnStockOut"
-        btnStockOut.Size = New Size(270, 35)
-        btnStockOut.TabIndex = 4
-        btnStockOut.Text = "Stock-Out"
-        btnStockOut.UseVisualStyleBackColor = False
-        ' 
-        ' btnStockIn
-        ' 
-        btnStockIn.BackColor = Color.Peru
-        btnStockIn.Cursor = Cursors.Hand
-        btnStockIn.FlatAppearance.BorderColor = Color.SandyBrown
-        btnStockIn.FlatAppearance.BorderSize = 0
-        btnStockIn.FlatStyle = FlatStyle.Flat
-        btnStockIn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnStockIn.ForeColor = Color.SaddleBrown
-        btnStockIn.Image = My.Resources.Resources.product
-        btnStockIn.ImageAlign = ContentAlignment.MiddleLeft
-        btnStockIn.Location = New Point(15, 287)
-        btnStockIn.Name = "btnStockIn"
-        btnStockIn.Size = New Size(270, 35)
-        btnStockIn.TabIndex = 3
-        btnStockIn.Text = "Stock-In"
-        btnStockIn.UseVisualStyleBackColor = False
         ' 
         ' btnItemList
         ' 
@@ -327,7 +287,7 @@ Partial Class MainForm
         MinimizeBox = False
         Name = "MainForm"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kapehan Ni Trish"
+        Text = "StockSense"
         WindowState = FormWindowState.Maximized
         pnlSideBar.ResumeLayout(False)
         pnlHeader.ResumeLayout(False)
@@ -341,8 +301,6 @@ Partial Class MainForm
     Friend WithEvents btnMinimize As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents btnDashboard As Button
-    Friend WithEvents btnStockOut As Button
-    Friend WithEvents btnStockIn As Button
     Friend WithEvents btnItemList As Button
     Friend WithEvents btnLogout As Button
     Friend WithEvents timerDateTime As Timer

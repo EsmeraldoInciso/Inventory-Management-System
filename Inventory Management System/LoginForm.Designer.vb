@@ -41,13 +41,13 @@ Partial Class LoginForm
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Lucida Sans Unicode", 26.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Lucida Sans Unicode", 40F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.SandyBrown
-        Label1.Location = New Point(91, 208)
+        Label1.Location = New Point(89, 192)
         Label1.Name = "Label1"
-        Label1.Size = New Size(324, 42)
+        Label1.Size = New Size(331, 65)
         Label1.TabIndex = 0
-        Label1.Text = "Kapehan Ni Trish"
+        Label1.Text = "StockSense"
         Label1.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label2
@@ -188,7 +188,7 @@ Partial Class LoginForm
         Label5.AutoSize = True
         Label5.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label5.ForeColor = Color.SandyBrown
-        Label5.Location = New Point(90, 253)
+        Label5.Location = New Point(90, 259)
         Label5.Name = "Label5"
         Label5.Size = New Size(323, 23)
         Label5.TabIndex = 1
@@ -213,7 +213,7 @@ Partial Class LoginForm
         Name = "LoginForm"
         SizeGripStyle = SizeGripStyle.Hide
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Kapehan Ni Trish (Login)"
+        Text = "StockSense (Login)"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)

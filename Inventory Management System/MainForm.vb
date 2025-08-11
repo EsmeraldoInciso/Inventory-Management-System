@@ -7,7 +7,11 @@
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HighlightSidebarButton(btnDashboard)
-        If UserSession.UserType <> 1 Then btnUsers.Visible = False
+        If UserSession.UserType <> 1 Then
+            btnUsers.Visible = False
+            btnCategories.Visible = False
+            btnReports.Visible = False
+        End If
         LoadFormIntoPanel(New DashboardForm())
         Dim toast As New ToastForm("✔️ Login successful!")
         toast.Show()
@@ -29,16 +33,9 @@
         LoadFormIntoPanel(New ItemListForm())
     End Sub
 
-    Private Sub btnStockIn_Click(sender As Object, e As EventArgs) Handles btnStockIn.Click
-        HighlightSidebarButton(btnStockIn)
-    End Sub
-
-    Private Sub btnStockOut_Click(sender As Object, e As EventArgs) Handles btnStockOut.Click
-        HighlightSidebarButton(btnStockOut)
-    End Sub
-
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
         HighlightSidebarButton(btnCategories)
+        LoadFormIntoPanel(New CategoriesForm())
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click

@@ -99,10 +99,10 @@ Public Class UsersForm
             Dim sql As String = "INSERT INTO users (user_firstname, user_lastname, username, password, user_type, status) " &
                     "VALUES (@firstname, @lastname, @username, @password, @user_type, @status)"
             Dim parameters As New Dictionary(Of String, Object) From {
-                {"@firstname", txtFirstname.Text},
-                {"@lastname", txtLastname.Text},
-                {"@username", txtUsername.Text},
-                {"@password", HashPassword(txtPassword.Text)},
+                {"@firstname", Trim(txtFirstname.Text)},
+                {"@lastname", Trim(txtLastname.Text)},
+                {"@username", Trim(txtUsername.Text)},
+                {"@password", HashPassword(Trim(txtPassword.Text))},
                 {"@user_type", cbRole.SelectedIndex},
                 {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
             }
@@ -152,7 +152,7 @@ Public Class UsersForm
             End If
 
         Else
-            Dim toast As New ToastForm("All Fields are required!. Except for Password")
+            Dim toast As New ToastForm("All Fields are required!. Except for Password.")
             toast.Show()
         End If
     End Sub

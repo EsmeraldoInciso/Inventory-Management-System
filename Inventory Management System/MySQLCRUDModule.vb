@@ -73,6 +73,33 @@ Module MySQLCRUDModule
         End Try
     End Sub
 
+    ' --- Function to populate ComboBox from database ---
+    Public Sub PopulateComboBox(cmb As ComboBox, tableName As String, displayMember As String, valueMember As String)
+        Try
+            ' Make sure connection is open
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            ' Prepare query
+            Dim query As String = $"SELECT {valueMember}, {displayMember} FROM {tableName} ORDER BY {displayMember}"
+            Dim cmd As New MySqlCommand(query, conn)
+            Dim adapter As New MySqlDataAdapter(cmd)
+            Dim dt As New DataTable()
+            adapter.Fill(dt)
+
+            ' Bind data to ComboBox
+            cmb.DataSource = dt
+            cmb.DisplayMember = displayMember   ' Text shown in dropdown
+            cmb.ValueMember = valueMember       ' Actual value
+            cmb.SelectedIndex = -1              ' No item selected by default
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading ComboBox: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+
 
     ' --- CREATE (INSERT) ---
     Public Function InsertDatabase(query As String, parameters As Dictionary(Of String, Object)) As Boolean
