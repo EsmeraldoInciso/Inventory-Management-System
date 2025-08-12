@@ -6,6 +6,7 @@ Public Module UserSession
     Public UserLastname As String
     Public UserType As Integer
     Public UserStatus As Integer
+    Public Username As String
 
 
     Public Sub ClearUserSession()
@@ -14,5 +15,6 @@ Public Module UserSession
         UserLastname = ""
         UserType = 2
         UserStatus = 0
+        Username = ""
     End Sub
 End Module

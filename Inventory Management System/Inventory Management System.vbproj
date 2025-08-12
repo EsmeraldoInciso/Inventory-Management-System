@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.4.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="9.0.8" />
   </ItemGroup>
 
   <ItemGroup>

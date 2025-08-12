@@ -88,6 +88,7 @@
                 {"@reorder_level", Trim(txtReorderLevel.Text)}
             }
             If InsertDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "ADD ITEM", $"Added new item: {txtItemName.Text}", "items")
                 ClearField()
                 Dim toast As New ToastForm("Item inserted successfully!")
                 toast.Show()
@@ -123,6 +124,7 @@
             }
 
             If UpdateDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "UPDATE ITEM", $"Updated item with id: {CInt(txtID.Text)}, item: {txtItemName.Text}", "items", CInt(txtID.Text))
                 ClearField()
                 Dim toast As New ToastForm("Item updated successfully!")
                 toast.Show()
@@ -176,7 +178,19 @@
         ItemSession.ClearItemSession()
         ItemSession.ItemID = txtID.Text
         ItemSession.ItemCode = txtCode.Text
+        ItemSession.ItemUnit = cbUnit.SelectedItem
         ItemSession.ItemName = txtItemName.Text
-        StockInForm.ShowDialog()
+        Dim popup As New StockInForm(Me)
+        popup.ShowDialog()
+    End Sub
+
+    Private Sub btnStockOut_Click(sender As Object, e As EventArgs) Handles btnStockOut.Click
+        ItemSession.ClearItemSession()
+        ItemSession.ItemID = txtID.Text
+        ItemSession.ItemCode = txtCode.Text
+        ItemSession.ItemUnit = cbUnit.SelectedItem
+        ItemSession.ItemName = txtItemName.Text
+        Dim popup As New StockOutForm(Me)
+        popup.ShowDialog()
     End Sub
 End Class

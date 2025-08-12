@@ -1,5 +1,6 @@
 ﻿Public Class MainForm
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, btnLogout.Click
+        LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
         UserSession.ClearUserSession()
         Me.Hide()
         LoginForm.Show()
@@ -11,6 +12,7 @@
             btnUsers.Visible = False
             btnCategories.Visible = False
             btnReports.Visible = False
+            btnLogs.Visible = False
         End If
         LoadFormIntoPanel(New DashboardForm())
         Dim toast As New ToastForm("✔️ Login successful!")
@@ -40,11 +42,17 @@
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
         HighlightSidebarButton(btnReports)
+        LoadFormIntoPanel(New ReportsForm())
     End Sub
 
     Private Sub btnUsers_Click(sender As Object, e As EventArgs) Handles btnUsers.Click
         HighlightSidebarButton(btnUsers)
         LoadFormIntoPanel(New UsersForm())
+    End Sub
+
+    Private Sub btnLogs_Click(sender As Object, e As EventArgs) Handles btnLogs.Click
+        HighlightSidebarButton(btnLogs)
+        LoadFormIntoPanel(New LogsForm())
     End Sub
 
     Private Sub timerDateTime_Tick(sender As Object, e As EventArgs) Handles timerDateTime.Tick
@@ -83,5 +91,7 @@
         selectedButton.ForeColor = Color.SaddleBrown
     End Sub
 
-
+    Private Sub MainForm_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
+        LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
+    End Sub
 End Class

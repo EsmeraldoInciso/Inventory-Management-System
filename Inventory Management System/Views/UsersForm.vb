@@ -107,6 +107,7 @@ Public Class UsersForm
                 {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
             }
             If InsertDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "ADD USER", $"Added new user: {txtFirstname.Text} {txtLastname.Text}", "users")
                 ClearField()
                 Dim toast As New ToastForm("User inserted successfully!")
                 toast.Show()
@@ -143,6 +144,7 @@ Public Class UsersForm
             }
 
             If UpdateDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "UPDATE USER", $"Updated user with id: {CInt(txtID.Text)}, name: {txtFirstname.Text} {txtLastname.Text}", "users", CInt(txtID.Text))
                 ClearField()
                 Dim toast As New ToastForm("User updated successfully!")
                 toast.Show()

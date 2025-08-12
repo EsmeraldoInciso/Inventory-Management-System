@@ -37,6 +37,7 @@
                 {"@category_name", Trim(txtCategoryName.Text)}
             }
             If InsertDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "ADD CATEGORY", $"Added new category: {txtCategoryName.Text}", "categories")
                 ClearField()
                 Dim toast As New ToastForm("Category inserted successfully!")
                 toast.Show()
@@ -62,6 +63,7 @@
             }
 
             If UpdateDatabase(sql, parameters) Then
+                LogAction(UserSession.UserID, "UPDATE CATEGORY", $"Updated category with id: {txtID.Text}, category: {txtCategoryName.Text}", "categories")
                 ClearField()
                 Dim toast As New ToastForm("Category updated successfully!")
                 toast.Show()

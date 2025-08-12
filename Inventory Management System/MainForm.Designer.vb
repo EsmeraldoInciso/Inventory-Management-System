@@ -26,6 +26,7 @@ Partial Class MainForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         btnClose = New Button()
         pnlSideBar = New Panel()
+        btnLogs = New Button()
         btnUsers = New Button()
         btnReports = New Button()
         btnCategories = New Button()
@@ -64,6 +65,7 @@ Partial Class MainForm
         ' 
         pnlSideBar.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         pnlSideBar.BackColor = Color.SaddleBrown
+        pnlSideBar.Controls.Add(btnLogs)
         pnlSideBar.Controls.Add(btnUsers)
         pnlSideBar.Controls.Add(btnReports)
         pnlSideBar.Controls.Add(btnCategories)
@@ -77,6 +79,24 @@ Partial Class MainForm
         pnlSideBar.Name = "pnlSideBar"
         pnlSideBar.Size = New Size(300, 850)
         pnlSideBar.TabIndex = 1
+        ' 
+        ' btnLogs
+        ' 
+        btnLogs.BackColor = Color.Peru
+        btnLogs.Cursor = Cursors.Hand
+        btnLogs.FlatAppearance.BorderColor = Color.SandyBrown
+        btnLogs.FlatAppearance.BorderSize = 0
+        btnLogs.FlatStyle = FlatStyle.Flat
+        btnLogs.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnLogs.ForeColor = Color.SaddleBrown
+        btnLogs.Image = My.Resources.Resources.log
+        btnLogs.ImageAlign = ContentAlignment.MiddleLeft
+        btnLogs.Location = New Point(15, 430)
+        btnLogs.Name = "btnLogs"
+        btnLogs.Size = New Size(270, 35)
+        btnLogs.TabIndex = 10
+        btnLogs.Text = "Logs"
+        btnLogs.UseVisualStyleBackColor = False
         ' 
         ' btnUsers
         ' 
@@ -310,4 +330,5 @@ Partial Class MainForm
     Friend WithEvents btnUsers As Button
     Friend WithEvents btnReports As Button
     Friend WithEvents btnCategories As Button
+    Friend WithEvents btnLogs As Button
 End Class

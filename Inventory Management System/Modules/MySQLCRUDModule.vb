@@ -41,6 +41,7 @@ Module MySQLCRUDModule
             UserSession.UserLastname = row("user_lastname").ToString()
             UserSession.UserType = Convert.ToInt32(row("user_type"))
             UserSession.UserStatus = Convert.ToInt32(row("status"))
+            UserSession.Username = row("username").ToString()
             If Convert.ToInt32(row("status")) = 0 Then Return False
             Return True
         End If
@@ -119,6 +120,31 @@ Module MySQLCRUDModule
             CloseConn()
         End Try
     End Function
+
+    ' --- LOG ACTION ---
+    Public Sub LogAction(userId As Integer, action As String, description As String, Optional tableName As String = Nothing, Optional recordId As Integer = Nothing)
+        Try
+            Dim query As String = "INSERT INTO logs (user_id, action, description, table_name, record_id) " &
+                              "VALUES (@user_id, @action, @description, @table_name, @record_id)"
+
+            If Not OpenConn() Then Exit Sub
+
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@user_id", userId)
+                cmd.Parameters.AddWithValue("@action", action)
+                cmd.Parameters.AddWithValue("@description", description)
+                cmd.Parameters.AddWithValue("@table_name", If(tableName, DBNull.Value))
+                cmd.Parameters.AddWithValue("@record_id", If(recordId > 0, recordId, DBNull.Value))
+                cmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Log Error: " & ex.Message)
+        Finally
+            CloseConn()
+        End Try
+    End Sub
+
 
     ' --- READ (SELECT) ---
     Public Function Read(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
