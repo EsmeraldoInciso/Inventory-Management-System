@@ -39,7 +39,8 @@
                 c.category_name LIKE '%" + text + "%' OR 
                 unit LIKE '%" + text + "%' OR 
                 reorder_level LIKE '%" + text + "%' OR 
-                description LIKE '%" + text + "%'"
+                description LIKE '%" + text + "%'
+            LIMIT 50"
         LoadDataToGrid(query, dgItemList)
         dgItemList.Columns("category_id").Visible = False
     End Sub

@@ -44,7 +44,7 @@ Public Class StockInForm
                 reference_no as 'Reference No.',
                 remarks as Remarks
             FROM stock_movements
-            WHERE movement_type = 'IN'
+            WHERE movement_type = 'IN' AND item_id = " & ItemSession.ItemID & "
             ORDER BY created_at DESC
             LIMIT 50"
         LoadDataToGrid(query, dgStockIn)

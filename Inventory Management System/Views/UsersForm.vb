@@ -31,7 +31,8 @@ Public Class UsersForm
                 user_id LIKE '%" + text + "%' OR
                 user_firstname LIKE '%" + text + "%' OR 
                 user_lastname LIKE '%" + text + "%' OR 
-                username LIKE '%" + text + "%'"
+                username LIKE '%" + text + "%'
+            LIMIT 50"
         LoadDataToGrid(query, dgUsers)
         dgUsers.Columns("Password").Visible = False
 

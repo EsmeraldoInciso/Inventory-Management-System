@@ -35,7 +35,7 @@
                 reference_no as 'Reference No.',
                 remarks as Remarks
             FROM stock_movements
-            WHERE movement_type = 'OUT'
+            WHERE movement_type = 'OUT' AND item_id = " & ItemSession.ItemID & "
             ORDER BY created_at DESC
             LIMIT 50"
         LoadDataToGrid(query, dgStockOut)
