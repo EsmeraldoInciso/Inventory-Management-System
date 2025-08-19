@@ -24,10 +24,10 @@ Module MySQLCRUDModule
 
     ' --- LOGIN ---
     Public Function LoginUser(username As String, password As String) As Boolean
-        Dim query As String = "SELECT * FROM users WHERE username = @username AND password = @password"
+        Dim query As String = "SELECT * FROM users WHERE username = @username AND password = @password AND status = 1"
         Dim parameters As New Dictionary(Of String, Object) From {
         {"@username", username},
-        {"@password", password}
+        {"@password", HashPassword(password)}
     }
 
         Dim result As DataTable = Read(query, parameters)
@@ -41,6 +41,7 @@ Module MySQLCRUDModule
             UserSession.UserLastname = row("user_lastname").ToString()
             UserSession.UserType = Convert.ToInt32(row("user_type"))
             UserSession.UserStatus = Convert.ToInt32(row("status"))
+            UserSession.Username = row("username").ToString()
             If Convert.ToInt32(row("status")) = 0 Then Return False
             Return True
         End If
@@ -73,9 +74,36 @@ Module MySQLCRUDModule
         End Try
     End Sub
 
+    ' --- Function to populate ComboBox from database ---
+    Public Sub PopulateComboBox(cmb As ComboBox, tableName As String, displayMember As String, valueMember As String)
+        Try
+            ' Make sure connection is open
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            ' Prepare query
+            Dim query As String = $"SELECT {valueMember}, {displayMember} FROM {tableName} ORDER BY {displayMember}"
+            Dim cmd As New MySqlCommand(query, conn)
+            Dim adapter As New MySqlDataAdapter(cmd)
+            Dim dt As New DataTable()
+            adapter.Fill(dt)
+
+            ' Bind data to ComboBox
+            cmb.DataSource = dt
+            cmb.DisplayMember = displayMember   ' Text shown in dropdown
+            cmb.ValueMember = valueMember       ' Actual value
+            cmb.SelectedIndex = -1              ' No item selected by default
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading ComboBox: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+
 
     ' --- CREATE (INSERT) ---
-    Public Function Insert(query As String, parameters As Dictionary(Of String, Object)) As Boolean
+    Public Function InsertDatabase(query As String, parameters As Dictionary(Of String, Object)) As Boolean
         Try
             If Not OpenConn() Then Return False
             Using cmd As New MySqlCommand(query, conn)
@@ -92,6 +120,31 @@ Module MySQLCRUDModule
             CloseConn()
         End Try
     End Function
+
+    ' --- LOG ACTION ---
+    Public Sub LogAction(userId As Integer, action As String, description As String, Optional tableName As String = Nothing, Optional recordId As Integer = Nothing)
+        Try
+            Dim query As String = "INSERT INTO logs (user_id, action, description, table_name, record_id) " &
+                              "VALUES (@user_id, @action, @description, @table_name, @record_id)"
+
+            If Not OpenConn() Then Exit Sub
+
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@user_id", userId)
+                cmd.Parameters.AddWithValue("@action", action)
+                cmd.Parameters.AddWithValue("@description", description)
+                cmd.Parameters.AddWithValue("@table_name", If(tableName, DBNull.Value))
+                cmd.Parameters.AddWithValue("@record_id", If(recordId > 0, recordId, DBNull.Value))
+                cmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Log Error: " & ex.Message)
+        Finally
+            CloseConn()
+        End Try
+    End Sub
+
 
     ' --- READ (SELECT) ---
     Public Function Read(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
@@ -117,7 +170,7 @@ Module MySQLCRUDModule
     End Function
 
     ' --- UPDATE ---
-    Public Function Update(query As String, parameters As Dictionary(Of String, Object)) As Boolean
+    Public Function UpdateDatabase(query As String, parameters As Dictionary(Of String, Object)) As Boolean
         Try
             If Not OpenConn() Then Return False
             Using cmd As New MySqlCommand(query, conn)

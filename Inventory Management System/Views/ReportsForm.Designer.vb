@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ItemListForm
+Partial Class ReportsForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -32,21 +32,19 @@ Partial Class ItemListForm
         Label1.ForeColor = Color.SaddleBrown
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
-        Label1.Size = New Size(127, 37)
-        Label1.TabIndex = 1
-        Label1.Text = "Item List"
+        Label1.Size = New Size(113, 37)
+        Label1.TabIndex = 4
+        Label1.Text = "Reports"
         ' 
-        ' ItemListForm
+        ' ReportsForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.SandyBrown
-        ClientSize = New Size(1161, 726)
+        ClientSize = New Size(1167, 758)
         Controls.Add(Label1)
-        MaximizeBox = False
-        Name = "ItemListForm"
-        ShowIcon = False
-        Text = "Item List"
+        Name = "ReportsForm"
+        Text = "ReportsForm"
         ResumeLayout(False)
         PerformLayout()
     End Sub

@@ -30,6 +30,7 @@ Partial Class ToastForm
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Name = "ToastForm"
+        ShowInTaskbar = False
         Text = "ToastForm"
         ResumeLayout(False)
     End Sub
