@@ -53,25 +53,27 @@
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If IsFormReady() Then
-            Dim sql As String = "INSERT INTO stock_movements (item_id, movement_type, quantity, reference_no, remarks, created_by) " &
+            If ConfirmDialog($"Confirm stock-out?") Then
+                Dim sql As String = "INSERT INTO stock_movements (item_id, movement_type, quantity, reference_no, remarks, created_by) " &
                     "VALUES (@item_id, @movement_type, @quantity, @reference_no, @remarks, @created_by)"
-            Dim parameters As New Dictionary(Of String, Object) From {
-                {"@item_id", Trim(txtID.Text)},
-                {"@movement_type", "OUT"},
-                {"@quantity", Trim(txtQuantity.Text)},
-                {"@reference_no", Trim(txtReferenceNo.Text)},
-                {"@remarks", Trim(txtRemarks.Text)},
-                {"@created_by", UserSession.UserID}
-            }
-            If InsertDatabase(sql, parameters) Then
-                LogAction(UserSession.UserID, "STOCK-OUT", $"Removed {txtQuantity.Text} {ItemSession.ItemUnit} of {txtItemName.Text}", "stock_movements")
-                ClearField()
-                Dim toast As New ToastForm("Stock-out record inserted successfully!")
-                toast.Show()
-                _itemList.LoadAllItems("")
-            Else
-                Dim toast As New ToastForm("Insert failed.")
-                toast.Show()
+                Dim parameters As New Dictionary(Of String, Object) From {
+                    {"@item_id", Trim(txtID.Text)},
+                    {"@movement_type", "OUT"},
+                    {"@quantity", Trim(txtQuantity.Text)},
+                    {"@reference_no", Trim(txtReferenceNo.Text)},
+                    {"@remarks", Trim(txtRemarks.Text)},
+                    {"@created_by", UserSession.UserID}
+                }
+                If InsertDatabase(sql, parameters) Then
+                    LogAction(UserSession.UserID, "STOCK-OUT", $"Removed {txtQuantity.Text} {ItemSession.ItemUnit} of {txtItemName.Text}", "stock_movements")
+                    ClearField()
+                    Dim toast As New ToastForm("Stock-out record inserted successfully!")
+                    toast.Show()
+                    _itemList.LoadAllItems("")
+                Else
+                    Dim toast As New ToastForm("Insert failed.")
+                    toast.Show()
+                End If
             End If
         Else
             Dim toast As New ToastForm("Quantity is required!.")
@@ -84,30 +86,31 @@
 
         If loginForm.ShowDialog() = DialogResult.OK AndAlso loginForm.IsLoginSuccessful Then
             If IsFormReady() Then
-                Dim sql As String = "UPDATE stock_movements SET " &
+                If ConfirmDialog($"Confirm update stock-out?") Then
+                    Dim sql As String = "UPDATE stock_movements SET " &
                     "quantity = @quantity, " &
                     "reference_no = @reference_no, " &
                     "remarks = @remarks " &
                     "WHERE movement_id = @movement_id"
 
-                Dim parameters As New Dictionary(Of String, Object) From {
-                    {"@quantity", Trim(txtQuantity.Text)},
-                    {"@reference_no", Trim(txtReferenceNo.Text)},
-                    {"@remarks", Trim(txtRemarks.Text)},
-                    {"@movement_id", CInt(movementID)}
-                }
+                    Dim parameters As New Dictionary(Of String, Object) From {
+                        {"@quantity", Trim(txtQuantity.Text)},
+                        {"@reference_no", Trim(txtReferenceNo.Text)},
+                        {"@remarks", Trim(txtRemarks.Text)},
+                        {"@movement_id", CInt(movementID)}
+                    }
 
-                If UpdateDatabase(sql, parameters) Then
-                    LogAction(UserSession.UserID, "STOCK-OUT", $"Updated entry id: {movementID}", "stock_movements")
-                    ClearField()
-                    Dim toast As New ToastForm("Stock-in updated successfully!")
-                    toast.Show()
-                    _itemList.LoadAllItems("")
-                Else
-                    Dim toast As New ToastForm("Update failed.")
-                    toast.Show()
+                    If UpdateDatabase(sql, parameters) Then
+                        LogAction(UserSession.UserID, "STOCK-OUT", $"Updated entry id: {movementID}", "stock_movements")
+                        ClearField()
+                        Dim toast As New ToastForm("Stock-in updated successfully!")
+                        toast.Show()
+                        _itemList.LoadAllItems("")
+                    Else
+                        Dim toast As New ToastForm("Update failed.")
+                        toast.Show()
+                    End If
                 End If
-
             Else
                 Dim toast As New ToastForm("All Fields are required!.")
                 toast.Show()

@@ -1,11 +1,12 @@
 ﻿Public Class LogsForm
     Private Sub LogsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtpSearch.Value = Now()
         LoadAllUsers()
     End Sub
 
     Private Sub LoadAllUsers()
         Dim query As String =
-            "SELECT 
+            $"SELECT 
                 l.timestamp AS Date,
                 l.action AS Action, 
                 l.description AS Description, 
@@ -16,10 +17,16 @@
                 users u 
             ON 
                 l.user_id = u.user_id
+            WHERE 
+                DATE(l.timestamp) = '{dtpSearch.Value.Date.ToString("yyyy-MM-dd")}'
             ORDER BY 
                 l.timestamp DESC
             LIMIT 50"
         LoadDataToGrid(query, dgLogs)
 
+    End Sub
+
+    Private Sub dtpSearch_ValueChanged(sender As Object, e As EventArgs) Handles dtpSearch.ValueChanged
+        LoadAllUsers()
     End Sub
 End Class

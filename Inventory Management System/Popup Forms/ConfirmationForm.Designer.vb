@@ -50,7 +50,7 @@ Partial Class ConfirmationForm
         txtMessage.Size = New Size(352, 102)
         txtMessage.TabIndex = 9
         txtMessage.Text = "Text"
-        txtMessage.TextAlign = ContentAlignment.TopCenter
+        txtMessage.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' btnCancel
         ' 
@@ -76,7 +76,7 @@ Partial Class ConfirmationForm
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(171, 35)
         btnOK.TabIndex = 7
-        btnOK.Text = "OK"
+        btnOK.Text = "Yes"
         btnOK.UseVisualStyleBackColor = False
         ' 
         ' ConfirmationForm

@@ -14,4 +14,13 @@ Module MyFunctionsModule
             Return sb.ToString()
         End Using
     End Function
+
+    Public Function ConfirmDialog(message As String) As Boolean
+        Dim confirm As New ConfirmationForm()
+        confirm.Message = message
+        If confirm.ShowDialog() = DialogResult.Yes Then
+            Return True
+        End If
+        Return False
+    End Function
 End Module

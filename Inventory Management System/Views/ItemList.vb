@@ -78,24 +78,26 @@
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If IsFormReady() Then
-            Dim sql As String = "INSERT INTO items (item_code, item_name, description, category_id, unit, reorder_level) " &
+            If ConfirmDialog($"Are you sure you want to add item {txtItemName.Text}") Then
+                Dim sql As String = "INSERT INTO items (item_code, item_name, description, category_id, unit, reorder_level) " &
                     "VALUES (@item_code, @item_name, @description, @category_id, @unit, @reorder_level)"
-            Dim parameters As New Dictionary(Of String, Object) From {
-                {"@item_code", Trim(txtCode.Text)},
-                {"@item_name", Trim(txtItemName.Text)},
-                {"@description", Trim(txtItemDescription.Text)},
-                {"@category_id", Trim(cbCategory.SelectedValue)},
-                {"@unit", cbUnit.Text},
-                {"@reorder_level", Trim(txtReorderLevel.Text)}
-            }
-            If InsertDatabase(sql, parameters) Then
-                LogAction(UserSession.UserID, "ADD ITEM", $"Added new item: {txtItemName.Text}", "items")
-                ClearField()
-                Dim toast As New ToastForm("Item inserted successfully!")
-                toast.Show()
-            Else
-                Dim toast As New ToastForm("Insert failed.")
-                toast.Show()
+                Dim parameters As New Dictionary(Of String, Object) From {
+                    {"@item_code", Trim(txtCode.Text)},
+                    {"@item_name", Trim(txtItemName.Text)},
+                    {"@description", Trim(txtItemDescription.Text)},
+                    {"@category_id", Trim(cbCategory.SelectedValue)},
+                    {"@unit", cbUnit.Text},
+                    {"@reorder_level", Trim(txtReorderLevel.Text)}
+                }
+                If InsertDatabase(sql, parameters) Then
+                    LogAction(UserSession.UserID, "ADD ITEM", $"Added new item: {txtItemName.Text}", "items")
+                    ClearField()
+                    Dim toast As New ToastForm("Item inserted successfully!")
+                    toast.Show()
+                Else
+                    Dim toast As New ToastForm("Insert failed.")
+                    toast.Show()
+                End If
             End If
         Else
             Dim toast As New ToastForm("All Fields are required!.")
@@ -105,7 +107,8 @@
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If IsFormReady() Then
-            Dim sql As String = "UPDATE items SET " &
+            If ConfirmDialog($"Are you sure you want to update item {txtItemName.Text}") Then
+                Dim sql As String = "UPDATE items SET " &
                 "item_code = @item_code, " &
                 "item_name = @item_name, " &
                 "description = @description, " &
@@ -114,26 +117,26 @@
                 "reorder_level = @reorder_level " &
                 "WHERE item_id = @item_id"
 
-            Dim parameters As New Dictionary(Of String, Object) From {
-                {"@item_code", Trim(txtCode.Text)},
-                {"@item_name", Trim(txtItemName.Text)},
-                {"@description", Trim(txtItemDescription.Text)},
-                {"@category_id", Trim(cbCategory.SelectedValue)},
-                {"@unit", cbUnit.Text},
-                {"@reorder_level", Trim(txtReorderLevel.Text)},
-                {"@item_id", CInt(txtID.Text)}
-            }
+                Dim parameters As New Dictionary(Of String, Object) From {
+                    {"@item_code", Trim(txtCode.Text)},
+                    {"@item_name", Trim(txtItemName.Text)},
+                    {"@description", Trim(txtItemDescription.Text)},
+                    {"@category_id", Trim(cbCategory.SelectedValue)},
+                    {"@unit", cbUnit.Text},
+                    {"@reorder_level", Trim(txtReorderLevel.Text)},
+                    {"@item_id", CInt(txtID.Text)}
+                }
 
-            If UpdateDatabase(sql, parameters) Then
-                LogAction(UserSession.UserID, "UPDATE ITEM", $"Updated item with id: {CInt(txtID.Text)}, item: {txtItemName.Text}", "items", CInt(txtID.Text))
-                ClearField()
-                Dim toast As New ToastForm("Item updated successfully!")
-                toast.Show()
-            Else
-                Dim toast As New ToastForm("Update failed.")
-                toast.Show()
+                If UpdateDatabase(sql, parameters) Then
+                    LogAction(UserSession.UserID, "UPDATE ITEM", $"Updated item with id: {CInt(txtID.Text)}, item: {txtItemName.Text}", "items", CInt(txtID.Text))
+                    ClearField()
+                    Dim toast As New ToastForm("Item updated successfully!")
+                    toast.Show()
+                Else
+                    Dim toast As New ToastForm("Update failed.")
+                    toast.Show()
+                End If
             End If
-
         Else
             Dim toast As New ToastForm("All Fields are required!.")
             toast.Show()

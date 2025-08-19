@@ -1,9 +1,17 @@
 ﻿Public Class MainForm
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, btnLogout.Click
-        LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
-        UserSession.ClearUserSession()
-        Me.Hide()
-        LoginForm.Show()
+        If ConfirmDialog("Are you sure you want to logout?") Then
+            LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
+            UserSession.ClearUserSession()
+            Me.Hide()
+            LoginForm.Show()
+        End If
+
+        'Dim confirm As New ConfirmationForm()
+        'confirm.Message = "Are you sure you want to logout?"
+        'If confirm.ShowDialog() = DialogResult.Yes Then
+
+        'End If
     End Sub
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load

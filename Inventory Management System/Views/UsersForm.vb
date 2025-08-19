@@ -97,24 +97,26 @@ Public Class UsersForm
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If IsFormReady(True) Then
-            Dim sql As String = "INSERT INTO users (user_firstname, user_lastname, username, password, user_type, status) " &
+            If ConfirmDialog($"Are you sure you want to add {txtFirstname.Text}?") Then
+                Dim sql As String = "INSERT INTO users (user_firstname, user_lastname, username, password, user_type, status) " &
                     "VALUES (@firstname, @lastname, @username, @password, @user_type, @status)"
-            Dim parameters As New Dictionary(Of String, Object) From {
-                {"@firstname", Trim(txtFirstname.Text)},
-                {"@lastname", Trim(txtLastname.Text)},
-                {"@username", Trim(txtUsername.Text)},
-                {"@password", HashPassword(Trim(txtPassword.Text))},
-                {"@user_type", cbRole.SelectedIndex},
-                {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
-            }
-            If InsertDatabase(sql, parameters) Then
-                LogAction(UserSession.UserID, "ADD USER", $"Added new user: {txtFirstname.Text} {txtLastname.Text}", "users")
-                ClearField()
-                Dim toast As New ToastForm("User inserted successfully!")
-                toast.Show()
-            Else
-                Dim toast As New ToastForm("Insert failed.")
-                toast.Show()
+                Dim parameters As New Dictionary(Of String, Object) From {
+                    {"@firstname", Trim(txtFirstname.Text)},
+                    {"@lastname", Trim(txtLastname.Text)},
+                    {"@username", Trim(txtUsername.Text)},
+                    {"@password", HashPassword(Trim(txtPassword.Text))},
+                    {"@user_type", cbRole.SelectedIndex},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
+                }
+                If InsertDatabase(sql, parameters) Then
+                    LogAction(UserSession.UserID, "ADD USER", $"Added new user: {txtFirstname.Text} {txtLastname.Text}", "users")
+                    ClearField()
+                    Dim toast As New ToastForm("User inserted successfully!")
+                    toast.Show()
+                Else
+                    Dim toast As New ToastForm("Insert failed.")
+                    toast.Show()
+                End If
             End If
         Else
             Dim toast As New ToastForm("All Fields are required!.")
@@ -124,7 +126,8 @@ Public Class UsersForm
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If IsFormReady(False) Then
-            Dim sql As String = "UPDATE users SET " &
+            If ConfirmDialog($"Are you sure you want to update {txtFirstname.Text}?") Then
+                Dim sql As String = "UPDATE users SET " &
                 "user_firstname = @firstname, " &
                 "user_lastname = @lastname, " &
                 "username = @username, " &
@@ -134,26 +137,26 @@ Public Class UsersForm
                 "modified_at = NOW() " &
                 "WHERE user_id = @user_id"
 
-            Dim parameters As New Dictionary(Of String, Object) From {
-                {"@firstname", txtFirstname.Text},
-                {"@lastname", txtLastname.Text},
-                {"@username", txtUsername.Text},
-                {"@password", If(Trim(txtPassword.Text) <> "", HashPassword(txtPassword.Text), passwordText)},
-                {"@user_type", cbRole.SelectedIndex},
-                {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)},
-                {"@user_id", CInt(txtID.Text)}
-            }
+                Dim parameters As New Dictionary(Of String, Object) From {
+                    {"@firstname", txtFirstname.Text},
+                    {"@lastname", txtLastname.Text},
+                    {"@username", txtUsername.Text},
+                    {"@password", If(Trim(txtPassword.Text) <> "", HashPassword(txtPassword.Text), passwordText)},
+                    {"@user_type", cbRole.SelectedIndex},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)},
+                    {"@user_id", CInt(txtID.Text)}
+                }
 
-            If UpdateDatabase(sql, parameters) Then
-                LogAction(UserSession.UserID, "UPDATE USER", $"Updated user with id: {CInt(txtID.Text)}, name: {txtFirstname.Text} {txtLastname.Text}", "users", CInt(txtID.Text))
-                ClearField()
-                Dim toast As New ToastForm("User updated successfully!")
-                toast.Show()
-            Else
-                Dim toast As New ToastForm("Update failed.")
-                toast.Show()
+                If UpdateDatabase(sql, parameters) Then
+                    LogAction(UserSession.UserID, "UPDATE USER", $"Updated user with id: {CInt(txtID.Text)}, name: {txtFirstname.Text} {txtLastname.Text}", "users", CInt(txtID.Text))
+                    ClearField()
+                    Dim toast As New ToastForm("User updated successfully!")
+                    toast.Show()
+                Else
+                    Dim toast As New ToastForm("Update failed.")
+                    toast.Show()
+                End If
             End If
-
         Else
             Dim toast As New ToastForm("All Fields are required!. Except for Password.")
             toast.Show()

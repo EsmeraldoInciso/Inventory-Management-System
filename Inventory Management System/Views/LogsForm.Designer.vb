@@ -27,6 +27,7 @@ Partial Class LogsForm
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         dgLogs = New DataGridView()
+        dtpSearch = New DateTimePicker()
         CType(dgLogs, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -87,12 +88,29 @@ Partial Class LogsForm
         dgLogs.TabIndex = 6
         dgLogs.TabStop = False
         ' 
+        ' dtpSearch
+        ' 
+        dtpSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        dtpSearch.CalendarFont = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtpSearch.CalendarForeColor = Color.SandyBrown
+        dtpSearch.CalendarMonthBackground = Color.SaddleBrown
+        dtpSearch.CalendarTitleBackColor = Color.Peru
+        dtpSearch.CalendarTitleForeColor = Color.SandyBrown
+        dtpSearch.Font = New Font("Segoe UI", 12F)
+        dtpSearch.Location = New Point(865, 50)
+        dtpSearch.MinDate = New Date(2024, 1, 1, 0, 0, 0, 0)
+        dtpSearch.Name = "dtpSearch"
+        dtpSearch.Size = New Size(290, 29)
+        dtpSearch.TabIndex = 7
+        dtpSearch.Value = New Date(2025, 8, 20, 3, 13, 11, 0)
+        ' 
         ' LogsForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.SandyBrown
         ClientSize = New Size(1167, 758)
+        Controls.Add(dtpSearch)
         Controls.Add(dgLogs)
         Controls.Add(Label1)
         Name = "LogsForm"
@@ -104,4 +122,5 @@ Partial Class LogsForm
 
     Friend WithEvents Label1 As Label
     Friend WithEvents dgLogs As DataGridView
+    Friend WithEvents dtpSearch As DateTimePicker
 End Class
