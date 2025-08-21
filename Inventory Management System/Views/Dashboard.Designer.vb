@@ -22,7 +22,49 @@ Partial Class DashboardForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
+        pnlShadow1 = New Panel()
+        pnlCard1 = New Panel()
+        lblTotalStockItems = New Label()
+        Label2 = New Label()
+        Panel1 = New Panel()
+        lblCategories = New Label()
+        Label5 = New Label()
+        Panel2 = New Panel()
+        Panel3 = New Panel()
+        lblLowStockAlerts = New Label()
+        Label7 = New Label()
+        Panel4 = New Panel()
+        pnlPieMain = New Panel()
+        pnlBarMain = New Panel()
+        pnlLineMain = New Panel()
+        Panel5 = New Panel()
+        Panel6 = New Panel()
+        Panel7 = New Panel()
+        dgLowStocks = New DataGridView()
+        dgRecentStockInOut = New DataGridView()
+        Label3 = New Label()
+        Label4 = New Label()
+        pnlPie = New Panel()
+        pnlBar = New Panel()
+        pnlLine = New Panel()
+        Label6 = New Label()
+        Label8 = New Label()
+        Label9 = New Label()
+        pnlCard1.SuspendLayout()
+        Panel1.SuspendLayout()
+        Panel3.SuspendLayout()
+        pnlPieMain.SuspendLayout()
+        pnlBarMain.SuspendLayout()
+        pnlLineMain.SuspendLayout()
+        CType(dgLowStocks, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgRecentStockInOut, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Label1
@@ -36,20 +78,433 @@ Partial Class DashboardForm
         Label1.TabIndex = 0
         Label1.Text = "Dashboard"
         ' 
+        ' pnlShadow1
+        ' 
+        pnlShadow1.BackColor = SystemColors.ControlDarkDark
+        pnlShadow1.Location = New Point(67, 100)
+        pnlShadow1.Name = "pnlShadow1"
+        pnlShadow1.Size = New Size(267, 151)
+        pnlShadow1.TabIndex = 1
+        ' 
+        ' pnlCard1
+        ' 
+        pnlCard1.BackColor = Color.SaddleBrown
+        pnlCard1.BorderStyle = BorderStyle.FixedSingle
+        pnlCard1.Controls.Add(lblTotalStockItems)
+        pnlCard1.Controls.Add(Label2)
+        pnlCard1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        pnlCard1.Location = New Point(62, 95)
+        pnlCard1.Name = "pnlCard1"
+        pnlCard1.Size = New Size(267, 151)
+        pnlCard1.TabIndex = 2
+        ' 
+        ' lblTotalStockItems
+        ' 
+        lblTotalStockItems.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTotalStockItems.ForeColor = SystemColors.ControlLightLight
+        lblTotalStockItems.Location = New Point(-1, 4)
+        lblTotalStockItems.Name = "lblTotalStockItems"
+        lblTotalStockItems.Size = New Size(267, 93)
+        lblTotalStockItems.TabIndex = 1
+        lblTotalStockItems.Text = "0"
+        lblTotalStockItems.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label2
+        ' 
+        Label2.ForeColor = SystemColors.ControlLightLight
+        Label2.Location = New Point(-1, 84)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(267, 40)
+        Label2.TabIndex = 0
+        Label2.Text = "Total Stock Items"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.SaddleBrown
+        Panel1.BorderStyle = BorderStyle.FixedSingle
+        Panel1.Controls.Add(lblCategories)
+        Panel1.Controls.Add(Label5)
+        Panel1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Panel1.Location = New Point(370, 95)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(267, 151)
+        Panel1.TabIndex = 4
+        ' 
+        ' lblCategories
+        ' 
+        lblCategories.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblCategories.ForeColor = SystemColors.ControlLightLight
+        lblCategories.Location = New Point(-1, 4)
+        lblCategories.Name = "lblCategories"
+        lblCategories.Size = New Size(267, 93)
+        lblCategories.TabIndex = 1
+        lblCategories.Text = "0"
+        lblCategories.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label5
+        ' 
+        Label5.ForeColor = SystemColors.ControlLightLight
+        Label5.Location = New Point(-1, 84)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(267, 40)
+        Label5.TabIndex = 0
+        Label5.Text = "Total Categories"
+        Label5.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BackColor = SystemColors.ControlDarkDark
+        Panel2.Location = New Point(375, 100)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(267, 151)
+        Panel2.TabIndex = 3
+        ' 
+        ' Panel3
+        ' 
+        Panel3.BackColor = Color.SaddleBrown
+        Panel3.BorderStyle = BorderStyle.FixedSingle
+        Panel3.Controls.Add(lblLowStockAlerts)
+        Panel3.Controls.Add(Label7)
+        Panel3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Panel3.Location = New Point(679, 95)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(267, 151)
+        Panel3.TabIndex = 6
+        ' 
+        ' lblLowStockAlerts
+        ' 
+        lblLowStockAlerts.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblLowStockAlerts.ForeColor = SystemColors.ControlLightLight
+        lblLowStockAlerts.Location = New Point(-1, 4)
+        lblLowStockAlerts.Name = "lblLowStockAlerts"
+        lblLowStockAlerts.Size = New Size(267, 93)
+        lblLowStockAlerts.TabIndex = 1
+        lblLowStockAlerts.Text = "0"
+        lblLowStockAlerts.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label7
+        ' 
+        Label7.ForeColor = SystemColors.ControlLightLight
+        Label7.Location = New Point(-1, 84)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(267, 40)
+        Label7.TabIndex = 0
+        Label7.Text = "Low Stock Alerts"
+        Label7.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Panel4
+        ' 
+        Panel4.BackColor = SystemColors.ControlDarkDark
+        Panel4.Location = New Point(684, 100)
+        Panel4.Name = "Panel4"
+        Panel4.Size = New Size(267, 151)
+        Panel4.TabIndex = 5
+        ' 
+        ' pnlPieMain
+        ' 
+        pnlPieMain.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlPieMain.BackColor = SystemColors.ControlLightLight
+        pnlPieMain.Controls.Add(Label6)
+        pnlPieMain.Controls.Add(pnlPie)
+        pnlPieMain.Location = New Point(62, 293)
+        pnlPieMain.Name = "pnlPieMain"
+        pnlPieMain.Size = New Size(443, 305)
+        pnlPieMain.TabIndex = 7
+        ' 
+        ' pnlBarMain
+        ' 
+        pnlBarMain.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlBarMain.BackColor = SystemColors.ControlLightLight
+        pnlBarMain.Controls.Add(Label8)
+        pnlBarMain.Controls.Add(pnlBar)
+        pnlBarMain.Location = New Point(526, 293)
+        pnlBarMain.Name = "pnlBarMain"
+        pnlBarMain.Size = New Size(445, 305)
+        pnlBarMain.TabIndex = 8
+        ' 
+        ' pnlLineMain
+        ' 
+        pnlLineMain.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlLineMain.BackColor = SystemColors.ControlLightLight
+        pnlLineMain.Controls.Add(Label9)
+        pnlLineMain.Controls.Add(pnlLine)
+        pnlLineMain.Location = New Point(993, 293)
+        pnlLineMain.Name = "pnlLineMain"
+        pnlLineMain.Size = New Size(445, 305)
+        pnlLineMain.TabIndex = 9
+        ' 
+        ' Panel5
+        ' 
+        Panel5.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Panel5.BackColor = SystemColors.ControlDarkDark
+        Panel5.Location = New Point(998, 298)
+        Panel5.Name = "Panel5"
+        Panel5.Size = New Size(445, 305)
+        Panel5.TabIndex = 12
+        ' 
+        ' Panel6
+        ' 
+        Panel6.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Panel6.BackColor = SystemColors.ControlDarkDark
+        Panel6.Location = New Point(531, 298)
+        Panel6.Name = "Panel6"
+        Panel6.Size = New Size(445, 305)
+        Panel6.TabIndex = 11
+        ' 
+        ' Panel7
+        ' 
+        Panel7.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Panel7.BackColor = SystemColors.ControlDarkDark
+        Panel7.Location = New Point(67, 298)
+        Panel7.Name = "Panel7"
+        Panel7.Size = New Size(443, 305)
+        Panel7.TabIndex = 10
+        ' 
+        ' dgLowStocks
+        ' 
+        dgLowStocks.AllowUserToAddRows = False
+        dgLowStocks.AllowUserToDeleteRows = False
+        dgLowStocks.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dgLowStocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgLowStocks.BackgroundColor = Color.SandyBrown
+        dgLowStocks.CellBorderStyle = DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = Color.SandyBrown
+        DataGridViewCellStyle13.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle13.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = DataGridViewTriState.True
+        dgLowStocks.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        dgLowStocks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgLowStocks.Cursor = Cursors.Hand
+        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = Color.SandyBrown
+        DataGridViewCellStyle14.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle14.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle14.SelectionBackColor = Color.SaddleBrown
+        DataGridViewCellStyle14.SelectionForeColor = Color.SandyBrown
+        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.False
+        dgLowStocks.DefaultCellStyle = DataGridViewCellStyle14
+        dgLowStocks.GridColor = Color.Peru
+        dgLowStocks.Location = New Point(62, 678)
+        dgLowStocks.MultiSelect = False
+        dgLowStocks.Name = "dgLowStocks"
+        dgLowStocks.ReadOnly = True
+        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = Color.SandyBrown
+        DataGridViewCellStyle15.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle15.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = DataGridViewTriState.True
+        dgLowStocks.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
+        dgLowStocks.RowHeadersVisible = False
+        dgLowStocks.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        dgLowStocks.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgLowStocks.Size = New Size(670, 351)
+        dgLowStocks.TabIndex = 13
+        dgLowStocks.TabStop = False
+        ' 
+        ' dgRecentStockInOut
+        ' 
+        dgRecentStockInOut.AllowUserToAddRows = False
+        dgRecentStockInOut.AllowUserToDeleteRows = False
+        dgRecentStockInOut.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dgRecentStockInOut.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgRecentStockInOut.BackgroundColor = Color.SandyBrown
+        dgRecentStockInOut.CellBorderStyle = DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = Color.SandyBrown
+        DataGridViewCellStyle16.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle16.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = DataGridViewTriState.True
+        dgRecentStockInOut.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
+        dgRecentStockInOut.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgRecentStockInOut.Cursor = Cursors.Hand
+        DataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle17.BackColor = Color.SandyBrown
+        DataGridViewCellStyle17.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle17.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle17.SelectionBackColor = Color.SaddleBrown
+        DataGridViewCellStyle17.SelectionForeColor = Color.SandyBrown
+        DataGridViewCellStyle17.WrapMode = DataGridViewTriState.False
+        dgRecentStockInOut.DefaultCellStyle = DataGridViewCellStyle17
+        dgRecentStockInOut.GridColor = Color.Peru
+        dgRecentStockInOut.Location = New Point(768, 678)
+        dgRecentStockInOut.MultiSelect = False
+        dgRecentStockInOut.Name = "dgRecentStockInOut"
+        dgRecentStockInOut.ReadOnly = True
+        DataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle18.BackColor = Color.SandyBrown
+        DataGridViewCellStyle18.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle18.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle18.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle18.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle18.WrapMode = DataGridViewTriState.True
+        dgRecentStockInOut.RowHeadersDefaultCellStyle = DataGridViewCellStyle18
+        dgRecentStockInOut.RowHeadersVisible = False
+        dgRecentStockInOut.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        dgRecentStockInOut.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgRecentStockInOut.Size = New Size(670, 351)
+        dgRecentStockInOut.TabIndex = 14
+        dgRecentStockInOut.TabStop = False
+        ' 
+        ' Label3
+        ' 
+        Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Label3.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.ForeColor = Color.SaddleBrown
+        Label3.Location = New Point(62, 630)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(670, 45)
+        Label3.TabIndex = 15
+        Label3.Text = "Low Stock List"
+        Label3.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label4
+        ' 
+        Label4.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Label4.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = Color.SaddleBrown
+        Label4.Location = New Point(768, 630)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(670, 45)
+        Label4.TabIndex = 16
+        Label4.Text = "Recent Stock Movements"
+        Label4.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' pnlPie
+        ' 
+        pnlPie.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlPie.Location = New Point(0, 48)
+        pnlPie.Name = "pnlPie"
+        pnlPie.Size = New Size(443, 257)
+        pnlPie.TabIndex = 0
+        ' 
+        ' pnlBar
+        ' 
+        pnlBar.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlBar.Location = New Point(0, 48)
+        pnlBar.Name = "pnlBar"
+        pnlBar.Size = New Size(445, 257)
+        pnlBar.TabIndex = 1
+        ' 
+        ' pnlLine
+        ' 
+        pnlLine.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlLine.Location = New Point(0, 48)
+        pnlLine.Name = "pnlLine"
+        pnlLine.Size = New Size(445, 257)
+        pnlLine.TabIndex = 2
+        ' 
+        ' Label6
+        ' 
+        Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Label6.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.ForeColor = Color.SaddleBrown
+        Label6.Location = New Point(0, 0)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(443, 45)
+        Label6.TabIndex = 1
+        Label6.Text = "Stock Distribution by Category"
+        Label6.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label8
+        ' 
+        Label8.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Label8.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.ForeColor = Color.SaddleBrown
+        Label8.Location = New Point(0, 0)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(443, 45)
+        Label8.TabIndex = 2
+        Label8.Text = "Top 5 Fast-Moving Items"
+        Label8.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label9
+        ' 
+        Label9.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.ForeColor = Color.SaddleBrown
+        Label9.Location = New Point(0, 0)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(443, 45)
+        Label9.TabIndex = 3
+        Label9.Text = "Stock Movement Trend"
+        Label9.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' DashboardForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        AutoScroll = True
         BackColor = Color.SandyBrown
-        ClientSize = New Size(1167, 778)
+        ClientSize = New Size(1606, 1100)
+        Controls.Add(Label4)
+        Controls.Add(Label3)
+        Controls.Add(dgRecentStockInOut)
+        Controls.Add(dgLowStocks)
+        Controls.Add(pnlLineMain)
+        Controls.Add(pnlBarMain)
+        Controls.Add(pnlPieMain)
+        Controls.Add(Panel3)
+        Controls.Add(Panel4)
+        Controls.Add(Panel1)
+        Controls.Add(Panel2)
+        Controls.Add(pnlCard1)
+        Controls.Add(pnlShadow1)
         Controls.Add(Label1)
+        Controls.Add(Panel7)
+        Controls.Add(Panel6)
+        Controls.Add(Panel5)
+        FormBorderStyle = FormBorderStyle.None
         MaximizeBox = False
         Name = "DashboardForm"
         ShowIcon = False
         Text = "Dashboard"
+        pnlCard1.ResumeLayout(False)
+        Panel1.ResumeLayout(False)
+        Panel3.ResumeLayout(False)
+        pnlPieMain.ResumeLayout(False)
+        pnlBarMain.ResumeLayout(False)
+        pnlLineMain.ResumeLayout(False)
+        CType(dgLowStocks, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgRecentStockInOut, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Label1 As Label
+    Friend WithEvents pnlShadow1 As Panel
+    Friend WithEvents pnlCard1 As Panel
+    Friend WithEvents lblTotalStockItems As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblCategories As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents lblLowStockAlerts As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents pnlPieMain As Panel
+    Friend WithEvents pnlBarMain As Panel
+    Friend WithEvents pnlLineMain As Panel
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents dgLowStocks As DataGridView
+    Friend WithEvents dgRecentStockInOut As DataGridView
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents pnlPie As Panel
+    Friend WithEvents pnlBar As Panel
+    Friend WithEvents pnlLine As Panel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
 End Class

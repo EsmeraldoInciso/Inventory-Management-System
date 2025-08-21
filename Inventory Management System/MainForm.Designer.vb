@@ -282,6 +282,7 @@ Partial Class MainForm
         ' pnlDisplay
         ' 
         pnlDisplay.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlDisplay.AutoScroll = True
         pnlDisplay.Location = New Point(306, 56)
         pnlDisplay.Name = "pnlDisplay"
         pnlDisplay.Size = New Size(1058, 782)
