@@ -19,8 +19,8 @@ Public Class ToastForm
     Public Sub New(message As String)
         InitializeComponent()
         Me.FormBorderStyle = FormBorderStyle.None
-        Me.BackColor = Color.SaddleBrown
-        Me.ForeColor = Color.SandyBrown
+        Me.BackColor = Color.FromArgb(255, 33, 33, 33)
+        Me.ForeColor = Color.FromArgb(255, 250, 250, 250)
         Me.ShowInTaskbar = False
         Me.TopMost = True
         Me.Opacity = 0 ' Start invisible
@@ -30,7 +30,7 @@ Public Class ToastForm
         ' Create Label
         Dim lbl As New Label With {
             .Text = message,
-            .ForeColor = Color.SandyBrown,
+            .ForeColor = Color.FromArgb(255, 250, 250, 250),
             .Font = New Font("Segoe UI", 14),
             .TextAlign = ContentAlignment.MiddleCenter,
             .AutoSize = True

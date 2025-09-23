@@ -56,7 +56,7 @@ Partial Class ItemListForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.SaddleBrown
+        Label1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
         Label1.Size = New Size(127, 37)
@@ -69,12 +69,12 @@ Partial Class ItemListForm
         dgItemList.AllowUserToDeleteRows = False
         dgItemList.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgItemList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgItemList.BackgroundColor = Color.SandyBrown
+        dgItemList.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgItemList.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.SandyBrown
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
@@ -82,22 +82,22 @@ Partial Class ItemListForm
         dgItemList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgItemList.Cursor = Cursors.Hand
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.SandyBrown
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionBackColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionForeColor = Color.SandyBrown
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         dgItemList.DefaultCellStyle = DataGridViewCellStyle2
-        dgItemList.GridColor = Color.Peru
+        dgItemList.GridColor = Color.Gainsboro
         dgItemList.Location = New Point(440, 80)
         dgItemList.MultiSelect = False
         dgItemList.Name = "dgItemList"
         dgItemList.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.SandyBrown
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
@@ -114,8 +114,8 @@ Partial Class ItemListForm
         btnPrint.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnPrint.Cursor = Cursors.Hand
         btnPrint.FlatStyle = FlatStyle.Popup
-        btnPrint.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnPrint.ForeColor = Color.SaddleBrown
+        btnPrint.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnPrint.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnPrint.Location = New Point(1040, 42)
         btnPrint.Name = "btnPrint"
         btnPrint.Size = New Size(115, 32)
@@ -127,22 +127,23 @@ Partial Class ItemListForm
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label7.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label7.Location = New Point(440, 45)
         Label7.Name = "Label7"
-        Label7.Size = New Size(74, 20)
+        Label7.Size = New Size(85, 23)
         Label7.TabIndex = 12
         Label7.Text = "Search:"
         ' 
         ' txtSearch
         ' 
         txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtSearch.BackColor = Color.SandyBrown
-        txtSearch.Font = New Font("Lucida Sans Unicode", 12F)
-        txtSearch.ForeColor = Color.SaddleBrown
-        txtSearch.Location = New Point(520, 42)
+        txtSearch.BackColor = Color.Gainsboro
+        txtSearch.Font = New Font("Lucida Sans Unicode", 14F)
+        txtSearch.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtSearch.Location = New Point(531, 42)
         txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(514, 32)
+        txtSearch.Size = New Size(503, 36)
         txtSearch.TabIndex = 11
         txtSearch.TabStop = False
         ' 
@@ -150,8 +151,8 @@ Partial Class ItemListForm
         ' 
         btnClear.Cursor = Cursors.Hand
         btnClear.FlatStyle = FlatStyle.Popup
-        btnClear.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClear.ForeColor = Color.SaddleBrown
+        btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnClear.Location = New Point(35, 536)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
@@ -164,8 +165,8 @@ Partial Class ItemListForm
         btnUpdate.BackColor = Color.Gold
         btnUpdate.Cursor = Cursors.Hand
         btnUpdate.FlatStyle = FlatStyle.Popup
-        btnUpdate.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnUpdate.ForeColor = Color.SaddleBrown
+        btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnUpdate.Location = New Point(244, 483)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
@@ -178,8 +179,8 @@ Partial Class ItemListForm
         btnAdd.BackColor = Color.LawnGreen
         btnAdd.Cursor = Cursors.Hand
         btnAdd.FlatStyle = FlatStyle.Popup
-        btnAdd.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAdd.ForeColor = Color.SaddleBrown
+        btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnAdd.Location = New Point(35, 483)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
@@ -189,167 +190,174 @@ Partial Class ItemListForm
         ' 
         ' cbCategory
         ' 
-        cbCategory.BackColor = Color.SandyBrown
+        cbCategory.BackColor = Color.Gainsboro
         cbCategory.Cursor = Cursors.Hand
         cbCategory.DropDownStyle = ComboBoxStyle.DropDownList
         cbCategory.FlatStyle = FlatStyle.Popup
-        cbCategory.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cbCategory.ForeColor = Color.SaddleBrown
+        cbCategory.Font = New Font("Lucida Sans Unicode", 14F)
+        cbCategory.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbCategory.FormattingEnabled = True
         cbCategory.Items.AddRange(New Object() {"", "Active", "Inactive"})
-        cbCategory.Location = New Point(154, 334)
+        cbCategory.Location = New Point(172, 334)
         cbCategory.Name = "cbCategory"
-        cbCategory.Size = New Size(280, 28)
+        cbCategory.Size = New Size(262, 31)
         cbCategory.TabIndex = 4
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label9.Location = New Point(35, 337)
         Label9.Name = "Label9"
-        Label9.Size = New Size(94, 20)
+        Label9.Size = New Size(109, 23)
         Label9.TabIndex = 16
         Label9.Text = "Category:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(35, 131)
         Label3.Name = "Label3"
-        Label3.Size = New Size(60, 20)
+        Label3.Size = New Size(69, 23)
         Label3.TabIndex = 17
         Label3.Text = "Code:"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label2.Location = New Point(35, 83)
         Label2.Name = "Label2"
-        Label2.Size = New Size(34, 20)
+        Label2.Size = New Size(38, 23)
         Label2.TabIndex = 18
         Label2.Text = "ID:"
         ' 
         ' txtCode
         ' 
-        txtCode.BackColor = Color.SandyBrown
-        txtCode.Font = New Font("Lucida Sans Unicode", 12F)
-        txtCode.ForeColor = Color.SaddleBrown
-        txtCode.Location = New Point(154, 128)
+        txtCode.BackColor = Color.Gainsboro
+        txtCode.Font = New Font("Lucida Sans Unicode", 14F)
+        txtCode.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtCode.Location = New Point(172, 128)
         txtCode.Name = "txtCode"
-        txtCode.Size = New Size(280, 32)
+        txtCode.Size = New Size(262, 36)
         txtCode.TabIndex = 1
         ' 
         ' txtID
         ' 
-        txtID.BackColor = Color.SandyBrown
+        txtID.BackColor = Color.Gainsboro
         txtID.Enabled = False
-        txtID.Font = New Font("Lucida Sans Unicode", 12F)
-        txtID.ForeColor = Color.SaddleBrown
-        txtID.Location = New Point(154, 80)
+        txtID.Font = New Font("Lucida Sans Unicode", 14F)
+        txtID.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtID.Location = New Point(172, 80)
         txtID.Name = "txtID"
-        txtID.Size = New Size(280, 32)
+        txtID.Size = New Size(262, 36)
         txtID.TabIndex = 15
         txtID.TabStop = False
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label4.Location = New Point(35, 178)
         Label4.Name = "Label4"
-        Label4.Size = New Size(111, 20)
+        Label4.Size = New Size(127, 23)
         Label4.TabIndex = 24
         Label4.Text = "Item Name:"
         ' 
         ' txtItemName
         ' 
-        txtItemName.BackColor = Color.SandyBrown
-        txtItemName.Font = New Font("Lucida Sans Unicode", 12F)
-        txtItemName.ForeColor = Color.SaddleBrown
-        txtItemName.Location = New Point(154, 175)
+        txtItemName.BackColor = Color.Gainsboro
+        txtItemName.Font = New Font("Lucida Sans Unicode", 14F)
+        txtItemName.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtItemName.Location = New Point(172, 175)
         txtItemName.Name = "txtItemName"
-        txtItemName.Size = New Size(280, 32)
+        txtItemName.Size = New Size(262, 36)
         txtItemName.TabIndex = 2
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label5.Location = New Point(35, 226)
         Label5.Name = "Label5"
-        Label5.Size = New Size(117, 20)
+        Label5.Size = New Size(136, 23)
         Label5.TabIndex = 26
         Label5.Text = "Description:"
         ' 
         ' txtItemDescription
         ' 
-        txtItemDescription.BackColor = Color.SandyBrown
-        txtItemDescription.Font = New Font("Lucida Sans Unicode", 12F)
-        txtItemDescription.ForeColor = Color.SaddleBrown
-        txtItemDescription.Location = New Point(154, 223)
+        txtItemDescription.BackColor = Color.Gainsboro
+        txtItemDescription.Font = New Font("Lucida Sans Unicode", 14F)
+        txtItemDescription.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtItemDescription.Location = New Point(172, 223)
         txtItemDescription.Multiline = True
         txtItemDescription.Name = "txtItemDescription"
-        txtItemDescription.Size = New Size(280, 96)
+        txtItemDescription.Size = New Size(262, 96)
         txtItemDescription.TabIndex = 3
         ' 
         ' cbUnit
         ' 
-        cbUnit.BackColor = Color.SandyBrown
+        cbUnit.BackColor = Color.Gainsboro
         cbUnit.Cursor = Cursors.Hand
         cbUnit.DropDownStyle = ComboBoxStyle.DropDownList
         cbUnit.FlatStyle = FlatStyle.Popup
-        cbUnit.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cbUnit.ForeColor = Color.SaddleBrown
+        cbUnit.Font = New Font("Lucida Sans Unicode", 14F)
+        cbUnit.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbUnit.FormattingEnabled = True
         cbUnit.Items.AddRange(New Object() {"", "Bag", "Box", "Pack", "Piece", "Pcs", "Dozen", "Tray"})
-        cbUnit.Location = New Point(154, 378)
+        cbUnit.Location = New Point(172, 378)
         cbUnit.Name = "cbUnit"
-        cbUnit.Size = New Size(280, 28)
+        cbUnit.Size = New Size(262, 31)
         cbUnit.TabIndex = 5
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label6.Location = New Point(35, 381)
         Label6.Name = "Label6"
-        Label6.Size = New Size(51, 20)
+        Label6.Size = New Size(59, 23)
         Label6.TabIndex = 27
         Label6.Text = "Unit:"
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label8.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label8.Location = New Point(35, 425)
         Label8.Name = "Label8"
-        Label8.Size = New Size(139, 20)
+        Label8.Size = New Size(158, 23)
         Label8.TabIndex = 30
         Label8.Text = "Reorder Level:"
         ' 
         ' txtReorderLevel
         ' 
-        txtReorderLevel.BackColor = Color.SandyBrown
-        txtReorderLevel.Font = New Font("Lucida Sans Unicode", 12F)
-        txtReorderLevel.ForeColor = Color.SaddleBrown
-        txtReorderLevel.Location = New Point(180, 422)
+        txtReorderLevel.BackColor = Color.Gainsboro
+        txtReorderLevel.Font = New Font("Lucida Sans Unicode", 14F)
+        txtReorderLevel.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtReorderLevel.Location = New Point(199, 422)
         txtReorderLevel.Name = "txtReorderLevel"
-        txtReorderLevel.Size = New Size(254, 32)
+        txtReorderLevel.Size = New Size(235, 36)
         txtReorderLevel.TabIndex = 6
         ' 
         ' btnStockOut
         ' 
         btnStockOut.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnStockOut.BackColor = Color.SaddleBrown
+        btnStockOut.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnStockOut.Cursor = Cursors.Hand
         btnStockOut.FlatAppearance.BorderColor = Color.SandyBrown
         btnStockOut.FlatAppearance.BorderSize = 0
         btnStockOut.FlatStyle = FlatStyle.Flat
-        btnStockOut.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnStockOut.ForeColor = Color.SandyBrown
+        btnStockOut.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
+        btnStockOut.ForeColor = Color.Gainsboro
         btnStockOut.Image = My.Resources.Resources.out_of_the_box
         btnStockOut.ImageAlign = ContentAlignment.MiddleLeft
         btnStockOut.Location = New Point(35, 710)
@@ -362,13 +370,13 @@ Partial Class ItemListForm
         ' btnStockIn
         ' 
         btnStockIn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        btnStockIn.BackColor = Color.SaddleBrown
+        btnStockIn.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnStockIn.Cursor = Cursors.Hand
         btnStockIn.FlatAppearance.BorderColor = Color.SandyBrown
         btnStockIn.FlatAppearance.BorderSize = 0
         btnStockIn.FlatStyle = FlatStyle.Flat
-        btnStockIn.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnStockIn.ForeColor = Color.SandyBrown
+        btnStockIn.Font = New Font("Segoe UI", 14F, FontStyle.Bold)
+        btnStockIn.ForeColor = Color.Gainsboro
         btnStockIn.Image = My.Resources.Resources.product
         btnStockIn.ImageAlign = ContentAlignment.MiddleLeft
         btnStockIn.Location = New Point(35, 661)
@@ -382,7 +390,7 @@ Partial Class ItemListForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SandyBrown
+        BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
         Controls.Add(btnStockOut)
         Controls.Add(btnStockIn)

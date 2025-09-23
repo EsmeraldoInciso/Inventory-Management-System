@@ -22,9 +22,9 @@ Partial Class CategoriesForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         btnPrint = New Button()
         Label7 = New Label()
@@ -43,8 +43,8 @@ Partial Class CategoriesForm
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, 0)
-        Label1.ForeColor = Color.SaddleBrown
+        Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
         Label1.Size = New Size(152, 37)
@@ -56,8 +56,8 @@ Partial Class CategoriesForm
         btnPrint.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnPrint.Cursor = Cursors.Hand
         btnPrint.FlatStyle = FlatStyle.Popup
-        btnPrint.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
-        btnPrint.ForeColor = Color.SaddleBrown
+        btnPrint.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnPrint.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnPrint.Location = New Point(1040, 42)
         btnPrint.Name = "btnPrint"
         btnPrint.Size = New Size(115, 32)
@@ -69,22 +69,23 @@ Partial Class CategoriesForm
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Label7.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label7.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label7.Location = New Point(440, 45)
         Label7.Name = "Label7"
-        Label7.Size = New Size(74, 20)
+        Label7.Size = New Size(85, 23)
         Label7.TabIndex = 13
         Label7.Text = "Search:"
         ' 
         ' txtSearch
         ' 
         txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtSearch.BackColor = Color.SandyBrown
-        txtSearch.Font = New Font("Lucida Sans Unicode", 12F)
-        txtSearch.ForeColor = Color.SaddleBrown
-        txtSearch.Location = New Point(520, 42)
+        txtSearch.BackColor = Color.Gainsboro
+        txtSearch.Font = New Font("Lucida Sans Unicode", 14F)
+        txtSearch.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtSearch.Location = New Point(531, 42)
         txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(514, 32)
+        txtSearch.Size = New Size(503, 36)
         txtSearch.TabIndex = 12
         txtSearch.TabStop = False
         ' 
@@ -94,39 +95,39 @@ Partial Class CategoriesForm
         dgCategories.AllowUserToDeleteRows = False
         dgCategories.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgCategories.BackgroundColor = Color.SandyBrown
+        dgCategories.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgCategories.CellBorderStyle = DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = Color.SandyBrown
-        DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle4.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
-        dgCategories.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        dgCategories.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgCategories.Cursor = Cursors.Hand
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = Color.SandyBrown
-        DataGridViewCellStyle5.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle5.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle5.SelectionBackColor = Color.SaddleBrown
-        DataGridViewCellStyle5.SelectionForeColor = Color.SandyBrown
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
-        dgCategories.DefaultCellStyle = DataGridViewCellStyle5
-        dgCategories.GridColor = Color.Peru
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        dgCategories.DefaultCellStyle = DataGridViewCellStyle2
+        dgCategories.GridColor = Color.Gainsboro
         dgCategories.Location = New Point(440, 80)
         dgCategories.MultiSelect = False
         dgCategories.Name = "dgCategories"
         dgCategories.ReadOnly = True
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = Color.SandyBrown
-        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle6.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
-        dgCategories.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
+        dgCategories.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         dgCategories.RowHeadersVisible = False
         dgCategories.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -138,8 +139,8 @@ Partial Class CategoriesForm
         ' 
         btnClear.Cursor = Cursors.Hand
         btnClear.FlatStyle = FlatStyle.Popup
-        btnClear.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
-        btnClear.ForeColor = Color.SaddleBrown
+        btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnClear.Location = New Point(35, 337)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
@@ -152,8 +153,8 @@ Partial Class CategoriesForm
         btnUpdate.BackColor = Color.Gold
         btnUpdate.Cursor = Cursors.Hand
         btnUpdate.FlatStyle = FlatStyle.Popup
-        btnUpdate.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
-        btnUpdate.ForeColor = Color.SaddleBrown
+        btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnUpdate.Location = New Point(244, 284)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
@@ -166,8 +167,8 @@ Partial Class CategoriesForm
         btnAdd.BackColor = Color.LawnGreen
         btnAdd.Cursor = Cursors.Hand
         btnAdd.FlatStyle = FlatStyle.Popup
-        btnAdd.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
-        btnAdd.ForeColor = Color.SaddleBrown
+        btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnAdd.Location = New Point(35, 284)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
@@ -178,29 +179,31 @@ Partial Class CategoriesForm
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Label3.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(35, 131)
         Label3.Name = "Label3"
-        Label3.Size = New Size(150, 20)
+        Label3.Size = New Size(174, 23)
         Label3.TabIndex = 17
         Label3.Text = "Category Name:"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Label2.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label2.Location = New Point(35, 83)
         Label2.Name = "Label2"
-        Label2.Size = New Size(34, 20)
+        Label2.Size = New Size(38, 23)
         Label2.TabIndex = 18
         Label2.Text = "ID:"
         ' 
         ' txtCategoryName
         ' 
-        txtCategoryName.BackColor = Color.SandyBrown
-        txtCategoryName.Font = New Font("Lucida Sans Unicode", 12F)
-        txtCategoryName.ForeColor = Color.SaddleBrown
-        txtCategoryName.Location = New Point(92, 154)
+        txtCategoryName.BackColor = Color.Gainsboro
+        txtCategoryName.Font = New Font("Lucida Sans Unicode", 14F)
+        txtCategoryName.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtCategoryName.Location = New Point(92, 160)
         txtCategoryName.Multiline = True
         txtCategoryName.Name = "txtCategoryName"
         txtCategoryName.Size = New Size(342, 96)
@@ -208,13 +211,13 @@ Partial Class CategoriesForm
         ' 
         ' txtID
         ' 
-        txtID.BackColor = Color.SandyBrown
+        txtID.BackColor = Color.Gainsboro
         txtID.Enabled = False
-        txtID.Font = New Font("Lucida Sans Unicode", 12F)
-        txtID.ForeColor = Color.SaddleBrown
+        txtID.Font = New Font("Lucida Sans Unicode", 14F)
+        txtID.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtID.Location = New Point(92, 80)
         txtID.Name = "txtID"
-        txtID.Size = New Size(342, 32)
+        txtID.Size = New Size(342, 36)
         txtID.TabIndex = 16
         txtID.TabStop = False
         ' 
@@ -222,7 +225,7 @@ Partial Class CategoriesForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SandyBrown
+        BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
         Controls.Add(btnClear)
         Controls.Add(btnUpdate)

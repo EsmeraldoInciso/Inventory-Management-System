@@ -35,7 +35,7 @@ Partial Class LogsForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.SaddleBrown
+        Label1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
         Label1.Size = New Size(75, 37)
@@ -48,12 +48,12 @@ Partial Class LogsForm
         dgLogs.AllowUserToDeleteRows = False
         dgLogs.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgLogs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgLogs.BackgroundColor = Color.SandyBrown
+        dgLogs.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgLogs.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.SandyBrown
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
@@ -61,22 +61,22 @@ Partial Class LogsForm
         dgLogs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgLogs.Cursor = Cursors.Hand
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.SandyBrown
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionBackColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionForeColor = Color.SandyBrown
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         dgLogs.DefaultCellStyle = DataGridViewCellStyle2
-        dgLogs.GridColor = Color.Peru
+        dgLogs.GridColor = Color.Gainsboro
         dgLogs.Location = New Point(12, 89)
         dgLogs.MultiSelect = False
         dgLogs.Name = "dgLogs"
         dgLogs.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.SandyBrown
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
@@ -108,7 +108,7 @@ Partial Class LogsForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SandyBrown
+        BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
         Controls.Add(dtpSearch)
         Controls.Add(dgLogs)

@@ -42,7 +42,7 @@ Partial Class LoginForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Lucida Sans Unicode", 40F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.SandyBrown
+        Label1.ForeColor = Color.Gainsboro
         Label1.Location = New Point(89, 192)
         Label1.Name = "Label1"
         Label1.Size = New Size(331, 65)
@@ -53,18 +53,18 @@ Partial Class LoginForm
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Lucida Sans Unicode", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.SaddleBrown
-        Label2.Location = New Point(218, 96)
+        Label2.Font = New Font("Lucida Sans Unicode", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        Label2.Location = New Point(195, 77)
         Label2.Name = "Label2"
-        Label2.Size = New Size(88, 34)
+        Label2.Size = New Size(128, 48)
         Label2.TabIndex = 1
         Label2.Text = "Login"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.SandyBrown
+        Panel1.BackColor = Color.Gainsboro
         Panel1.Controls.Add(btnHidePassword)
         Panel1.Controls.Add(btnShowPassword)
         Panel1.Controls.Add(btnClose)
@@ -116,7 +116,7 @@ Partial Class LoginForm
         btnClose.FlatAppearance.BorderSize = 0
         btnClose.FlatStyle = FlatStyle.Flat
         btnClose.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClose.ForeColor = Color.SaddleBrown
+        btnClose.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnClose.Location = New Point(467, 3)
         btnClose.Name = "btnClose"
         btnClose.Size = New Size(30, 30)
@@ -129,8 +129,8 @@ Partial Class LoginForm
         ' 
         btnLogin.Cursor = Cursors.Hand
         btnLogin.FlatStyle = FlatStyle.Popup
-        btnLogin.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnLogin.ForeColor = Color.SaddleBrown
+        btnLogin.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnLogin.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnLogin.Location = New Point(80, 315)
         btnLogin.Name = "btnLogin"
         btnLogin.Size = New Size(352, 35)
@@ -140,46 +140,48 @@ Partial Class LoginForm
         ' 
         ' txtPassword
         ' 
-        txtPassword.BackColor = Color.SandyBrown
+        txtPassword.BackColor = Color.Gainsboro
         txtPassword.BorderStyle = BorderStyle.FixedSingle
-        txtPassword.ForeColor = Color.SaddleBrown
+        txtPassword.Font = New Font("Lucida Sans Unicode", 14F)
+        txtPassword.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtPassword.Location = New Point(80, 257)
         txtPassword.Name = "txtPassword"
-        txtPassword.Size = New Size(352, 32)
+        txtPassword.Size = New Size(352, 36)
         txtPassword.TabIndex = 2
         txtPassword.Text = "123"
         txtPassword.UseSystemPasswordChar = True
         ' 
         ' txtUsername
         ' 
-        txtUsername.BackColor = Color.SandyBrown
+        txtUsername.BackColor = Color.Gainsboro
         txtUsername.BorderStyle = BorderStyle.FixedSingle
-        txtUsername.ForeColor = Color.SaddleBrown
+        txtUsername.Font = New Font("Lucida Sans Unicode", 14F)
+        txtUsername.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtUsername.Location = New Point(80, 191)
         txtUsername.Name = "txtUsername"
-        txtUsername.Size = New Size(352, 32)
+        txtUsername.Size = New Size(352, 36)
         txtUsername.TabIndex = 1
         txtUsername.Text = "trish"
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = Color.SaddleBrown
+        Label4.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label4.Location = New Point(80, 234)
         Label4.Name = "Label4"
-        Label4.Size = New Size(91, 20)
+        Label4.Size = New Size(107, 23)
         Label4.TabIndex = 0
         Label4.Text = "Password"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.SaddleBrown
+        Label3.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(80, 168)
         Label3.Name = "Label3"
-        Label3.Size = New Size(97, 20)
+        Label3.Size = New Size(112, 23)
         Label3.TabIndex = 0
         Label3.Text = "Username"
         ' 
@@ -187,7 +189,7 @@ Partial Class LoginForm
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.SandyBrown
+        Label5.ForeColor = Color.Gainsboro
         Label5.Location = New Point(90, 259)
         Label5.Name = "Label5"
         Label5.Size = New Size(323, 23)
@@ -199,7 +201,7 @@ Partial Class LoginForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SaddleBrown
+        BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         ClientSize = New Size(1000, 500)
         Controls.Add(Label5)
         Controls.Add(Panel1)

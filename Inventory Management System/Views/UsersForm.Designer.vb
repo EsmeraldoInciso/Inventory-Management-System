@@ -59,12 +59,12 @@ Partial Class UsersForm
         dgUsers.AllowUserToDeleteRows = False
         dgUsers.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgUsers.BackgroundColor = Color.SandyBrown
+        dgUsers.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgUsers.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.SandyBrown
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
@@ -72,22 +72,22 @@ Partial Class UsersForm
         dgUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgUsers.Cursor = Cursors.Hand
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.SandyBrown
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionBackColor = Color.SaddleBrown
-        DataGridViewCellStyle2.SelectionForeColor = Color.SandyBrown
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         dgUsers.DefaultCellStyle = DataGridViewCellStyle2
-        dgUsers.GridColor = Color.Peru
+        dgUsers.GridColor = Color.Gainsboro
         dgUsers.Location = New Point(440, 80)
         dgUsers.MultiSelect = False
         dgUsers.Name = "dgUsers"
         dgUsers.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.SandyBrown
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = Color.SaddleBrown
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
@@ -103,7 +103,7 @@ Partial Class UsersForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.SaddleBrown
+        Label1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
         Label1.Size = New Size(86, 37)
@@ -112,108 +112,113 @@ Partial Class UsersForm
         ' 
         ' txtID
         ' 
-        txtID.BackColor = Color.SandyBrown
+        txtID.BackColor = Color.Gainsboro
         txtID.Enabled = False
-        txtID.Font = New Font("Lucida Sans Unicode", 12F)
-        txtID.ForeColor = Color.SaddleBrown
-        txtID.Location = New Point(154, 80)
+        txtID.Font = New Font("Lucida Sans Unicode", 14F)
+        txtID.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtID.Location = New Point(164, 80)
         txtID.Name = "txtID"
-        txtID.Size = New Size(280, 32)
+        txtID.Size = New Size(270, 36)
         txtID.TabIndex = 4
         txtID.TabStop = False
         ' 
         ' txtFirstname
         ' 
-        txtFirstname.BackColor = Color.SandyBrown
-        txtFirstname.Font = New Font("Lucida Sans Unicode", 12F)
-        txtFirstname.ForeColor = Color.SaddleBrown
-        txtFirstname.Location = New Point(154, 128)
+        txtFirstname.BackColor = Color.Gainsboro
+        txtFirstname.Font = New Font("Lucida Sans Unicode", 14F)
+        txtFirstname.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtFirstname.Location = New Point(164, 128)
         txtFirstname.Name = "txtFirstname"
-        txtFirstname.Size = New Size(280, 32)
+        txtFirstname.Size = New Size(270, 36)
         txtFirstname.TabIndex = 1
         ' 
         ' txtLastname
         ' 
-        txtLastname.BackColor = Color.SandyBrown
-        txtLastname.Font = New Font("Lucida Sans Unicode", 12F)
-        txtLastname.ForeColor = Color.SaddleBrown
-        txtLastname.Location = New Point(154, 176)
+        txtLastname.BackColor = Color.Gainsboro
+        txtLastname.Font = New Font("Lucida Sans Unicode", 14F)
+        txtLastname.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtLastname.Location = New Point(164, 176)
         txtLastname.Name = "txtLastname"
-        txtLastname.Size = New Size(280, 32)
+        txtLastname.Size = New Size(270, 36)
         txtLastname.TabIndex = 2
         ' 
         ' txtUsername
         ' 
-        txtUsername.BackColor = Color.SandyBrown
-        txtUsername.Font = New Font("Lucida Sans Unicode", 12F)
-        txtUsername.ForeColor = Color.SaddleBrown
-        txtUsername.Location = New Point(154, 224)
+        txtUsername.BackColor = Color.Gainsboro
+        txtUsername.Font = New Font("Lucida Sans Unicode", 14F)
+        txtUsername.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtUsername.Location = New Point(164, 224)
         txtUsername.Name = "txtUsername"
-        txtUsername.Size = New Size(280, 32)
+        txtUsername.Size = New Size(270, 36)
         txtUsername.TabIndex = 3
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label2.Location = New Point(35, 83)
         Label2.Name = "Label2"
-        Label2.Size = New Size(34, 20)
+        Label2.Size = New Size(38, 23)
         Label2.TabIndex = 5
         Label2.Text = "ID:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(35, 131)
         Label3.Name = "Label3"
-        Label3.Size = New Size(111, 20)
+        Label3.Size = New Size(128, 23)
         Label3.TabIndex = 5
         Label3.Text = "First Name:"
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label4.Location = New Point(35, 179)
         Label4.Name = "Label4"
-        Label4.Size = New Size(107, 20)
+        Label4.Size = New Size(124, 23)
         Label4.TabIndex = 5
         Label4.Text = "Last Name:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label5.Location = New Point(35, 227)
         Label5.Name = "Label5"
-        Label5.Size = New Size(103, 20)
+        Label5.Size = New Size(119, 23)
         Label5.TabIndex = 5
         Label5.Text = "Username:"
         ' 
         ' cbRole
         ' 
-        cbRole.BackColor = Color.SandyBrown
+        cbRole.BackColor = Color.Gainsboro
         cbRole.Cursor = Cursors.Hand
         cbRole.DropDownStyle = ComboBoxStyle.DropDownList
         cbRole.FlatStyle = FlatStyle.Popup
-        cbRole.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cbRole.ForeColor = Color.SaddleBrown
+        cbRole.Font = New Font("Lucida Sans Unicode", 14F)
+        cbRole.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbRole.FormattingEnabled = True
         cbRole.Items.AddRange(New Object() {"", "Admin", "User"})
-        cbRole.Location = New Point(154, 317)
+        cbRole.Location = New Point(164, 317)
         cbRole.Name = "cbRole"
-        cbRole.Size = New Size(280, 28)
+        cbRole.Size = New Size(270, 31)
         cbRole.TabIndex = 5
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label6.Location = New Point(35, 320)
         Label6.Name = "Label6"
-        Label6.Size = New Size(54, 20)
+        Label6.Size = New Size(62, 23)
         Label6.TabIndex = 5
         Label6.Text = "Role:"
         ' 
@@ -222,8 +227,8 @@ Partial Class UsersForm
         btnAdd.BackColor = Color.LawnGreen
         btnAdd.Cursor = Cursors.Hand
         btnAdd.FlatStyle = FlatStyle.Popup
-        btnAdd.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAdd.ForeColor = Color.SaddleBrown
+        btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnAdd.Location = New Point(35, 431)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
@@ -236,8 +241,8 @@ Partial Class UsersForm
         btnUpdate.BackColor = Color.Gold
         btnUpdate.Cursor = Cursors.Hand
         btnUpdate.FlatStyle = FlatStyle.Popup
-        btnUpdate.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnUpdate.ForeColor = Color.SaddleBrown
+        btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnUpdate.Location = New Point(244, 431)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
@@ -249,8 +254,8 @@ Partial Class UsersForm
         ' 
         btnClear.Cursor = Cursors.Hand
         btnClear.FlatStyle = FlatStyle.Popup
-        btnClear.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClear.ForeColor = Color.SaddleBrown
+        btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnClear.Location = New Point(35, 484)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
@@ -261,22 +266,23 @@ Partial Class UsersForm
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label7.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label7.Location = New Point(440, 45)
         Label7.Name = "Label7"
-        Label7.Size = New Size(74, 20)
+        Label7.Size = New Size(85, 23)
         Label7.TabIndex = 9
         Label7.Text = "Search:"
         ' 
         ' txtSearch
         ' 
         txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtSearch.BackColor = Color.SandyBrown
-        txtSearch.Font = New Font("Lucida Sans Unicode", 12F)
-        txtSearch.ForeColor = Color.SaddleBrown
-        txtSearch.Location = New Point(520, 42)
+        txtSearch.BackColor = Color.Gainsboro
+        txtSearch.Font = New Font("Lucida Sans Unicode", 14F)
+        txtSearch.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtSearch.Location = New Point(531, 42)
         txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(514, 32)
+        txtSearch.Size = New Size(503, 36)
         txtSearch.TabIndex = 8
         txtSearch.TabStop = False
         ' 
@@ -285,8 +291,8 @@ Partial Class UsersForm
         btnPrint.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnPrint.Cursor = Cursors.Hand
         btnPrint.FlatStyle = FlatStyle.Popup
-        btnPrint.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnPrint.ForeColor = Color.SaddleBrown
+        btnPrint.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        btnPrint.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnPrint.Location = New Point(1040, 42)
         btnPrint.Name = "btnPrint"
         btnPrint.Size = New Size(115, 32)
@@ -310,54 +316,56 @@ Partial Class UsersForm
         ' 
         ' txtPassword
         ' 
-        txtPassword.BackColor = Color.SandyBrown
-        txtPassword.Font = New Font("Lucida Sans Unicode", 12F)
-        txtPassword.ForeColor = Color.SaddleBrown
-        txtPassword.Location = New Point(154, 271)
+        txtPassword.BackColor = Color.Gainsboro
+        txtPassword.Font = New Font("Lucida Sans Unicode", 14F)
+        txtPassword.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtPassword.Location = New Point(164, 271)
         txtPassword.Name = "txtPassword"
-        txtPassword.Size = New Size(280, 32)
+        txtPassword.Size = New Size(270, 36)
         txtPassword.TabIndex = 4
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label8.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label8.Location = New Point(35, 274)
         Label8.Name = "Label8"
-        Label8.Size = New Size(97, 20)
+        Label8.Size = New Size(114, 23)
         Label8.TabIndex = 5
         Label8.Text = "Password:"
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label9.Location = New Point(35, 366)
         Label9.Name = "Label9"
-        Label9.Size = New Size(69, 20)
+        Label9.Size = New Size(80, 23)
         Label9.TabIndex = 5
         Label9.Text = "Status:"
         ' 
         ' cbStatus
         ' 
-        cbStatus.BackColor = Color.SandyBrown
+        cbStatus.BackColor = Color.Gainsboro
         cbStatus.Cursor = Cursors.Hand
         cbStatus.DropDownStyle = ComboBoxStyle.DropDownList
         cbStatus.FlatStyle = FlatStyle.Popup
-        cbStatus.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cbStatus.ForeColor = Color.SaddleBrown
+        cbStatus.Font = New Font("Lucida Sans Unicode", 14F)
+        cbStatus.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbStatus.FormattingEnabled = True
         cbStatus.Items.AddRange(New Object() {"", "Active", "Inactive"})
-        cbStatus.Location = New Point(154, 363)
+        cbStatus.Location = New Point(164, 363)
         cbStatus.Name = "cbStatus"
-        cbStatus.Size = New Size(280, 28)
+        cbStatus.Size = New Size(270, 31)
         cbStatus.TabIndex = 6
         ' 
         ' UsersForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SandyBrown
+        BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
         Controls.Add(btnPrint)
         Controls.Add(Label7)

@@ -89,14 +89,14 @@
         ' Reset all buttons in the sidebar
         For Each ctrl As Control In pnlSideBar.Controls ' Replace SidebarPanel with your panel name
             If TypeOf ctrl Is Button Then
-                ctrl.BackColor = Color.Peru  ' Default color
-                ctrl.ForeColor = Color.SaddleBrown      ' Default text color
+                ctrl.BackColor = Color.FromArgb(255, 220, 220, 220)  ' Default color
+                ctrl.ForeColor = Color.FromArgb(255, 33, 33, 33)
             End If
         Next
 
         ' Highlight the selected button
-        selectedButton.BackColor = Color.SandyBrown
-        selectedButton.ForeColor = Color.SaddleBrown
+        selectedButton.BackColor = Color.FromArgb(255, 250, 250, 250)
+        selectedButton.ForeColor = Color.FromArgb(255, 33, 33, 33)
     End Sub
 
     Private Sub MainForm_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
