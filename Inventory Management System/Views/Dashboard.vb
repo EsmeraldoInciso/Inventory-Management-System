@@ -4,6 +4,12 @@ Imports LiveChartsCore.SkiaSharpView
 Imports LiveChartsCore.SkiaSharpView.WinForms
 
 Public Class DashboardForm
+    Private _mainForm As MainForm
+
+    Public Sub New(mainForm As MainForm)
+        InitializeComponent()
+        _mainForm = mainForm
+    End Sub
     Private Sub LoadPieChart()
         ' Query grouped by category
         Dim query As String = "
@@ -150,11 +156,19 @@ Public Class DashboardForm
     End Function
 
     Private Function GetTotalLowStock() As Integer
-        Dim query As String = "SELECT COUNT(*) AS total FROM items i JOIN stock_levels s ON i.item_id = s.item_id WHERE s.quantity_on_hand <= i.reorder_level"
+
+        Dim query As String = "SELECT item_name AS item, s.quantity_on_hand as SOH  FROM items i JOIN stock_levels s ON i.item_id = s.item_id WHERE s.quantity_on_hand <= i.reorder_level"
         Dim dt As DataTable = Read(query)
         If dt.Rows.Count > 0 Then
-            Return Convert.ToInt32(dt.Rows(0)("total"))
+            For Each row As DataRow In dt.Rows
+                Dim itemValue As String = row("item").ToString()
+                Dim itemSOH As String = row("SOH").ToString()
+                Dim toast As New ToastForm($"Low Stock: {itemValue} | SOH: {itemSOH}", True)
+                toast.Show()
+            Next
+            Return dt.Rows.Count
         End If
+
         Return 0
     End Function
 
@@ -169,6 +183,7 @@ Public Class DashboardForm
             FROM items i JOIN stock_levels s ON i.item_id = s.item_id WHERE s.quantity_on_hand <= i.reorder_level
             LIMIT 50"
         LoadDataToGrid(query, dgLowStocks)
+        AutoResizeDataGridViewHeight(dgLowStocks)
     End Sub
 
     Public Sub LoadAllRecentStockMovement()
@@ -184,6 +199,16 @@ Public Class DashboardForm
             ORDER BY sm.created_at DESC
             LIMIT 15"
         LoadDataToGrid(query, dgRecentStockInOut)
+        AutoResizeDataGridViewHeight(dgRecentStockInOut)
+    End Sub
+    Private Sub AutoResizeDataGridViewHeight(dgv As DataGridView)
+        Dim totalHeight As Integer = dgv.ColumnHeadersHeight
+
+        For Each row As DataGridViewRow In dgv.Rows
+            totalHeight += row.Height
+        Next
+
+        dgv.Height = totalHeight + 2 ' +2 for borders
     End Sub
 
     Private Sub DashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -196,4 +221,51 @@ Public Class DashboardForm
         LoadAllItems()
         LoadAllRecentStockMovement()
     End Sub
+
+    Private Sub lblLowStockAlerts_MouseClick(sender As Object, e As MouseEventArgs) Handles lblLowStockAlerts.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
+    Private Sub Panel3_MouseClick(sender As Object, e As MouseEventArgs) Handles Panel3.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
+    Private Sub Label7_MouseClick(sender As Object, e As MouseEventArgs) Handles Label7.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
+    Private Sub lblCategories_MouseClick(sender As Object, e As MouseEventArgs) Handles lblCategories.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnCategories)
+        _mainForm.LoadFormIntoPanel(New CategoriesForm())
+    End Sub
+
+    Private Sub Label5_MouseClick(sender As Object, e As MouseEventArgs) Handles Label5.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnCategories)
+        _mainForm.LoadFormIntoPanel(New CategoriesForm())
+    End Sub
+
+    Private Sub Panel1_MouseClick(sender As Object, e As MouseEventArgs) Handles Panel1.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnCategories)
+        _mainForm.LoadFormIntoPanel(New CategoriesForm())
+    End Sub
+
+    Private Sub lblTotalStockItems_Click(sender As Object, e As EventArgs) Handles lblTotalStockItems.Click
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
+
+    Private Sub Label2_MouseClick(sender As Object, e As MouseEventArgs) Handles Label2.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
+    Private Sub pnlCard1_MouseClick(sender As Object, e As MouseEventArgs) Handles pnlCard1.MouseClick
+        _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
+        _mainForm.LoadFormIntoPanel(New ItemListForm())
+    End Sub
+
 End Class

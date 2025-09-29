@@ -25,6 +25,7 @@ Partial Class ItemListForm
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemListForm))
         Label1 = New Label()
         dgItemList = New DataGridView()
         btnPrint = New Button()
@@ -49,6 +50,10 @@ Partial Class ItemListForm
         txtReorderLevel = New TextBox()
         btnStockOut = New Button()
         btnStockIn = New Button()
+        PrintDocument1 = New Printing.PrintDocument()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
+        Label10 = New Label()
+        txtItemPrice = New TextBox()
         CType(dgItemList, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -153,7 +158,7 @@ Partial Class ItemListForm
         btnClear.FlatStyle = FlatStyle.Popup
         btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnClear.Location = New Point(35, 536)
+        btnClear.Location = New Point(35, 592)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
         btnClear.TabIndex = 9
@@ -167,7 +172,7 @@ Partial Class ItemListForm
         btnUpdate.FlatStyle = FlatStyle.Popup
         btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnUpdate.Location = New Point(244, 483)
+        btnUpdate.Location = New Point(244, 539)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
         btnUpdate.TabIndex = 8
@@ -181,7 +186,7 @@ Partial Class ItemListForm
         btnAdd.FlatStyle = FlatStyle.Popup
         btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnAdd.Location = New Point(35, 483)
+        btnAdd.Location = New Point(35, 539)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
         btnAdd.TabIndex = 7
@@ -198,17 +203,17 @@ Partial Class ItemListForm
         cbCategory.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbCategory.FormattingEnabled = True
         cbCategory.Items.AddRange(New Object() {"", "Active", "Inactive"})
-        cbCategory.Location = New Point(172, 334)
+        cbCategory.Location = New Point(172, 380)
         cbCategory.Name = "cbCategory"
         cbCategory.Size = New Size(262, 31)
-        cbCategory.TabIndex = 4
+        cbCategory.TabIndex = 5
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label9.Location = New Point(35, 337)
+        Label9.Location = New Point(35, 383)
         Label9.Name = "Label9"
         Label9.Size = New Size(109, 23)
         Label9.TabIndex = 16
@@ -311,17 +316,17 @@ Partial Class ItemListForm
         cbUnit.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbUnit.FormattingEnabled = True
         cbUnit.Items.AddRange(New Object() {"", "Bag", "Box", "Pack", "Piece", "Pcs", "Dozen", "Tray"})
-        cbUnit.Location = New Point(172, 378)
+        cbUnit.Location = New Point(172, 424)
         cbUnit.Name = "cbUnit"
         cbUnit.Size = New Size(262, 31)
-        cbUnit.TabIndex = 5
+        cbUnit.TabIndex = 6
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         Label6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label6.Location = New Point(35, 381)
+        Label6.Location = New Point(35, 427)
         Label6.Name = "Label6"
         Label6.Size = New Size(59, 23)
         Label6.TabIndex = 27
@@ -332,7 +337,7 @@ Partial Class ItemListForm
         Label8.AutoSize = True
         Label8.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         Label8.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label8.Location = New Point(35, 425)
+        Label8.Location = New Point(35, 471)
         Label8.Name = "Label8"
         Label8.Size = New Size(158, 23)
         Label8.TabIndex = 30
@@ -343,10 +348,10 @@ Partial Class ItemListForm
         txtReorderLevel.BackColor = Color.Gainsboro
         txtReorderLevel.Font = New Font("Lucida Sans Unicode", 14F)
         txtReorderLevel.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        txtReorderLevel.Location = New Point(199, 422)
+        txtReorderLevel.Location = New Point(199, 468)
         txtReorderLevel.Name = "txtReorderLevel"
         txtReorderLevel.Size = New Size(235, 36)
-        txtReorderLevel.TabIndex = 6
+        txtReorderLevel.TabIndex = 7
         ' 
         ' btnStockOut
         ' 
@@ -386,12 +391,48 @@ Partial Class ItemListForm
         btnStockIn.Text = "Stock-In"
         btnStockIn.UseVisualStyleBackColor = False
         ' 
+        ' PrintDocument1
+        ' 
+        ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label10.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        Label10.Location = New Point(35, 334)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(68, 23)
+        Label10.TabIndex = 34
+        Label10.Text = "Price:"
+        ' 
+        ' txtItemPrice
+        ' 
+        txtItemPrice.BackColor = Color.Gainsboro
+        txtItemPrice.Font = New Font("Lucida Sans Unicode", 14F)
+        txtItemPrice.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        txtItemPrice.Location = New Point(172, 331)
+        txtItemPrice.Name = "txtItemPrice"
+        txtItemPrice.Size = New Size(262, 36)
+        txtItemPrice.TabIndex = 4
+        ' 
         ' ItemListForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
+        Controls.Add(Label10)
+        Controls.Add(txtItemPrice)
         Controls.Add(btnStockOut)
         Controls.Add(btnStockIn)
         Controls.Add(Label8)
@@ -449,4 +490,8 @@ Partial Class ItemListForm
     Friend WithEvents txtReorderLevel As TextBox
     Friend WithEvents btnStockOut As Button
     Friend WithEvents btnStockIn As Button
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtItemPrice As TextBox
 End Class

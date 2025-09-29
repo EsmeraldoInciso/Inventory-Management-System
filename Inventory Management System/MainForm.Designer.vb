@@ -26,6 +26,7 @@ Partial Class MainForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         btnClose = New Button()
         pnlSideBar = New Panel()
+        Label1 = New Label()
         btnLogs = New Button()
         btnUsers = New Button()
         btnReports = New Button()
@@ -41,6 +42,7 @@ Partial Class MainForm
         btnMinimize = New Button()
         pnlDisplay = New Panel()
         timerDateTime = New Timer(components)
+        btnRestoreDown = New Button()
         pnlSideBar.SuspendLayout()
         pnlHeader.SuspendLayout()
         SuspendLayout()
@@ -65,6 +67,7 @@ Partial Class MainForm
         ' 
         pnlSideBar.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         pnlSideBar.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        pnlSideBar.Controls.Add(Label1)
         pnlSideBar.Controls.Add(btnLogs)
         pnlSideBar.Controls.Add(btnUsers)
         pnlSideBar.Controls.Add(btnReports)
@@ -80,6 +83,17 @@ Partial Class MainForm
         pnlSideBar.Size = New Size(300, 850)
         pnlSideBar.TabIndex = 1
         ' 
+        ' Label1
+        ' 
+        Label1.Font = New Font("Segoe UI", 20F, FontStyle.Bold Or FontStyle.Italic)
+        Label1.ForeColor = Color.Gainsboro
+        Label1.Location = New Point(15, 160)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(270, 35)
+        Label1.TabIndex = 11
+        Label1.Text = "Tazza Coffee Shop"
+        Label1.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' btnLogs
         ' 
         btnLogs.BackColor = Color.Gainsboro
@@ -91,7 +105,7 @@ Partial Class MainForm
         btnLogs.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnLogs.Image = My.Resources.Resources.log
         btnLogs.ImageAlign = ContentAlignment.MiddleLeft
-        btnLogs.Location = New Point(15, 430)
+        btnLogs.Location = New Point(15, 454)
         btnLogs.Name = "btnLogs"
         btnLogs.Size = New Size(270, 35)
         btnLogs.TabIndex = 10
@@ -109,7 +123,7 @@ Partial Class MainForm
         btnUsers.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnUsers.Image = My.Resources.Resources.group
         btnUsers.ImageAlign = ContentAlignment.MiddleLeft
-        btnUsers.Location = New Point(15, 383)
+        btnUsers.Location = New Point(15, 407)
         btnUsers.Name = "btnUsers"
         btnUsers.Size = New Size(270, 35)
         btnUsers.TabIndex = 7
@@ -127,7 +141,7 @@ Partial Class MainForm
         btnReports.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnReports.Image = My.Resources.Resources.report
         btnReports.ImageAlign = ContentAlignment.MiddleLeft
-        btnReports.Location = New Point(15, 335)
+        btnReports.Location = New Point(15, 359)
         btnReports.Name = "btnReports"
         btnReports.Size = New Size(270, 35)
         btnReports.TabIndex = 6
@@ -145,7 +159,7 @@ Partial Class MainForm
         btnCategories.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnCategories.Image = My.Resources.Resources.category
         btnCategories.ImageAlign = ContentAlignment.MiddleLeft
-        btnCategories.Location = New Point(15, 287)
+        btnCategories.Location = New Point(15, 311)
         btnCategories.Name = "btnCategories"
         btnCategories.Size = New Size(270, 35)
         btnCategories.TabIndex = 5
@@ -206,7 +220,7 @@ Partial Class MainForm
         btnItemList.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnItemList.Image = My.Resources.Resources.list_interface_symbol
         btnItemList.ImageAlign = ContentAlignment.MiddleLeft
-        btnItemList.Location = New Point(15, 239)
+        btnItemList.Location = New Point(15, 263)
         btnItemList.Name = "btnItemList"
         btnItemList.Size = New Size(270, 35)
         btnItemList.TabIndex = 2
@@ -224,7 +238,7 @@ Partial Class MainForm
         btnDashboard.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnDashboard.Image = My.Resources.Resources.dashboard
         btnDashboard.ImageAlign = ContentAlignment.MiddleLeft
-        btnDashboard.Location = New Point(15, 191)
+        btnDashboard.Location = New Point(15, 215)
         btnDashboard.Name = "btnDashboard"
         btnDashboard.Size = New Size(270, 35)
         btnDashboard.TabIndex = 1
@@ -233,7 +247,7 @@ Partial Class MainForm
         ' 
         ' Panel1
         ' 
-        Panel1.BackgroundImage = My.Resources.Resources.coffee
+        Panel1.BackgroundImage = My.Resources.Resources.hot_coffee
         Panel1.BackgroundImageLayout = ImageLayout.Zoom
         Panel1.Location = New Point(15, 15)
         Panel1.Name = "Panel1"
@@ -245,9 +259,11 @@ Partial Class MainForm
         ' 
         pnlHeader.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         pnlHeader.BackColor = Color.Gainsboro
+        pnlHeader.Controls.Add(btnRestoreDown)
         pnlHeader.Controls.Add(lblUsersName)
         pnlHeader.Controls.Add(btnMinimize)
         pnlHeader.Controls.Add(btnClose)
+        pnlHeader.Cursor = Cursors.SizeAll
         pnlHeader.Location = New Point(300, 0)
         pnlHeader.Name = "pnlHeader"
         pnlHeader.Size = New Size(1070, 50)
@@ -266,12 +282,13 @@ Partial Class MainForm
         ' btnMinimize
         ' 
         btnMinimize.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnMinimize.AutoSize = True
         btnMinimize.Cursor = Cursors.Hand
         btnMinimize.FlatAppearance.BorderSize = 0
         btnMinimize.FlatStyle = FlatStyle.Flat
         btnMinimize.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnMinimize.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnMinimize.Location = New Point(998, 6)
+        btnMinimize.Location = New Point(962, 6)
         btnMinimize.Name = "btnMinimize"
         btnMinimize.Size = New Size(30, 30)
         btnMinimize.TabIndex = 6
@@ -283,6 +300,7 @@ Partial Class MainForm
         ' 
         pnlDisplay.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         pnlDisplay.AutoScroll = True
+        pnlDisplay.AutoScrollMinSize = New Size(0, 500)
         pnlDisplay.Location = New Point(306, 56)
         pnlDisplay.Name = "pnlDisplay"
         pnlDisplay.Size = New Size(1058, 782)
@@ -292,6 +310,23 @@ Partial Class MainForm
         ' 
         timerDateTime.Enabled = True
         timerDateTime.Interval = 1000
+        ' 
+        ' btnRestoreDown
+        ' 
+        btnRestoreDown.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnRestoreDown.AutoSize = True
+        btnRestoreDown.Cursor = Cursors.Hand
+        btnRestoreDown.FlatAppearance.BorderSize = 0
+        btnRestoreDown.FlatStyle = FlatStyle.Flat
+        btnRestoreDown.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnRestoreDown.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        btnRestoreDown.Location = New Point(995, 6)
+        btnRestoreDown.Name = "btnRestoreDown"
+        btnRestoreDown.Size = New Size(33, 30)
+        btnRestoreDown.TabIndex = 8
+        btnRestoreDown.TabStop = False
+        btnRestoreDown.Text = "❐"
+        btnRestoreDown.UseVisualStyleBackColor = True
         ' 
         ' MainForm
         ' 
@@ -312,6 +347,7 @@ Partial Class MainForm
         WindowState = FormWindowState.Maximized
         pnlSideBar.ResumeLayout(False)
         pnlHeader.ResumeLayout(False)
+        pnlHeader.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -332,4 +368,6 @@ Partial Class MainForm
     Friend WithEvents btnReports As Button
     Friend WithEvents btnCategories As Button
     Friend WithEvents btnLogs As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnRestoreDown As Button
 End Class

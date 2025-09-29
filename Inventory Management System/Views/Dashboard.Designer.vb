@@ -92,6 +92,7 @@ Partial Class DashboardForm
         pnlCard1.BorderStyle = BorderStyle.FixedSingle
         pnlCard1.Controls.Add(lblTotalStockItems)
         pnlCard1.Controls.Add(Label2)
+        pnlCard1.Cursor = Cursors.Hand
         pnlCard1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         pnlCard1.Location = New Point(62, 95)
         pnlCard1.Name = "pnlCard1"
@@ -125,6 +126,7 @@ Partial Class DashboardForm
         Panel1.BorderStyle = BorderStyle.FixedSingle
         Panel1.Controls.Add(lblCategories)
         Panel1.Controls.Add(Label5)
+        Panel1.Cursor = Cursors.Hand
         Panel1.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Panel1.Location = New Point(370, 95)
         Panel1.Name = "Panel1"
@@ -166,6 +168,7 @@ Partial Class DashboardForm
         Panel3.BorderStyle = BorderStyle.FixedSingle
         Panel3.Controls.Add(lblLowStockAlerts)
         Panel3.Controls.Add(Label7)
+        Panel3.Cursor = Cursors.Hand
         Panel3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Panel3.Location = New Point(679, 95)
         Panel3.Name = "Panel3"
@@ -208,17 +211,16 @@ Partial Class DashboardForm
         pnlPieMain.Controls.Add(pnlPie)
         pnlPieMain.Location = New Point(62, 293)
         pnlPieMain.Name = "pnlPieMain"
-        pnlPieMain.Size = New Size(443, 305)
+        pnlPieMain.Size = New Size(380, 305)
         pnlPieMain.TabIndex = 7
         ' 
         ' Label6
         ' 
-        Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label6.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label6.Location = New Point(0, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(443, 45)
+        Label6.Size = New Size(380, 45)
         Label6.TabIndex = 1
         Label6.Text = "Stock Distribution by Category"
         Label6.TextAlign = ContentAlignment.MiddleCenter
@@ -227,7 +229,7 @@ Partial Class DashboardForm
         ' 
         pnlPie.Location = New Point(0, 48)
         pnlPie.Name = "pnlPie"
-        pnlPie.Size = New Size(443, 257)
+        pnlPie.Size = New Size(380, 257)
         pnlPie.TabIndex = 0
         ' 
         ' pnlBarMain
@@ -235,19 +237,18 @@ Partial Class DashboardForm
         pnlBarMain.BackColor = SystemColors.ControlLightLight
         pnlBarMain.Controls.Add(Label8)
         pnlBarMain.Controls.Add(pnlBar)
-        pnlBarMain.Location = New Point(526, 293)
+        pnlBarMain.Location = New Point(454, 293)
         pnlBarMain.Name = "pnlBarMain"
-        pnlBarMain.Size = New Size(445, 305)
+        pnlBarMain.Size = New Size(382, 305)
         pnlBarMain.TabIndex = 8
         ' 
         ' Label8
         ' 
-        Label8.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label8.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label8.Location = New Point(0, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(443, 45)
+        Label8.Size = New Size(382, 45)
         Label8.TabIndex = 2
         Label8.Text = "Top 5 Fast-Moving Items"
         Label8.TextAlign = ContentAlignment.MiddleCenter
@@ -256,7 +257,7 @@ Partial Class DashboardForm
         ' 
         pnlBar.Location = New Point(0, 48)
         pnlBar.Name = "pnlBar"
-        pnlBar.Size = New Size(445, 257)
+        pnlBar.Size = New Size(382, 257)
         pnlBar.TabIndex = 1
         ' 
         ' pnlLineMain
@@ -264,19 +265,18 @@ Partial Class DashboardForm
         pnlLineMain.BackColor = SystemColors.ControlLightLight
         pnlLineMain.Controls.Add(Label9)
         pnlLineMain.Controls.Add(pnlLine)
-        pnlLineMain.Location = New Point(993, 293)
+        pnlLineMain.Location = New Point(848, 293)
         pnlLineMain.Name = "pnlLineMain"
-        pnlLineMain.Size = New Size(445, 305)
+        pnlLineMain.Size = New Size(382, 305)
         pnlLineMain.TabIndex = 9
         ' 
         ' Label9
         ' 
-        Label9.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label9.Location = New Point(0, 0)
         Label9.Name = "Label9"
-        Label9.Size = New Size(443, 45)
+        Label9.Size = New Size(382, 45)
         Label9.TabIndex = 3
         Label9.Text = "Stock Movement Trend"
         Label9.TextAlign = ContentAlignment.MiddleCenter
@@ -285,23 +285,23 @@ Partial Class DashboardForm
         ' 
         pnlLine.Location = New Point(0, 48)
         pnlLine.Name = "pnlLine"
-        pnlLine.Size = New Size(445, 257)
+        pnlLine.Size = New Size(382, 257)
         pnlLine.TabIndex = 2
         ' 
         ' Panel5
         ' 
         Panel5.BackColor = SystemColors.ControlDarkDark
-        Panel5.Location = New Point(998, 298)
+        Panel5.Location = New Point(853, 298)
         Panel5.Name = "Panel5"
-        Panel5.Size = New Size(445, 305)
+        Panel5.Size = New Size(382, 305)
         Panel5.TabIndex = 12
         ' 
         ' Panel6
         ' 
         Panel6.BackColor = SystemColors.ControlDarkDark
-        Panel6.Location = New Point(531, 298)
+        Panel6.Location = New Point(459, 298)
         Panel6.Name = "Panel6"
-        Panel6.Size = New Size(445, 305)
+        Panel6.Size = New Size(382, 305)
         Panel6.TabIndex = 11
         ' 
         ' Panel7
@@ -309,14 +309,13 @@ Partial Class DashboardForm
         Panel7.BackColor = SystemColors.ControlDarkDark
         Panel7.Location = New Point(67, 298)
         Panel7.Name = "Panel7"
-        Panel7.Size = New Size(443, 305)
+        Panel7.Size = New Size(380, 305)
         Panel7.TabIndex = 10
         ' 
         ' dgLowStocks
         ' 
         dgLowStocks.AllowUserToAddRows = False
         dgLowStocks.AllowUserToDeleteRows = False
-        dgLowStocks.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgLowStocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgLowStocks.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgLowStocks.CellBorderStyle = DataGridViewCellBorderStyle.Raised
@@ -354,7 +353,7 @@ Partial Class DashboardForm
         dgLowStocks.RowHeadersVisible = False
         dgLowStocks.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgLowStocks.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgLowStocks.Size = New Size(670, 351)
+        dgLowStocks.Size = New Size(580, 351)
         dgLowStocks.TabIndex = 13
         dgLowStocks.TabStop = False
         ' 
@@ -362,7 +361,6 @@ Partial Class DashboardForm
         ' 
         dgRecentStockInOut.AllowUserToAddRows = False
         dgRecentStockInOut.AllowUserToDeleteRows = False
-        dgRecentStockInOut.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgRecentStockInOut.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgRecentStockInOut.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgRecentStockInOut.CellBorderStyle = DataGridViewCellBorderStyle.Raised
@@ -385,7 +383,7 @@ Partial Class DashboardForm
         DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
         dgRecentStockInOut.DefaultCellStyle = DataGridViewCellStyle5
         dgRecentStockInOut.GridColor = Color.Gainsboro
-        dgRecentStockInOut.Location = New Point(768, 678)
+        dgRecentStockInOut.Location = New Point(651, 678)
         dgRecentStockInOut.MultiSelect = False
         dgRecentStockInOut.Name = "dgRecentStockInOut"
         dgRecentStockInOut.ReadOnly = True
@@ -400,30 +398,28 @@ Partial Class DashboardForm
         dgRecentStockInOut.RowHeadersVisible = False
         dgRecentStockInOut.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgRecentStockInOut.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgRecentStockInOut.Size = New Size(670, 351)
+        dgRecentStockInOut.Size = New Size(580, 351)
         dgRecentStockInOut.TabIndex = 14
         dgRecentStockInOut.TabStop = False
         ' 
         ' Label3
         ' 
-        Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label3.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(62, 630)
         Label3.Name = "Label3"
-        Label3.Size = New Size(670, 45)
+        Label3.Size = New Size(580, 45)
         Label3.TabIndex = 15
         Label3.Text = "Low Stock List"
         Label3.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label4
         ' 
-        Label4.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label4.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label4.Location = New Point(768, 630)
+        Label4.Location = New Point(651, 630)
         Label4.Name = "Label4"
-        Label4.Size = New Size(670, 45)
+        Label4.Size = New Size(580, 45)
         Label4.TabIndex = 16
         Label4.Text = "Recent Stock Movements"
         Label4.TextAlign = ContentAlignment.MiddleCenter
@@ -433,6 +429,7 @@ Partial Class DashboardForm
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         AutoScroll = True
+        AutoScrollMinSize = New Size(0, 500)
         BackColor = Color.Gainsboro
         ClientSize = New Size(1606, 1100)
         Controls.Add(Label4)

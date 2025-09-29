@@ -171,7 +171,7 @@ Public Class UsersForm
 
     End Sub
 
-    Private Sub dgUsers_SelectionChanged(sender As Object, e As EventArgs) Handles dgUsers.SelectionChanged, dgUsers.CellClick
+    Private Sub dgUsers_SelectionChanged(sender As Object, e As EventArgs) Handles dgUsers.CellClick
         If dgUsers.SelectedRows.Count > 0 Then
             Dim row As DataGridViewRow = dgUsers.SelectedRows(0)
 

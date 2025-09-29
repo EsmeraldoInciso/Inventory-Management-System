@@ -25,6 +25,7 @@ Partial Class CategoriesForm
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CategoriesForm))
         Label1 = New Label()
         btnPrint = New Button()
         Label7 = New Label()
@@ -37,6 +38,8 @@ Partial Class CategoriesForm
         Label2 = New Label()
         txtCategoryName = New TextBox()
         txtID = New TextBox()
+        PrintDocument1 = New Printing.PrintDocument()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
         CType(dgCategories, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -221,6 +224,16 @@ Partial Class CategoriesForm
         txtID.TabIndex = 16
         txtID.TabStop = False
         ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
+        ' 
         ' CategoriesForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -258,4 +271,6 @@ Partial Class CategoriesForm
     Friend WithEvents Label2 As Label
     Friend WithEvents txtCategoryName As TextBox
     Friend WithEvents txtID As TextBox
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
 End Class
