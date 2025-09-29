@@ -29,6 +29,7 @@ Partial Class ToastForm
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Cursor = Cursors.Arrow
         Name = "ToastForm"
         ShowInTaskbar = False
         Text = "ToastForm"

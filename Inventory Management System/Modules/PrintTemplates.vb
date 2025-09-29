@@ -62,7 +62,7 @@ Public Class PrintTemplates
         Dim isLastPage As Boolean = True
         Dim count As Integer = currentRow
 
-        While count < dgv.Rows.Count
+        While count < dgv.Rows.Count - 1
             Dim row As DataGridViewRow = dgv.Rows(count)
             cellHeight = row.Height + 5
 
@@ -87,7 +87,7 @@ Public Class PrintTemplates
 
         ' === Draw Footer (Item Count) on Last Page Only ===
         If isLastPage Then
-            Dim footerText As String = "Row Count: " & dgv.Rows.Count.ToString()
+            Dim footerText As String = "Row Count: " & (dgv.Rows.Count - 1).ToString()
             Dim footerFont As New Font("Arial", 12, FontStyle.Regular)
             Dim textSize As SizeF = e.Graphics.MeasureString(footerText, footerFont)
             Dim footerX As Single = e.MarginBounds.Right - textSize.Width

@@ -31,7 +31,7 @@ Partial Class ConfirmationForm
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.SandyBrown
+        Panel1.BackColor = Color.Gainsboro
         Panel1.Controls.Add(txtMessage)
         Panel1.Controls.Add(btnCancel)
         Panel1.Controls.Add(btnOK)
@@ -44,7 +44,7 @@ Partial Class ConfirmationForm
         ' txtMessage
         ' 
         txtMessage.Font = New Font("Lucida Sans Unicode", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtMessage.ForeColor = Color.SaddleBrown
+        txtMessage.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtMessage.Location = New Point(42, 24)
         txtMessage.Name = "txtMessage"
         txtMessage.Size = New Size(352, 102)
@@ -57,7 +57,7 @@ Partial Class ConfirmationForm
         btnCancel.Cursor = Cursors.Hand
         btnCancel.FlatStyle = FlatStyle.Popup
         btnCancel.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnCancel.ForeColor = Color.SaddleBrown
+        btnCancel.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnCancel.Location = New Point(223, 129)
         btnCancel.Name = "btnCancel"
         btnCancel.Size = New Size(171, 35)
@@ -67,11 +67,11 @@ Partial Class ConfirmationForm
         ' 
         ' btnOK
         ' 
-        btnOK.BackColor = Color.SaddleBrown
+        btnOK.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnOK.Cursor = Cursors.Hand
         btnOK.FlatStyle = FlatStyle.Popup
         btnOK.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnOK.ForeColor = Color.SandyBrown
+        btnOK.ForeColor = Color.Gainsboro
         btnOK.Location = New Point(42, 129)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(171, 35)
@@ -83,7 +83,7 @@ Partial Class ConfirmationForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SaddleBrown
+        BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         ClientSize = New Size(441, 204)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.None

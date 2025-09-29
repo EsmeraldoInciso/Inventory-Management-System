@@ -1,4 +1,8 @@
-﻿Public Class MainForm
+﻿Imports System.Runtime.InteropServices
+
+
+Public Class MainForm
+
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, btnLogout.Click
         If ConfirmDialog("Are you sure you want to logout?") Then
             LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
@@ -22,7 +26,7 @@
             btnReports.Visible = False
             btnLogs.Visible = False
         End If
-        LoadFormIntoPanel(New DashboardForm())
+        LoadFormIntoPanel(New DashboardForm(Me))
         Dim toast As New ToastForm("✔️ Login successful!")
         toast.Show()
         timerDateTime.Start()
@@ -31,14 +35,15 @@
 
     Private Sub btnMinimize_Click(sender As Object, e As EventArgs) Handles btnMinimize.Click
         Me.WindowState = FormWindowState.Minimized
+        'Me.WindowState = FormWindowState.Normal
     End Sub
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         HighlightSidebarButton(btnDashboard)
-        LoadFormIntoPanel(New DashboardForm())
+        LoadFormIntoPanel(New DashboardForm(Me))
     End Sub
 
-    Private Sub btnItemList_Click(sender As Object, e As EventArgs) Handles btnItemList.Click
+    Public Sub btnItemList_Click(sender As Object, e As EventArgs) Handles btnItemList.Click
         HighlightSidebarButton(btnItemList)
         LoadFormIntoPanel(New ItemListForm())
     End Sub
@@ -69,7 +74,7 @@
     End Sub
 
 
-    Private Sub LoadFormIntoPanel(childForm As Form)
+    Public Sub LoadFormIntoPanel(childForm As Form)
         ' Clear existing controls
         pnlDisplay.Controls.Clear()
 
@@ -85,21 +90,66 @@
         childForm.Show()
     End Sub
 
-    Private Sub HighlightSidebarButton(selectedButton As Button)
+    Public Sub HighlightSidebarButton(selectedButton As Button)
         ' Reset all buttons in the sidebar
         For Each ctrl As Control In pnlSideBar.Controls ' Replace SidebarPanel with your panel name
             If TypeOf ctrl Is Button Then
-                ctrl.BackColor = Color.Peru  ' Default color
-                ctrl.ForeColor = Color.SaddleBrown      ' Default text color
+                ctrl.BackColor = Color.FromArgb(255, 220, 220, 220)  ' Default color
+                ctrl.ForeColor = Color.FromArgb(255, 33, 33, 33)
             End If
         Next
 
         ' Highlight the selected button
-        selectedButton.BackColor = Color.SandyBrown
-        selectedButton.ForeColor = Color.SaddleBrown
+        selectedButton.BackColor = Color.FromArgb(255, 250, 250, 250)
+        selectedButton.ForeColor = Color.FromArgb(255, 33, 33, 33)
     End Sub
 
     Private Sub MainForm_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         LogAction(UserSession.UserID, "LOGOUT", "User logged out successfully")
+    End Sub
+
+    ' Win32 API declarations
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function ReleaseCapture() As Boolean
+    End Function
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function SendMessage(hWnd As IntPtr, msg As Integer, wParam As Integer, lParam As Integer) As IntPtr
+    End Function
+
+    Private Const WM_NCLBUTTONDOWN As Integer = &HA1
+    Private Const HTCAPTION As Integer = &H2
+
+    Private Sub pnlHeader_MouseDown(sender As Object, e As MouseEventArgs) Handles pnlHeader.MouseDown, lblUsersName.MouseDown
+        If e.Button = MouseButtons.Left Then
+            ReleaseCapture()
+            SendMessage(Me.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0)
+        End If
+    End Sub
+
+    Private Sub pnlHeader_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles pnlHeader.MouseDoubleClick, lblUsersName.MouseDoubleClick
+        If Me.WindowState = FormWindowState.Normal Then
+            Me.WindowState = FormWindowState.Maximized
+        ElseIf Me.WindowState = FormWindowState.Maximized Then
+            Me.WindowState = FormWindowState.Normal
+        End If
+    End Sub
+
+    Private Sub pnlHeader_DoubleClick(sender As Object, e As EventArgs) Handles pnlHeader.DoubleClick, lblUsersName.DoubleClick
+        If Me.WindowState = FormWindowState.Normal Then
+            Me.WindowState = FormWindowState.Maximized
+        ElseIf Me.WindowState = FormWindowState.Maximized Then
+            Me.WindowState = FormWindowState.Normal
+        End If
+    End Sub
+
+    Private Sub btnRestoreDown_Click(sender As Object, e As EventArgs) Handles btnRestoreDown.Click
+        If Me.WindowState = FormWindowState.Normal Then
+            Me.WindowState = FormWindowState.Maximized
+            btnRestoreDown.Text = "❐"   ' Restore down symbol
+        Else
+            Me.WindowState = FormWindowState.Normal
+            btnRestoreDown.Text = "▭"   ' Maximize symbol
+        End If
     End Sub
 End Class

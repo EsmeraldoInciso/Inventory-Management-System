@@ -1,4 +1,7 @@
-﻿Public Class CategoriesForm
+﻿Imports System.Drawing.Printing
+
+Public Class CategoriesForm
+    Dim pt As New PrintTemplates
     Private Sub CategoriesForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ClearField()
     End Sub
@@ -81,7 +84,7 @@
         End If
     End Sub
 
-    Private Sub dgCategories_SelectionChanged(sender As Object, e As EventArgs) Handles dgCategories.SelectionChanged, dgCategories.CellClick
+    Private Sub dgCategories_SelectionChanged(sender As Object, e As EventArgs) Handles dgCategories.CellClick
         If dgCategories.SelectedRows.Count > 0 Then
             Dim row As DataGridViewRow = dgCategories.SelectedRows(0)
 
@@ -95,5 +98,44 @@
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ClearField()
+    End Sub
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        PrintPreviewDialog1.Document = PrintDocument1
+
+        ' Access the internal Form and maximize it
+        Dim previewForm As Form = TryCast(PrintPreviewDialog1, Form)
+        If previewForm IsNot Nothing Then
+            previewForm.WindowState = FormWindowState.Maximized
+        End If
+
+        PrintPreviewDialog1.ShowDialog()
+        'PrintDocument1.Print()
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        ' Create a temp DataGridView for printing
+        Dim dgvTemp As New DataGridView()
+
+        ' Copy only columns except password
+        For Each col As DataGridViewColumn In dgCategories.Columns
+            If col.Name.ToLower() <> "password" Then
+                dgvTemp.Columns.Add(col.Name, col.HeaderText)
+            End If
+        Next
+
+        ' Copy rows
+        For Each row As DataGridViewRow In dgCategories.Rows
+            If Not row.IsNewRow Then
+                Dim rowData As New List(Of Object)
+                For Each col As DataGridViewColumn In dgCategories.Columns
+                    If col.Name.ToLower() <> "password" Then
+                        rowData.Add(row.Cells(col.Index).Value)
+                    End If
+                Next
+                dgvTemp.Rows.Add(rowData.ToArray())
+            End If
+        Next
+        pt.PrintDataGridViewReport(e, dgvTemp, "Categories Report")
     End Sub
 End Class

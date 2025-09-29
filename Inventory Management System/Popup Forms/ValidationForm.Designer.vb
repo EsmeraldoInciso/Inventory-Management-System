@@ -35,7 +35,7 @@ Partial Class ValidationForm
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.SandyBrown
+        Panel1.BackColor = Color.Gainsboro
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(btnCancel)
         Panel1.Controls.Add(btnLogin)
@@ -53,7 +53,7 @@ Partial Class ValidationForm
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Lucida Sans Unicode", 20.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.SaddleBrown
+        Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label2.Location = New Point(67, 24)
         Label2.Name = "Label2"
         Label2.Size = New Size(308, 34)
@@ -66,7 +66,7 @@ Partial Class ValidationForm
         btnCancel.Cursor = Cursors.Hand
         btnCancel.FlatStyle = FlatStyle.Popup
         btnCancel.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnCancel.ForeColor = Color.SaddleBrown
+        btnCancel.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnCancel.Location = New Point(223, 214)
         btnCancel.Name = "btnCancel"
         btnCancel.Size = New Size(171, 35)
@@ -76,11 +76,11 @@ Partial Class ValidationForm
         ' 
         ' btnLogin
         ' 
-        btnLogin.BackColor = Color.SaddleBrown
+        btnLogin.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         btnLogin.Cursor = Cursors.Hand
         btnLogin.FlatStyle = FlatStyle.Popup
         btnLogin.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnLogin.ForeColor = Color.SandyBrown
+        btnLogin.ForeColor = Color.Gainsboro
         btnLogin.Location = New Point(42, 214)
         btnLogin.Name = "btnLogin"
         btnLogin.Size = New Size(171, 35)
@@ -90,9 +90,9 @@ Partial Class ValidationForm
         ' 
         ' txtPassword
         ' 
-        txtPassword.BackColor = Color.SandyBrown
+        txtPassword.BackColor = Color.Gainsboro
         txtPassword.BorderStyle = BorderStyle.FixedSingle
-        txtPassword.ForeColor = Color.SaddleBrown
+        txtPassword.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtPassword.Location = New Point(42, 168)
         txtPassword.Name = "txtPassword"
         txtPassword.Size = New Size(352, 29)
@@ -101,9 +101,9 @@ Partial Class ValidationForm
         ' 
         ' txtUsername
         ' 
-        txtUsername.BackColor = Color.SandyBrown
+        txtUsername.BackColor = Color.Gainsboro
         txtUsername.BorderStyle = BorderStyle.FixedSingle
-        txtUsername.ForeColor = Color.SaddleBrown
+        txtUsername.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         txtUsername.Location = New Point(42, 102)
         txtUsername.Name = "txtUsername"
         txtUsername.ReadOnly = True
@@ -115,7 +115,7 @@ Partial Class ValidationForm
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = Color.SaddleBrown
+        Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label4.Location = New Point(42, 145)
         Label4.Name = "Label4"
         Label4.Size = New Size(91, 20)
@@ -126,7 +126,7 @@ Partial Class ValidationForm
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.SaddleBrown
+        Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label3.Location = New Point(42, 79)
         Label3.Name = "Label3"
         Label3.Size = New Size(97, 20)
@@ -137,7 +137,7 @@ Partial Class ValidationForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.SaddleBrown
+        BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         ClientSize = New Size(441, 288)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.None
