@@ -163,7 +163,7 @@ Public Class DashboardForm
             For Each row As DataRow In dt.Rows
                 Dim itemValue As String = row("item").ToString()
                 Dim itemSOH As String = row("SOH").ToString()
-                Dim toast As New ToastForm($"Low Stock: {itemValue} | SOH: {itemSOH}", True)
+                Dim toast As New ToastForm($"RESTOCK: {itemValue.ToUpper} | SOH: {itemSOH}", True)
                 toast.Show()
             Next
             Return dt.Rows.Count

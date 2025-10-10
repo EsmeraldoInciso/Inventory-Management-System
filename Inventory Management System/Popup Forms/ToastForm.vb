@@ -28,7 +28,11 @@ Public Class ToastForm
 
         InitializeComponent()
         Me.FormBorderStyle = FormBorderStyle.None
-        Me.BackColor = Color.FromArgb(255, 33, 33, 33)
+        If Not isTop Then
+            Me.BackColor = Color.FromArgb(255, 33, 33, 33)
+        Else
+            Me.BackColor = Color.DarkRed
+        End If
         Me.ForeColor = Color.White
         Me.ShowInTaskbar = False
         Me.TopMost = True
