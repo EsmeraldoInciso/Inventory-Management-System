@@ -10,6 +10,7 @@ Public Class ItemListForm
             txtItemName.Enabled = False
             txtItemDescription.Enabled = False
             txtReorderLevel.Enabled = False
+            txtItemPrice.Enabled = False
             cbCategory.Enabled = False
             cbUnit.Enabled = False
             btnAdd.Enabled = False
@@ -47,7 +48,7 @@ Public Class ItemListForm
             LIMIT 50"
         LoadDataToGrid(query, dgItemList)
         dgItemList.Columns("category_id").Visible = False
-        dgItemList.Columns("Price").DefaultCellStyle.Format = "0.00"
+        dgItemList.Columns("Price").DefaultCellStyle.Format = "₱#,##0.00"
 
     End Sub
 
@@ -142,8 +143,6 @@ Public Class ItemListForm
                     ClearField()
                     Dim toast As New ToastForm("Item updated successfully!")
                     toast.Show()
-                    Dim toast1 As New ToastForm($"Low Stock: sample | SOH: sample", True)
-                    toast1.Show()
                 Else
                     Dim toast As New ToastForm("Update failed.")
                     toast.Show()
@@ -235,18 +234,28 @@ Public Class ItemListForm
             End If
         Next
 
-        ' Copy rows
+        ' Copy rows with formatting
         For Each row As DataGridViewRow In dgItemList.Rows
             If Not row.IsNewRow Then
                 Dim rowData As New List(Of Object)
                 For Each col As DataGridViewColumn In dgItemList.Columns
                     If col.Name.ToLower() <> "password" Then
-                        rowData.Add(row.Cells(col.Index).Value)
+                        Dim cellValue = row.Cells(col.Index).Value
+
+                        ' ✅ Format "Price" and "Sub-total" columns
+                        If col.HeaderText = "Price" OrElse col.HeaderText = "Sub-total" Then
+                            If IsNumeric(cellValue) Then
+                                cellValue = "₱" & Convert.ToDecimal(cellValue).ToString("#,##0.00")
+                            End If
+                        End If
+
+                        rowData.Add(cellValue)
                     End If
                 Next
                 dgvTemp.Rows.Add(rowData.ToArray())
             End If
         Next
+
         pt.PrintDataGridViewReport(e, dgvTemp, "Item List Report")
     End Sub
 End Class

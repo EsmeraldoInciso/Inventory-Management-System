@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing.Printing
 
 Public Class PrintTemplates
-    Public Sub PrintDataGridViewReport(e As PrintPageEventArgs, dgv As DataGridView, reportTitle As String)
+    Public Sub PrintDataGridViewReport(e As PrintPageEventArgs, dgv As DataGridView, reportTitle As String, Optional footer As String = "")
         ' Static values persist across multiple pages
         Static currentRow As Integer = 0
         Static columnLefts As New List(Of Integer)
@@ -85,14 +85,21 @@ Public Class PrintTemplates
             currentRow += 1
         End While
 
-        ' === Draw Footer (Item Count) on Last Page Only ===
+        ' === Draw Footer (Item Count + Custom Footer) on Last Page Only ===
         If isLastPage Then
-            Dim footerText As String = "Row Count: " & (dgv.Rows.Count - 1).ToString()
             Dim footerFont As New Font("Arial", 12, FontStyle.Regular)
-            Dim textSize As SizeF = e.Graphics.MeasureString(footerText, footerFont)
-            Dim footerX As Single = e.MarginBounds.Right - textSize.Width
-            Dim footerY As Single = topMargin + 10
-            e.Graphics.DrawString(footerText, footerFont, Brushes.Black, footerX, footerY)
+            Dim itemCountText As String = "Row Count: " & (dgv.Rows.Count - 1).ToString()
+
+            ' Item count on right
+            Dim itemCountSize As SizeF = e.Graphics.MeasureString(itemCountText, footerFont)
+            Dim itemCountX As Single = e.MarginBounds.Right - itemCountSize.Width
+            Dim footerY As Single = e.MarginBounds.Bottom + 10
+            e.Graphics.DrawString(itemCountText, footerFont, Brushes.Black, itemCountX, footerY)
+
+            ' === NEW: Custom footer text on left ===
+            If Not String.IsNullOrWhiteSpace(footer) Then
+                e.Graphics.DrawString(footer, footerFont, Brushes.Black, e.MarginBounds.Left, footerY)
+            End If
         End If
 
         ' === Cleanup if last page ===

@@ -22,16 +22,16 @@ Partial Class StockOutForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel1 = New Panel()
         btnExit = New Button()
         Label6 = New Label()
         txtItemName = New TextBox()
         btnClear = New Button()
         btnUpdate = New Button()
-        btnAdd = New Button()
+        btnDeduct = New Button()
         Label7 = New Label()
         Label5 = New Label()
         Label4 = New Label()
@@ -57,7 +57,7 @@ Partial Class StockOutForm
         Panel1.Controls.Add(txtItemName)
         Panel1.Controls.Add(btnClear)
         Panel1.Controls.Add(btnUpdate)
-        Panel1.Controls.Add(btnAdd)
+        Panel1.Controls.Add(btnDeduct)
         Panel1.Controls.Add(Label7)
         Panel1.Controls.Add(Label5)
         Panel1.Controls.Add(Label4)
@@ -142,19 +142,19 @@ Partial Class StockOutForm
         btnUpdate.Text = "Update"
         btnUpdate.UseVisualStyleBackColor = False
         ' 
-        ' btnAdd
+        ' btnDeduct
         ' 
-        btnAdd.BackColor = Color.LawnGreen
-        btnAdd.Cursor = Cursors.Hand
-        btnAdd.FlatStyle = FlatStyle.Popup
-        btnAdd.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnAdd.Location = New Point(424, 160)
-        btnAdd.Name = "btnAdd"
-        btnAdd.Size = New Size(171, 35)
-        btnAdd.TabIndex = 23
-        btnAdd.Text = "Add"
-        btnAdd.UseVisualStyleBackColor = False
+        btnDeduct.BackColor = Color.LawnGreen
+        btnDeduct.Cursor = Cursors.Hand
+        btnDeduct.FlatStyle = FlatStyle.Popup
+        btnDeduct.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnDeduct.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        btnDeduct.Location = New Point(424, 160)
+        btnDeduct.Name = "btnDeduct"
+        btnDeduct.Size = New Size(171, 35)
+        btnDeduct.TabIndex = 23
+        btnDeduct.Text = "Deduct"
+        btnDeduct.UseVisualStyleBackColor = False
         ' 
         ' Label7
         ' 
@@ -274,37 +274,37 @@ Partial Class StockOutForm
         dgStockOut.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgStockOut.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgStockOut.CellBorderStyle = DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgStockOut.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
+        dgStockOut.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         dgStockOut.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgStockOut.Cursor = Cursors.Hand
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        dgStockOut.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle5.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
+        dgStockOut.DefaultCellStyle = DataGridViewCellStyle5
         dgStockOut.GridColor = Color.Gainsboro
         dgStockOut.Location = New Point(9, 265)
         dgStockOut.MultiSelect = False
         dgStockOut.Name = "dgStockOut"
         dgStockOut.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
-        dgStockOut.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
+        dgStockOut.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         dgStockOut.RowHeadersVisible = False
         dgStockOut.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgStockOut.SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -361,7 +361,7 @@ Partial Class StockOutForm
     Friend WithEvents txtItemName As TextBox
     Friend WithEvents btnClear As Button
     Friend WithEvents btnUpdate As Button
-    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnDeduct As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label

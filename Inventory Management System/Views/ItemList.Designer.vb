@@ -64,9 +64,9 @@ Partial Class ItemListForm
         Label1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label1.Location = New Point(12, 9)
         Label1.Name = "Label1"
-        Label1.Size = New Size(127, 37)
+        Label1.Size = New Size(167, 37)
         Label1.TabIndex = 1
-        Label1.Text = "Item List"
+        Label1.Text = "Product List"
         ' 
         ' dgItemList
         ' 
