@@ -117,7 +117,7 @@ Partial Class DashboardForm
         Label2.Name = "Label2"
         Label2.Size = New Size(267, 40)
         Label2.TabIndex = 0
-        Label2.Text = "Total Stock Items"
+        Label2.Text = "Product Listed"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel1
@@ -151,7 +151,7 @@ Partial Class DashboardForm
         Label5.Name = "Label5"
         Label5.Size = New Size(267, 40)
         Label5.TabIndex = 0
-        Label5.Text = "Total Categories"
+        Label5.Text = "Categories"
         Label5.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel2

@@ -26,7 +26,7 @@
         dgvToolTip.SetToolTip(dgStockOut, "Double Tap To Select Data.")
     End Sub
 
-    Private Sub LoadAllStockIn()
+    Private Sub LoadAllStockOut()
         Dim query As String =
             "SELECT 
                 movement_id,
@@ -35,7 +35,7 @@
                 reference_no as 'Reference No.',
                 remarks as Remarks
             FROM stock_movements
-            WHERE movement_type = 'OUT' AND item_id = " & ItemSession.ItemID & "
+            WHERE movement_type = 'OUT' AND item_id = " & ItemSession.ItemID & " AND created_by = " & UserSession.UserID & "
             ORDER BY created_at DESC
             LIMIT 50"
         LoadDataToGrid(query, dgStockOut)
@@ -43,15 +43,15 @@
     End Sub
 
     Private Sub ClearField()
-        LoadAllStockIn()
+        LoadAllStockOut()
         txtQuantity.Clear()
         txtReferenceNo.Clear()
         txtRemarks.Clear()
-        btnAdd.Enabled = True
+        btnDeduct.Enabled = True
         btnUpdate.Enabled = False
     End Sub
 
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnDeduct.Click
         If IsFormReady() Then
             If CheckItemCount() Then
                 If ConfirmDialog($"Confirm stock-out?") Then
@@ -143,7 +143,7 @@
             txtReferenceNo.Text = row.Cells("Reference No.").Value.ToString()
             txtRemarks.Text = row.Cells("Remarks").Value.ToString()
 
-            btnAdd.Enabled = False
+            btnDeduct.Enabled = False
             btnUpdate.Enabled = True
         End If
     End Sub

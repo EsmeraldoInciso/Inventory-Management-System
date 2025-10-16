@@ -38,11 +38,11 @@ Partial Class MainForm
         btnDashboard = New Button()
         Panel1 = New Panel()
         pnlHeader = New Panel()
+        btnRestoreDown = New Button()
         lblUsersName = New Label()
         btnMinimize = New Button()
         pnlDisplay = New Panel()
         timerDateTime = New Timer(components)
-        btnRestoreDown = New Button()
         pnlSideBar.SuspendLayout()
         pnlHeader.SuspendLayout()
         SuspendLayout()
@@ -224,7 +224,7 @@ Partial Class MainForm
         btnItemList.Name = "btnItemList"
         btnItemList.Size = New Size(270, 35)
         btnItemList.TabIndex = 2
-        btnItemList.Text = "Item List"
+        btnItemList.Text = "Product List"
         btnItemList.UseVisualStyleBackColor = False
         ' 
         ' btnDashboard
@@ -269,6 +269,23 @@ Partial Class MainForm
         pnlHeader.Size = New Size(1070, 50)
         pnlHeader.TabIndex = 7
         ' 
+        ' btnRestoreDown
+        ' 
+        btnRestoreDown.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnRestoreDown.AutoSize = True
+        btnRestoreDown.Cursor = Cursors.Hand
+        btnRestoreDown.FlatAppearance.BorderSize = 0
+        btnRestoreDown.FlatStyle = FlatStyle.Flat
+        btnRestoreDown.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnRestoreDown.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        btnRestoreDown.Location = New Point(995, 6)
+        btnRestoreDown.Name = "btnRestoreDown"
+        btnRestoreDown.Size = New Size(33, 30)
+        btnRestoreDown.TabIndex = 8
+        btnRestoreDown.TabStop = False
+        btnRestoreDown.Text = "❐"
+        btnRestoreDown.UseVisualStyleBackColor = True
+        ' 
         ' lblUsersName
         ' 
         lblUsersName.Font = New Font("Segoe UI", 14F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
@@ -310,23 +327,6 @@ Partial Class MainForm
         ' 
         timerDateTime.Enabled = True
         timerDateTime.Interval = 1000
-        ' 
-        ' btnRestoreDown
-        ' 
-        btnRestoreDown.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnRestoreDown.AutoSize = True
-        btnRestoreDown.Cursor = Cursors.Hand
-        btnRestoreDown.FlatAppearance.BorderSize = 0
-        btnRestoreDown.FlatStyle = FlatStyle.Flat
-        btnRestoreDown.Font = New Font("Lucida Sans Unicode", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnRestoreDown.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnRestoreDown.Location = New Point(995, 6)
-        btnRestoreDown.Name = "btnRestoreDown"
-        btnRestoreDown.Size = New Size(33, 30)
-        btnRestoreDown.TabIndex = 8
-        btnRestoreDown.TabStop = False
-        btnRestoreDown.Text = "❐"
-        btnRestoreDown.UseVisualStyleBackColor = True
         ' 
         ' MainForm
         ' 

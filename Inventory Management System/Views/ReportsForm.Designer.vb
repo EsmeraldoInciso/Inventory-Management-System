@@ -28,6 +28,7 @@ Partial Class ReportsForm
         Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportsForm))
         Label1 = New Label()
         dgReports = New DataGridView()
         dgLogs = New DataGridView()
@@ -39,6 +40,11 @@ Partial Class ReportsForm
         Label3 = New Label()
         btnLoad = New Button()
         lblTotalTransactions = New Label()
+        lblNDLogs = New Label()
+        lblNDTransactions = New Label()
+        btnPrint = New Button()
+        PrintDocument1 = New Printing.PrintDocument()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
         CType(dgReports, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgLogs, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -96,7 +102,7 @@ Partial Class ReportsForm
         dgReports.RowHeadersVisible = False
         dgReports.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgReports.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgReports.Size = New Size(603, 560)
+        dgReports.Size = New Size(603, 546)
         dgReports.TabIndex = 5
         dgReports.TabStop = False
         ' 
@@ -221,6 +227,7 @@ Partial Class ReportsForm
         ' 
         ' btnLoad
         ' 
+        btnLoad.BackColor = Color.LawnGreen
         btnLoad.Cursor = Cursors.Hand
         btnLoad.FlatStyle = FlatStyle.Popup
         btnLoad.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -231,21 +238,74 @@ Partial Class ReportsForm
         btnLoad.TabIndex = 36
         btnLoad.TabStop = False
         btnLoad.Text = "Load"
-        btnLoad.UseVisualStyleBackColor = True
+        btnLoad.UseVisualStyleBackColor = False
         ' 
         ' lblTotalTransactions
         ' 
         lblTotalTransactions.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        lblTotalTransactions.AutoSize = True
-        lblTotalTransactions.BorderStyle = BorderStyle.FixedSingle
-        lblTotalTransactions.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        lblTotalTransactions.Font = New Font("Lucida Sans Unicode", 20F, FontStyle.Bold Or FontStyle.Underline)
         lblTotalTransactions.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        lblTotalTransactions.Location = New Point(912, 724)
+        lblTotalTransactions.Location = New Point(552, 709)
         lblTotalTransactions.Name = "lblTotalTransactions"
-        lblTotalTransactions.Size = New Size(243, 25)
+        lblTotalTransactions.Size = New Size(603, 37)
         lblTotalTransactions.TabIndex = 37
-        lblTotalTransactions.Text = "Total Qty: 0 |  Total: 0"
+        lblTotalTransactions.Text = "Total Qty: 0 |  Total: ₱0.00"
         lblTotalTransactions.TextAlign = ContentAlignment.MiddleRight
+        ' 
+        ' lblNDLogs
+        ' 
+        lblNDLogs.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        lblNDLogs.AutoSize = True
+        lblNDLogs.BackColor = Color.White
+        lblNDLogs.Font = New Font("Lucida Sans Unicode", 30F, FontStyle.Bold)
+        lblNDLogs.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        lblNDLogs.Location = New Point(181, 431)
+        lblNDLogs.Name = "lblNDLogs"
+        lblNDLogs.Size = New Size(184, 48)
+        lblNDLogs.TabIndex = 38
+        lblNDLogs.Text = "No Data"
+        lblNDLogs.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' lblNDTransactions
+        ' 
+        lblNDTransactions.Anchor = AnchorStyles.None
+        lblNDTransactions.AutoSize = True
+        lblNDTransactions.BackColor = Color.White
+        lblNDTransactions.Font = New Font("Lucida Sans Unicode", 30F, FontStyle.Bold)
+        lblNDTransactions.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        lblNDTransactions.Location = New Point(770, 431)
+        lblNDTransactions.Name = "lblNDTransactions"
+        lblNDTransactions.Size = New Size(184, 48)
+        lblNDTransactions.TabIndex = 39
+        lblNDTransactions.Text = "No Data"
+        lblNDTransactions.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' btnPrint
+        ' 
+        btnPrint.Cursor = Cursors.Hand
+        btnPrint.FlatStyle = FlatStyle.Popup
+        btnPrint.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnPrint.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        btnPrint.Location = New Point(970, 75)
+        btnPrint.Name = "btnPrint"
+        btnPrint.Size = New Size(115, 32)
+        btnPrint.TabIndex = 40
+        btnPrint.TabStop = False
+        btnPrint.Text = "Print"
+        btnPrint.UseVisualStyleBackColor = True
+        ' 
+        ' PrintDocument1
+        ' 
+        ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
         ' 
         ' ReportsForm
         ' 
@@ -253,6 +313,9 @@ Partial Class ReportsForm
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
+        Controls.Add(btnPrint)
+        Controls.Add(lblNDTransactions)
+        Controls.Add(lblNDLogs)
         Controls.Add(lblTotalTransactions)
         Controls.Add(btnLoad)
         Controls.Add(cbDateRange)
@@ -283,4 +346,9 @@ Partial Class ReportsForm
     Friend WithEvents Label3 As Label
     Friend WithEvents btnLoad As Button
     Friend WithEvents lblTotalTransactions As Label
+    Friend WithEvents lblNDLogs As Label
+    Friend WithEvents lblNDTransactions As Label
+    Friend WithEvents btnPrint As Button
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
 End Class
