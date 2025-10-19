@@ -22,9 +22,9 @@ Partial Class ItemListForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemListForm))
         Label1 = New Label()
         dgItemList = New DataGridView()
@@ -54,6 +54,8 @@ Partial Class ItemListForm
         PrintPreviewDialog1 = New PrintPreviewDialog()
         Label10 = New Label()
         txtItemPrice = New TextBox()
+        cbStatus = New ComboBox()
+        Label11 = New Label()
         CType(dgItemList, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -76,37 +78,37 @@ Partial Class ItemListForm
         dgItemList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgItemList.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         dgItemList.CellBorderStyle = DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgItemList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle4.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
+        dgItemList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         dgItemList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgItemList.Cursor = Cursors.Hand
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
-        DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        dgItemList.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle5.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
+        dgItemList.DefaultCellStyle = DataGridViewCellStyle5
         dgItemList.GridColor = Color.Gainsboro
         dgItemList.Location = New Point(440, 80)
         dgItemList.MultiSelect = False
         dgItemList.Name = "dgItemList"
         dgItemList.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
-        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
-        dgItemList.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
+        dgItemList.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         dgItemList.RowHeadersVisible = False
         dgItemList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgItemList.SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -158,7 +160,7 @@ Partial Class ItemListForm
         btnClear.FlatStyle = FlatStyle.Popup
         btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnClear.Location = New Point(35, 592)
+        btnClear.Location = New Point(35, 617)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
         btnClear.TabIndex = 9
@@ -172,7 +174,7 @@ Partial Class ItemListForm
         btnUpdate.FlatStyle = FlatStyle.Popup
         btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnUpdate.Location = New Point(244, 539)
+        btnUpdate.Location = New Point(244, 564)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
         btnUpdate.TabIndex = 8
@@ -186,7 +188,7 @@ Partial Class ItemListForm
         btnAdd.FlatStyle = FlatStyle.Popup
         btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnAdd.Location = New Point(35, 539)
+        btnAdd.Location = New Point(35, 564)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
         btnAdd.TabIndex = 7
@@ -425,12 +427,40 @@ Partial Class ItemListForm
         txtItemPrice.Size = New Size(262, 36)
         txtItemPrice.TabIndex = 4
         ' 
+        ' cbStatus
+        ' 
+        cbStatus.BackColor = Color.Gainsboro
+        cbStatus.Cursor = Cursors.Hand
+        cbStatus.DropDownStyle = ComboBoxStyle.DropDownList
+        cbStatus.FlatStyle = FlatStyle.Popup
+        cbStatus.Font = New Font("Lucida Sans Unicode", 14F)
+        cbStatus.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        cbStatus.FormattingEnabled = True
+        cbStatus.Items.AddRange(New Object() {"", "Active", "Inactive"})
+        cbStatus.Location = New Point(172, 518)
+        cbStatus.Name = "cbStatus"
+        cbStatus.Size = New Size(262, 31)
+        cbStatus.TabIndex = 36
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label11.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        Label11.Location = New Point(35, 521)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(80, 23)
+        Label11.TabIndex = 35
+        Label11.Text = "Status:"
+        ' 
         ' ItemListForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
+        Controls.Add(cbStatus)
+        Controls.Add(Label11)
         Controls.Add(Label10)
         Controls.Add(txtItemPrice)
         Controls.Add(btnStockOut)
@@ -494,4 +524,6 @@ Partial Class ItemListForm
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
     Friend WithEvents Label10 As Label
     Friend WithEvents txtItemPrice As TextBox
+    Friend WithEvents cbStatus As ComboBox
+    Friend WithEvents Label11 As Label
 End Class

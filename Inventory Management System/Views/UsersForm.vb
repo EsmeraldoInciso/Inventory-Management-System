@@ -38,6 +38,15 @@ Public Class UsersForm
 
     End Sub
 
+    Private Sub dgItemList_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgUsers.CellFormatting
+        If dgUsers.Columns(e.ColumnIndex).Name = "Status" AndAlso e.Value IsNot Nothing Then
+            If e.Value.ToString() = "Inactive" Then
+                dgUsers.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                dgUsers.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.DarkGray
+            End If
+        End If
+    End Sub
+
     Private Sub ClearField()
         LoadAllUsers("")
         txtID.Clear()

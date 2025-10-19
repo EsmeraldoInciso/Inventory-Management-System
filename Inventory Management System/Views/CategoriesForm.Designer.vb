@@ -40,6 +40,8 @@ Partial Class CategoriesForm
         txtID = New TextBox()
         PrintDocument1 = New Printing.PrintDocument()
         PrintPreviewDialog1 = New PrintPreviewDialog()
+        cbStatus = New ComboBox()
+        Label9 = New Label()
         CType(dgCategories, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -144,7 +146,7 @@ Partial Class CategoriesForm
         btnClear.FlatStyle = FlatStyle.Popup
         btnClear.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnClear.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnClear.Location = New Point(35, 337)
+        btnClear.Location = New Point(35, 378)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(399, 35)
         btnClear.TabIndex = 21
@@ -158,7 +160,7 @@ Partial Class CategoriesForm
         btnUpdate.FlatStyle = FlatStyle.Popup
         btnUpdate.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnUpdate.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnUpdate.Location = New Point(244, 284)
+        btnUpdate.Location = New Point(244, 325)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(190, 35)
         btnUpdate.TabIndex = 20
@@ -172,7 +174,7 @@ Partial Class CategoriesForm
         btnAdd.FlatStyle = FlatStyle.Popup
         btnAdd.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
         btnAdd.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnAdd.Location = New Point(35, 284)
+        btnAdd.Location = New Point(35, 325)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(190, 35)
         btnAdd.TabIndex = 19
@@ -206,10 +208,10 @@ Partial Class CategoriesForm
         txtCategoryName.BackColor = Color.Gainsboro
         txtCategoryName.Font = New Font("Lucida Sans Unicode", 14F)
         txtCategoryName.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        txtCategoryName.Location = New Point(92, 160)
+        txtCategoryName.Location = New Point(121, 160)
         txtCategoryName.Multiline = True
         txtCategoryName.Name = "txtCategoryName"
-        txtCategoryName.Size = New Size(342, 96)
+        txtCategoryName.Size = New Size(313, 96)
         txtCategoryName.TabIndex = 15
         ' 
         ' txtID
@@ -218,11 +220,14 @@ Partial Class CategoriesForm
         txtID.Enabled = False
         txtID.Font = New Font("Lucida Sans Unicode", 14F)
         txtID.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        txtID.Location = New Point(92, 80)
+        txtID.Location = New Point(121, 80)
         txtID.Name = "txtID"
-        txtID.Size = New Size(342, 36)
+        txtID.Size = New Size(313, 36)
         txtID.TabIndex = 16
         txtID.TabStop = False
+        ' 
+        ' PrintDocument1
+        ' 
         ' 
         ' PrintPreviewDialog1
         ' 
@@ -234,12 +239,40 @@ Partial Class CategoriesForm
         PrintPreviewDialog1.Name = "PrintPreviewDialog1"
         PrintPreviewDialog1.Visible = False
         ' 
+        ' cbStatus
+        ' 
+        cbStatus.BackColor = Color.Gainsboro
+        cbStatus.Cursor = Cursors.Hand
+        cbStatus.DropDownStyle = ComboBoxStyle.DropDownList
+        cbStatus.FlatStyle = FlatStyle.Popup
+        cbStatus.Font = New Font("Lucida Sans Unicode", 14F)
+        cbStatus.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        cbStatus.FormattingEnabled = True
+        cbStatus.Items.AddRange(New Object() {"", "Active", "Inactive"})
+        cbStatus.Location = New Point(121, 270)
+        cbStatus.Name = "cbStatus"
+        cbStatus.Size = New Size(313, 31)
+        cbStatus.TabIndex = 23
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        Label9.Location = New Point(35, 273)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(80, 23)
+        Label9.TabIndex = 22
+        Label9.Text = "Status:"
+        ' 
         ' CategoriesForm
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.Gainsboro
         ClientSize = New Size(1167, 758)
+        Controls.Add(cbStatus)
+        Controls.Add(Label9)
         Controls.Add(btnClear)
         Controls.Add(btnUpdate)
         Controls.Add(btnAdd)
@@ -273,4 +306,6 @@ Partial Class CategoriesForm
     Friend WithEvents txtID As TextBox
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents cbStatus As ComboBox
+    Friend WithEvents Label9 As Label
 End Class

@@ -10,13 +10,26 @@ Public Class CategoriesForm
         Dim query As String =
             "SELECT 
                 category_id AS ID, 
-                category_name AS 'Category Name' 
+                category_name AS 'Category Name', 
+                CASE
+                    WHEN status = 1 THEN 'Active'
+                    ELSE 'Inactive'
+                END AS Status
             FROM categories
             WHERE 
                 category_id LIKE '%" + text + "%' OR
                 category_name LIKE '%" + text + "%'"
         LoadDataToGrid(query, dgCategories)
 
+    End Sub
+
+    Private Sub dgItemList_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgCategories.CellFormatting
+        If dgCategories.Columns(e.ColumnIndex).Name = "Status" AndAlso e.Value IsNot Nothing Then
+            If e.Value.ToString() = "Inactive" Then
+                dgCategories.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                dgCategories.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.DarkGray
+            End If
+        End If
     End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
@@ -26,6 +39,7 @@ Public Class CategoriesForm
     Private Sub ClearField()
         LoadAllCategories("")
         txtID.Clear()
+        cbStatus.SelectedIndex = 0
         txtCategoryName.Clear()
         txtSearch.Clear()
         btnAdd.Enabled = True
@@ -35,10 +49,11 @@ Public Class CategoriesForm
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If Trim(txtCategoryName.Text) <> "" Then
             If ConfirmDialog($"Are you sure you want to add category {txtCategoryName.Text}") Then
-                Dim sql As String = "INSERT INTO categories (category_name) " &
-                    "VALUES (@category_name)"
+                Dim sql As String = "INSERT INTO categories (category_name, status) " &
+                    "VALUES (@category_name, @status)"
                 Dim parameters As New Dictionary(Of String, Object) From {
-                    {"@category_name", Trim(txtCategoryName.Text)}
+                    {"@category_name", Trim(txtCategoryName.Text)},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
                 }
                 If InsertDatabase(sql, parameters) Then
                     LogAction(UserSession.UserID, "ADD CATEGORY", $"Added new category: {txtCategoryName.Text}?", "categories")
@@ -60,11 +75,13 @@ Public Class CategoriesForm
         If Trim(txtCategoryName.Text) <> "" Then
             If ConfirmDialog($"Are you sure you want to update category {txtCategoryName.Text}?") Then
                 Dim sql As String = "UPDATE categories SET " &
-                "category_name = @category_name " &
+                "category_name = @category_name, " &
+                "status = @status " &
                 "WHERE category_id = @category_id"
 
                 Dim parameters As New Dictionary(Of String, Object) From {
                     {"@category_name", txtCategoryName.Text},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)},
                     {"@category_id", CInt(txtID.Text)}
                 }
 
@@ -91,6 +108,7 @@ Public Class CategoriesForm
             ' Populate textboxes
             txtID.Text = row.Cells("ID").Value.ToString()
             txtCategoryName.Text = row.Cells("Category Name").Value.ToString()
+            cbStatus.SelectedItem = row.Cells("Status").Value.ToString()
         End If
         btnAdd.Enabled = False
         btnUpdate.Enabled = True

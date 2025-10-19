@@ -2,9 +2,9 @@
 
 Public Class ItemListForm
     Dim pt As New PrintTemplates
+    Dim queryStr As String
     Private Sub ItemListForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateComboBox(cbCategory, "categories", "category_name", "category_id")
-        ClearField()
         If UserSession.UserType <> 1 Then
             txtCode.Enabled = False
             txtItemName.Enabled = False
@@ -15,14 +15,16 @@ Public Class ItemListForm
             cbUnit.Enabled = False
             btnAdd.Enabled = False
             btnPrint.Enabled = False
+            queryStr = "i.status = 1 AND "
+        Else
+            queryStr = ""
         End If
-
+        ClearField()
     End Sub
 
     Public Sub LoadAllItems(text As String)
         Dim query As String =
-            "SELECT 
-                i.item_id AS ID, 
+            "SELECT i.item_id AS ID, 
                 item_code AS Code, 
                 item_name AS Name, 
                 description AS Description,
@@ -31,25 +33,40 @@ Public Class ItemListForm
                 i.category_id,
                 unit as Unit,
                 reorder_level as 'Reorder Level',
-                sl.quantity_on_hand as SOH
+                sl.quantity_on_hand as SOH,
+                CASE
+                    WHEN i.status = 1 THEN 'Active'
+                    ELSE 'Inactive'
+                END AS Status 
             FROM items i
             JOIN categories c
                 ON i.category_id = c.category_id
             JOIN stock_levels sl
                 ON i.item_id = sl.item_id
             WHERE 
-                i.item_id LIKE '%" + text + "%' OR
-                item_code LIKE '%" + text + "%' OR 
-                item_name LIKE '%" + text + "%' OR 
-                c.category_name LIKE '%" + text + "%' OR 
-                unit LIKE '%" + text + "%' OR 
-                reorder_level LIKE '%" + text + "%' OR 
-                description LIKE '%" + text + "%'
+                " + queryStr + " (
+                    i.item_id LIKE '%" & text & "%' OR
+                    item_code LIKE '%" & text & "%' OR 
+                    item_name LIKE '%" & text & "%' OR 
+                    c.category_name LIKE '%" & text & "%' OR 
+                    unit LIKE '%" & text & "%' OR 
+                    reorder_level LIKE '%" & text & "%' OR 
+                    description LIKE '%" & text & "%'
+                )
             LIMIT 50"
         LoadDataToGrid(query, dgItemList)
         dgItemList.Columns("category_id").Visible = False
         dgItemList.Columns("Price").DefaultCellStyle.Format = "₱#,##0.00"
 
+    End Sub
+
+    Private Sub dgItemList_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgItemList.CellFormatting
+        If dgItemList.Columns(e.ColumnIndex).Name = "Status" AndAlso e.Value IsNot Nothing Then
+            If e.Value.ToString() = "Inactive" Then
+                dgItemList.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                dgItemList.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.DarkGray
+            End If
+        End If
     End Sub
 
     Private Sub ClearField()
@@ -63,6 +80,7 @@ Public Class ItemListForm
         txtSearch.Clear()
         cbCategory.SelectedIndex = -1
         cbUnit.SelectedIndex = 0
+        cbStatus.SelectedIndex = 0
         If UserSession.UserType <> 1 Then
             btnAdd.Enabled = False
             btnUpdate.Enabled = False
@@ -87,8 +105,8 @@ Public Class ItemListForm
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If IsFormReady() Then
             If ConfirmDialog($"Are you sure you want to add item {txtItemName.Text}") Then
-                Dim sql As String = "INSERT INTO items (item_code, item_name, description, price, category_id, unit, reorder_level) " &
-                    "VALUES (@item_code, @item_name, @description, @price, @category_id, @unit, @reorder_level)"
+                Dim sql As String = "INSERT INTO items (item_code, item_name, description, price, category_id, unit, reorder_level, status) " &
+                    "VALUES (@item_code, @item_name, @description, @price, @category_id, @unit, @reorder_level, @status)"
                 Dim parameters As New Dictionary(Of String, Object) From {
                     {"@item_code", Trim(txtCode.Text)},
                     {"@item_name", Trim(txtItemName.Text)},
@@ -96,7 +114,8 @@ Public Class ItemListForm
                     {"@price", Trim(txtItemPrice.Text)},
                     {"@category_id", Trim(cbCategory.SelectedValue)},
                     {"@unit", cbUnit.Text},
-                    {"@reorder_level", Trim(txtReorderLevel.Text)}
+                    {"@reorder_level", Trim(txtReorderLevel.Text)},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)}
                 }
                 If InsertDatabase(sql, parameters) Then
                     LogAction(UserSession.UserID, "ADD ITEM", $"Added new item: {txtItemName.Text}", "items")
@@ -124,7 +143,8 @@ Public Class ItemListForm
                 "price = @price, " &
                 "category_id = @category_id, " &
                 "unit = @unit, " &
-                "reorder_level = @reorder_level " &
+                "reorder_level = @reorder_level, " &
+                "status = @status " &
                 "WHERE item_id = @item_id"
 
                 Dim parameters As New Dictionary(Of String, Object) From {
@@ -135,6 +155,7 @@ Public Class ItemListForm
                     {"@category_id", Trim(cbCategory.SelectedValue)},
                     {"@unit", cbUnit.Text},
                     {"@reorder_level", Trim(txtReorderLevel.Text)},
+                    {"@status", If(cbStatus.SelectedIndex = 1, 1, 0)},
                     {"@item_id", CInt(txtID.Text)}
                 }
 
@@ -168,6 +189,7 @@ Public Class ItemListForm
             txtReorderLevel.Text = row.Cells("Reorder Level").Value.ToString()
             cbCategory.SelectedValue = row.Cells("category_id").Value
             cbUnit.SelectedItem = row.Cells("Unit").Value.ToString()
+            cbStatus.SelectedItem = row.Cells("Status").Value.ToString()
         End If
         If UserSession.UserType <> 1 Then
             btnAdd.Enabled = False
