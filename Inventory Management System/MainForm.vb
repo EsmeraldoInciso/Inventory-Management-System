@@ -152,4 +152,9 @@ Public Class MainForm
             btnRestoreDown.Text = "▭"   ' Maximize symbol
         End If
     End Sub
+
+    Private Sub btnDiscounts_Click(sender As Object, e As EventArgs) Handles btnDiscounts.Click
+        HighlightSidebarButton(btnDiscounts)
+        LoadFormIntoPanel(New DiscountsForm())
+    End Sub
 End Class

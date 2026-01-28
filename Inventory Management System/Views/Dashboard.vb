@@ -1,5 +1,4 @@
-﻿
-Imports LiveChartsCore
+﻿Imports LiveChartsCore
 Imports LiveChartsCore.SkiaSharpView
 Imports LiveChartsCore.SkiaSharpView.WinForms
 
@@ -10,6 +9,7 @@ Public Class DashboardForm
         InitializeComponent()
         _mainForm = mainForm
     End Sub
+
     Private Sub LoadPieChart()
         ' Query grouped by category
         Dim query As String = "
@@ -25,8 +25,8 @@ Public Class DashboardForm
 
         ' Create chart
         Dim pieChart As New PieChart() With {
-        .Dock = DockStyle.Fill
-    }
+            .Dock = DockStyle.Fill
+        }
 
         ' Clear existing panels
         pnlPie.Controls.Clear()
@@ -39,9 +39,9 @@ Public Class DashboardForm
             Dim totalValue As Double = Convert.ToDouble(row("Total"))
 
             seriesList.Add(New PieSeries(Of Double) With {
-            .Values = New Double() {totalValue},
-            .Name = categoryName
-        })
+                .Values = New Double() {totalValue},
+                .Name = categoryName
+            })
         Next
 
         ' Assign all series at once
@@ -50,19 +50,17 @@ Public Class DashboardForm
         pnlPie.Controls.Add(pieChart)
     End Sub
 
-
-
     Private Sub LoadBarChart()
         ' Query: adjust table/column names if different
         Dim query As String = "
-        SELECT i.item_name, SUM(m.quantity) AS TotalOut
-        FROM stock_movements m
-        JOIN items i ON m.item_id = i.item_id
-        WHERE m.movement_type = 'OUT'
-        GROUP BY i.item_name
-        ORDER BY TotalOut DESC
-        LIMIT 5;
-    "
+            SELECT i.item_name, SUM(m.quantity) AS TotalOut
+            FROM stock_movements m
+            JOIN items i ON m.item_id = i.item_id
+            WHERE m.movement_type = 'OUT'
+            GROUP BY i.item_name
+            ORDER BY TotalOut DESC
+            LIMIT 5;
+        "
 
         Dim dt As DataTable = Read(query)
 
@@ -76,23 +74,22 @@ Public Class DashboardForm
         Next
 
         Dim barChart As New CartesianChart() With {
-        .Dock = DockStyle.Fill
-    }
+            .Dock = DockStyle.Fill
+        }
 
         barChart.Series = {
-        New ColumnSeries(Of Double) With {
-            .Values = values
+            New ColumnSeries(Of Double) With {
+                .Values = values
+            }
         }
-    }
 
         barChart.XAxes = {
-        New Axis With {.Labels = labels}
-    }
+            New Axis With {.Labels = labels}
+        }
 
         pnlBar.Controls.Clear()
         pnlBar.Controls.Add(barChart)
     End Sub
-
 
     Private Sub LoadLineChart()
         Dim query As String = "
@@ -120,22 +117,21 @@ Public Class DashboardForm
         Next
 
         Dim lineChart As New CartesianChart() With {
-        .Dock = DockStyle.Fill
-    }
+            .Dock = DockStyle.Fill
+        }
 
         lineChart.Series = {
-        New LineSeries(Of Double) With {.Values = stockInValues, .Name = "Stock In"},
-        New LineSeries(Of Double) With {.Values = stockOutValues, .Name = "Stock Out"}
-    }
+            New LineSeries(Of Double) With {.Values = stockInValues, .Name = "Stock In"},
+            New LineSeries(Of Double) With {.Values = stockOutValues, .Name = "Stock Out"}
+        }
 
         lineChart.XAxes = {
-        New Axis With {.Labels = labels}
-    }
+            New Axis With {.Labels = labels}
+        }
 
         pnlLine.Controls.Clear()
         pnlLine.Controls.Add(lineChart)
     End Sub
-
 
     Private Function GetTotalStockItem() As Integer
         Dim query As String = "SELECT COUNT(*) AS total FROM items"
@@ -156,8 +152,7 @@ Public Class DashboardForm
     End Function
 
     Private Function GetTotalLowStock() As Integer
-
-        Dim query As String = "SELECT item_name AS item, s.quantity_on_hand as SOH  FROM items i JOIN stock_levels s ON i.item_id = s.item_id WHERE s.quantity_on_hand <= i.reorder_level"
+        Dim query As String = "SELECT item_name AS item, s.quantity_on_hand as SOH FROM items i JOIN stock_levels s ON i.item_id = s.item_id WHERE s.quantity_on_hand <= i.reorder_level"
         Dim dt As DataTable = Read(query)
         If dt.Rows.Count > 0 Then
             For Each row As DataRow In dt.Rows
@@ -169,6 +164,20 @@ Public Class DashboardForm
             Return dt.Rows.Count
         End If
 
+        Return 0
+    End Function
+
+    Private Function GetSalesToday() As Double
+        Dim query As String = "
+            SELECT COALESCE(SUM(total_amount), 0) AS total_sales
+            FROM stock_movements
+            WHERE movement_type = 'OUT'
+            AND DATE(created_at) = CURDATE()
+        "
+        Dim dt As DataTable = Read(query)
+        If dt.Rows.Count > 0 AndAlso dt.Rows(0)("total_sales") IsNot DBNull.Value Then
+            Return Convert.ToDouble(dt.Rows(0)("total_sales"))
+        End If
         Return 0
     End Function
 
@@ -192,6 +201,7 @@ Public Class DashboardForm
                 sm.created_at AS Date,
                 sm.movement_type as 'Type',
                 sm.quantity AS Quantity,
+                sm.total_amount AS Total,
                 u.user_firstname as 'By'
             FROM stock_movements sm
             JOIN users u
@@ -199,8 +209,15 @@ Public Class DashboardForm
             ORDER BY sm.created_at DESC
             LIMIT 15"
         LoadDataToGrid(query, dgRecentStockInOut)
+
+        ' Format Total column
+        If dgRecentStockInOut.Columns.Contains("Total") Then
+            dgRecentStockInOut.Columns("Total").DefaultCellStyle.Format = "₱#,##0.00"
+        End If
+
         AutoResizeDataGridViewHeight(dgRecentStockInOut)
     End Sub
+
     Private Sub AutoResizeDataGridViewHeight(dgv As DataGridView)
         Dim totalHeight As Integer = dgv.ColumnHeadersHeight
 
@@ -218,10 +235,33 @@ Public Class DashboardForm
         lblTotalStockItems.Text = GetTotalStockItem().ToString()
         lblCategories.Text = GetTotalCategories().ToString()
         lblLowStockAlerts.Text = GetTotalLowStock().ToString()
+        lblSalesToday.Text = GetSalesToday().ToString("₱#,##0.00")
         LoadAllItems()
         LoadAllRecentStockMovement()
     End Sub
 
+    ' Navigate to Reports when clicking Sales Banner
+    Private Sub btnViewReports_Click(sender As Object, e As EventArgs) Handles btnViewReports.Click
+        _mainForm.HighlightSidebarButton(_mainForm.btnReports)
+        _mainForm.LoadFormIntoPanel(New ReportsForm)
+    End Sub
+
+    Private Sub pnlSalesBanner_Click(sender As Object, e As EventArgs) Handles pnlSalesBanner.Click
+        _mainForm.HighlightSidebarButton(_mainForm.btnReports)
+        _mainForm.LoadFormIntoPanel(New ReportsForm)
+    End Sub
+
+    Private Sub lblSalesToday_Click(sender As Object, e As EventArgs) Handles lblSalesToday.Click
+        _mainForm.HighlightSidebarButton(_mainForm.btnReports)
+        _mainForm.LoadFormIntoPanel(New ReportsForm)
+    End Sub
+
+    Private Sub lblSalesLabel_Click(sender As Object, e As EventArgs) Handles lblSalesLabel.Click
+        _mainForm.HighlightSidebarButton(_mainForm.btnReports)
+        _mainForm.LoadFormIntoPanel(New ReportsForm)
+    End Sub
+
+    ' Original click handlers
     Private Sub lblLowStockAlerts_MouseClick(sender As Object, e As MouseEventArgs) Handles lblLowStockAlerts.MouseClick
         _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
         _mainForm.LoadFormIntoPanel(New ItemListForm())
@@ -256,7 +296,6 @@ Public Class DashboardForm
         _mainForm.HighlightSidebarButton(_mainForm.btnItemList)
         _mainForm.LoadFormIntoPanel(New ItemListForm())
     End Sub
-
 
     Private Sub Label2_MouseClick(sender As Object, e As MouseEventArgs) Handles Label2.MouseClick
         _mainForm.HighlightSidebarButton(_mainForm.btnItemList)

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DashboardForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class DashboardForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
@@ -57,6 +57,11 @@ Partial Class DashboardForm
         dgRecentStockInOut = New DataGridView()
         Label3 = New Label()
         Label4 = New Label()
+        pnlSalesBanner = New Panel()
+        lblSalesLabel = New Label()
+        lblSalesToday = New Label()
+        btnViewReports = New Button()
+        Panel8 = New Panel()
         pnlCard1.SuspendLayout()
         Panel1.SuspendLayout()
         Panel3.SuspendLayout()
@@ -65,6 +70,7 @@ Partial Class DashboardForm
         pnlLineMain.SuspendLayout()
         CType(dgLowStocks, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgRecentStockInOut, ComponentModel.ISupportInitialize).BeginInit()
+        pnlSalesBanner.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -81,7 +87,7 @@ Partial Class DashboardForm
         ' pnlShadow1
         ' 
         pnlShadow1.BackColor = SystemColors.ControlDarkDark
-        pnlShadow1.Location = New Point(67, 100)
+        pnlShadow1.Location = New Point(67, 101)
         pnlShadow1.Name = "pnlShadow1"
         pnlShadow1.Size = New Size(267, 151)
         pnlShadow1.TabIndex = 1
@@ -101,7 +107,7 @@ Partial Class DashboardForm
         ' 
         ' lblTotalStockItems
         ' 
-        lblTotalStockItems.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTotalStockItems.Font = New Font("Segoe UI", 48.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblTotalStockItems.ForeColor = SystemColors.ControlLightLight
         lblTotalStockItems.Location = New Point(-1, 4)
         lblTotalStockItems.Name = "lblTotalStockItems"
@@ -135,7 +141,7 @@ Partial Class DashboardForm
         ' 
         ' lblCategories
         ' 
-        lblCategories.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblCategories.Font = New Font("Segoe UI", 48.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblCategories.ForeColor = SystemColors.ControlLightLight
         lblCategories.Location = New Point(-1, 4)
         lblCategories.Name = "lblCategories"
@@ -157,7 +163,7 @@ Partial Class DashboardForm
         ' Panel2
         ' 
         Panel2.BackColor = SystemColors.ControlDarkDark
-        Panel2.Location = New Point(375, 100)
+        Panel2.Location = New Point(375, 101)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(267, 151)
         Panel2.TabIndex = 3
@@ -177,7 +183,7 @@ Partial Class DashboardForm
         ' 
         ' lblLowStockAlerts
         ' 
-        lblLowStockAlerts.Font = New Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblLowStockAlerts.Font = New Font("Segoe UI", 48.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblLowStockAlerts.ForeColor = SystemColors.ControlLightLight
         lblLowStockAlerts.Location = New Point(-1, 4)
         lblLowStockAlerts.Name = "lblLowStockAlerts"
@@ -199,7 +205,7 @@ Partial Class DashboardForm
         ' Panel4
         ' 
         Panel4.BackColor = SystemColors.ControlDarkDark
-        Panel4.Location = New Point(684, 100)
+        Panel4.Location = New Point(684, 101)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(267, 151)
         Panel4.TabIndex = 5
@@ -209,14 +215,14 @@ Partial Class DashboardForm
         pnlPieMain.BackColor = SystemColors.ControlLightLight
         pnlPieMain.Controls.Add(Label6)
         pnlPieMain.Controls.Add(pnlPie)
-        pnlPieMain.Location = New Point(62, 293)
+        pnlPieMain.Location = New Point(62, 328)
         pnlPieMain.Name = "pnlPieMain"
         pnlPieMain.Size = New Size(380, 305)
         pnlPieMain.TabIndex = 7
         ' 
         ' Label6
         ' 
-        Label6.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label6.Location = New Point(0, 0)
         Label6.Name = "Label6"
@@ -237,14 +243,14 @@ Partial Class DashboardForm
         pnlBarMain.BackColor = SystemColors.ControlLightLight
         pnlBarMain.Controls.Add(Label8)
         pnlBarMain.Controls.Add(pnlBar)
-        pnlBarMain.Location = New Point(454, 293)
+        pnlBarMain.Location = New Point(454, 328)
         pnlBarMain.Name = "pnlBarMain"
         pnlBarMain.Size = New Size(382, 305)
         pnlBarMain.TabIndex = 8
         ' 
         ' Label8
         ' 
-        Label8.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label8.Location = New Point(0, 0)
         Label8.Name = "Label8"
@@ -265,14 +271,14 @@ Partial Class DashboardForm
         pnlLineMain.BackColor = SystemColors.ControlLightLight
         pnlLineMain.Controls.Add(Label9)
         pnlLineMain.Controls.Add(pnlLine)
-        pnlLineMain.Location = New Point(848, 293)
+        pnlLineMain.Location = New Point(848, 328)
         pnlLineMain.Name = "pnlLineMain"
         pnlLineMain.Size = New Size(382, 305)
         pnlLineMain.TabIndex = 9
         ' 
         ' Label9
         ' 
-        Label9.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         Label9.Location = New Point(0, 0)
         Label9.Name = "Label9"
@@ -291,7 +297,7 @@ Partial Class DashboardForm
         ' Panel5
         ' 
         Panel5.BackColor = SystemColors.ControlDarkDark
-        Panel5.Location = New Point(853, 298)
+        Panel5.Location = New Point(853, 333)
         Panel5.Name = "Panel5"
         Panel5.Size = New Size(382, 305)
         Panel5.TabIndex = 12
@@ -299,7 +305,7 @@ Partial Class DashboardForm
         ' Panel6
         ' 
         Panel6.BackColor = SystemColors.ControlDarkDark
-        Panel6.Location = New Point(459, 298)
+        Panel6.Location = New Point(459, 333)
         Panel6.Name = "Panel6"
         Panel6.Size = New Size(382, 305)
         Panel6.TabIndex = 11
@@ -307,7 +313,7 @@ Partial Class DashboardForm
         ' Panel7
         ' 
         Panel7.BackColor = SystemColors.ControlDarkDark
-        Panel7.Location = New Point(67, 298)
+        Panel7.Location = New Point(67, 333)
         Panel7.Name = "Panel7"
         Panel7.Size = New Size(380, 305)
         Panel7.TabIndex = 10
@@ -321,7 +327,7 @@ Partial Class DashboardForm
         dgLowStocks.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         DataGridViewCellStyle1.ForeColor = Color.Gainsboro
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
@@ -331,20 +337,20 @@ Partial Class DashboardForm
         dgLowStocks.Cursor = Cursors.Hand
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12.0F)
         DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         dgLowStocks.DefaultCellStyle = DataGridViewCellStyle2
         dgLowStocks.GridColor = Color.Gainsboro
-        dgLowStocks.Location = New Point(62, 678)
+        dgLowStocks.Location = New Point(62, 713)
         dgLowStocks.MultiSelect = False
         dgLowStocks.Name = "dgLowStocks"
         dgLowStocks.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12.0F)
         DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
@@ -366,7 +372,7 @@ Partial Class DashboardForm
         dgRecentStockInOut.CellBorderStyle = DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle4.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        DataGridViewCellStyle4.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
         DataGridViewCellStyle4.ForeColor = Color.Gainsboro
         DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
@@ -376,20 +382,20 @@ Partial Class DashboardForm
         dgRecentStockInOut.Cursor = Cursors.Hand
         DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle5.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle5.Font = New Font("Segoe UI", 12.0F)
         DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
         DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
         dgRecentStockInOut.DefaultCellStyle = DataGridViewCellStyle5
         dgRecentStockInOut.GridColor = Color.Gainsboro
-        dgRecentStockInOut.Location = New Point(651, 678)
+        dgRecentStockInOut.Location = New Point(651, 713)
         dgRecentStockInOut.MultiSelect = False
         dgRecentStockInOut.Name = "dgRecentStockInOut"
         dgRecentStockInOut.ReadOnly = True
         DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle6.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 12.0F)
         DataGridViewCellStyle6.ForeColor = Color.Gainsboro
         DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
@@ -404,9 +410,9 @@ Partial Class DashboardForm
         ' 
         ' Label3
         ' 
-        Label3.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Font = New Font("Segoe UI", 24.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label3.Location = New Point(62, 630)
+        Label3.Location = New Point(62, 665)
         Label3.Name = "Label3"
         Label3.Size = New Size(580, 45)
         Label3.TabIndex = 15
@@ -415,23 +421,82 @@ Partial Class DashboardForm
         ' 
         ' Label4
         ' 
-        Label4.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Segoe UI", 24.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label4.Location = New Point(651, 630)
+        Label4.Location = New Point(651, 665)
         Label4.Name = "Label4"
         Label4.Size = New Size(580, 45)
         Label4.TabIndex = 16
         Label4.Text = "Recent Stock Movements"
         Label4.TextAlign = ContentAlignment.MiddleCenter
         ' 
+        ' pnlSalesBanner
+        ' 
+        pnlSalesBanner.BackColor = Color.ForestGreen
+        pnlSalesBanner.Controls.Add(lblSalesLabel)
+        pnlSalesBanner.Controls.Add(lblSalesToday)
+        pnlSalesBanner.Controls.Add(btnViewReports)
+        pnlSalesBanner.Cursor = Cursors.Hand
+        pnlSalesBanner.Location = New Point(62, 260)
+        pnlSalesBanner.Name = "pnlSalesBanner"
+        pnlSalesBanner.Size = New Size(884, 50)
+        pnlSalesBanner.TabIndex = 17
+        ' 
+        ' lblSalesLabel
+        ' 
+        lblSalesLabel.Font = New Font("Segoe UI", 16.0F, FontStyle.Bold)
+        lblSalesLabel.ForeColor = Color.White
+        lblSalesLabel.Location = New Point(15, 8)
+        lblSalesLabel.Name = "lblSalesLabel"
+        lblSalesLabel.Size = New Size(180, 35)
+        lblSalesLabel.TabIndex = 0
+        lblSalesLabel.Text = "💰 SALES TODAY:"
+        lblSalesLabel.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' lblSalesToday
+        ' 
+        lblSalesToday.Font = New Font("Segoe UI", 20.0F, FontStyle.Bold)
+        lblSalesToday.ForeColor = Color.White
+        lblSalesToday.Location = New Point(200, 5)
+        lblSalesToday.Name = "lblSalesToday"
+        lblSalesToday.Size = New Size(250, 40)
+        lblSalesToday.TabIndex = 1
+        lblSalesToday.Text = "₱0.00"
+        lblSalesToday.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' btnViewReports
+        ' 
+        btnViewReports.BackColor = Color.White
+        btnViewReports.Cursor = Cursors.Hand
+        btnViewReports.FlatAppearance.BorderSize = 0
+        btnViewReports.FlatStyle = FlatStyle.Flat
+        btnViewReports.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        btnViewReports.ForeColor = Color.ForestGreen
+        btnViewReports.Location = New Point(750, 10)
+        btnViewReports.Name = "btnViewReports"
+        btnViewReports.Size = New Size(120, 30)
+        btnViewReports.TabIndex = 2
+        btnViewReports.Text = "View Reports →"
+        btnViewReports.UseVisualStyleBackColor = False
+        ' 
+        ' Panel8
+        ' 
+        Panel8.BackColor = SystemColors.ControlDarkDark
+        Panel8.Cursor = Cursors.Hand
+        Panel8.Location = New Point(67, 267)
+        Panel8.Name = "Panel8"
+        Panel8.Size = New Size(884, 50)
+        Panel8.TabIndex = 18
+        ' 
         ' DashboardForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         AutoScroll = True
         AutoScrollMinSize = New Size(0, 500)
         BackColor = Color.Gainsboro
-        ClientSize = New Size(1606, 1100)
+        ClientSize = New Size(1386, 788)
+        Controls.Add(pnlSalesBanner)
         Controls.Add(Label4)
         Controls.Add(Label3)
         Controls.Add(dgRecentStockInOut)
@@ -449,6 +514,7 @@ Partial Class DashboardForm
         Controls.Add(Panel7)
         Controls.Add(Panel6)
         Controls.Add(Panel5)
+        Controls.Add(Panel8)
         FormBorderStyle = FormBorderStyle.None
         MaximizeBox = False
         Name = "DashboardForm"
@@ -462,6 +528,7 @@ Partial Class DashboardForm
         pnlLineMain.ResumeLayout(False)
         CType(dgLowStocks, ComponentModel.ISupportInitialize).EndInit()
         CType(dgRecentStockInOut, ComponentModel.ISupportInitialize).EndInit()
+        pnlSalesBanner.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -495,4 +562,9 @@ Partial Class DashboardForm
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
+    Friend WithEvents pnlSalesBanner As Panel
+    Friend WithEvents lblSalesLabel As Label
+    Friend WithEvents lblSalesToday As Label
+    Friend WithEvents btnViewReports As Button
+    Friend WithEvents Panel8 As Panel
 End Class
