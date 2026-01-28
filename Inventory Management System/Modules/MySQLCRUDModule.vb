@@ -81,7 +81,7 @@ Module MySQLCRUDModule
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             ' Prepare query
-            Dim query As String = $"SELECT {valueMember}, {displayMember} FROM {tableName} ORDER BY {displayMember}"
+            Dim query As String = $"SELECT {valueMember}, {displayMember} FROM {tableName} WHERE status = 1 ORDER BY {displayMember}"
             Dim cmd As New MySqlCommand(query, conn)
             Dim adapter As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable()

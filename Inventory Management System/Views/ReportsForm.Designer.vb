@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ReportsForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ReportsForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
@@ -38,15 +38,20 @@ Partial Class ReportsForm
         Label9 = New Label()
         cbDateRange = New ComboBox()
         Label3 = New Label()
-        btnLoad = New Button()
+        btnRefresh = New Button()
         lblTotalTransactions = New Label()
         lblNDLogs = New Label()
         lblNDTransactions = New Label()
         btnPrint = New Button()
         PrintDocument1 = New Printing.PrintDocument()
         PrintPreviewDialog1 = New PrintPreviewDialog()
+        pnlFilters = New Panel()
+        pnlSummary = New Panel()
+        lblSummaryTitle = New Label()
         CType(dgReports, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgLogs, ComponentModel.ISupportInitialize).BeginInit()
+        pnlFilters.SuspendLayout()
+        pnlSummary.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -64,36 +69,37 @@ Partial Class ReportsForm
         ' 
         dgReports.AllowUserToAddRows = False
         dgReports.AllowUserToDeleteRows = False
-        dgReports.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dgReports.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         dgReports.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgReports.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        dgReports.CellBorderStyle = DataGridViewCellBorderStyle.Raised
+        dgReports.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        DataGridViewCellStyle1.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 11.0F, FontStyle.Bold)
+        DataGridViewCellStyle1.ForeColor = Color.White
+        DataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        DataGridViewCellStyle1.SelectionForeColor = Color.White
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
         dgReports.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        dgReports.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgReports.ColumnHeadersHeight = 35
         dgReports.Cursor = Cursors.Hand
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 11.0F)
         DataGridViewCellStyle2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(70), CByte(70), CByte(70))
+        DataGridViewCellStyle2.SelectionForeColor = Color.White
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         dgReports.DefaultCellStyle = DataGridViewCellStyle2
-        dgReports.GridColor = Color.Gainsboro
-        dgReports.Location = New Point(552, 160)
+        dgReports.EnableHeadersVisualStyles = False
+        dgReports.GridColor = Color.LightGray
+        dgReports.Location = New Point(12, 205)
         dgReports.MultiSelect = False
         dgReports.Name = "dgReports"
         dgReports.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 11.0F)
         DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
@@ -101,8 +107,9 @@ Partial Class ReportsForm
         dgReports.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         dgReports.RowHeadersVisible = False
         dgReports.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        dgReports.RowTemplate.Height = 30
         dgReports.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgReports.Size = New Size(603, 546)
+        dgReports.Size = New Size(1097, 350)
         dgReports.TabIndex = 5
         dgReports.TabStop = False
         ' 
@@ -110,36 +117,37 @@ Partial Class ReportsForm
         ' 
         dgLogs.AllowUserToAddRows = False
         dgLogs.AllowUserToDeleteRows = False
-        dgLogs.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        dgLogs.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         dgLogs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgLogs.BackgroundColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        dgLogs.CellBorderStyle = DataGridViewCellBorderStyle.Raised
+        dgLogs.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle4.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        DataGridViewCellStyle4.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(70), CByte(70), CByte(70))
+        DataGridViewCellStyle4.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        DataGridViewCellStyle4.ForeColor = Color.White
+        DataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(CByte(70), CByte(70), CByte(70))
+        DataGridViewCellStyle4.SelectionForeColor = Color.White
         DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
         dgLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
-        dgLogs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgLogs.ColumnHeadersHeight = 30
         dgLogs.Cursor = Cursors.Hand
         DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle5.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle5.Font = New Font("Segoe UI", 10.0F)
         DataGridViewCellStyle5.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
+        DataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(CByte(200), CByte(200), CByte(200))
+        DataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
         dgLogs.DefaultCellStyle = DataGridViewCellStyle5
-        dgLogs.GridColor = Color.Gainsboro
-        dgLogs.Location = New Point(12, 160)
+        dgLogs.EnableHeadersVisualStyles = False
+        dgLogs.GridColor = Color.LightGray
+        dgLogs.Location = New Point(12, 600)
         dgLogs.MultiSelect = False
         dgLogs.Name = "dgLogs"
         dgLogs.ReadOnly = True
         DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(250), CByte(250), CByte(250))
-        DataGridViewCellStyle6.Font = New Font("Segoe UI", 12F)
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 10.0F)
         DataGridViewCellStyle6.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
@@ -148,16 +156,16 @@ Partial Class ReportsForm
         dgLogs.RowHeadersVisible = False
         dgLogs.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgLogs.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgLogs.Size = New Size(534, 586)
+        dgLogs.Size = New Size(1097, 350)
         dgLogs.TabIndex = 6
         dgLogs.TabStop = False
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label7.Font = New Font("Lucida Sans Unicode", 14.0F, FontStyle.Bold)
         Label7.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label7.Location = New Point(552, 134)
+        Label7.Location = New Point(12, 175)
         Label7.Name = "Label7"
         Label7.Size = New Size(150, 23)
         Label7.TabIndex = 30
@@ -166,13 +174,13 @@ Partial Class ReportsForm
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label2.Font = New Font("Lucida Sans Unicode", 14.0F, FontStyle.Bold)
         Label2.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label2.Location = New Point(12, 134)
+        Label2.Location = New Point(12, 570)
         Label2.Name = "Label2"
-        Label2.Size = New Size(65, 23)
+        Label2.Size = New Size(138, 23)
         Label2.TabIndex = 31
-        Label2.Text = "Logs:"
+        Label2.Text = "Activity Log:"
         ' 
         ' cbUserName
         ' 
@@ -180,24 +188,24 @@ Partial Class ReportsForm
         cbUserName.Cursor = Cursors.Hand
         cbUserName.DropDownStyle = ComboBoxStyle.DropDownList
         cbUserName.FlatStyle = FlatStyle.Popup
-        cbUserName.Font = New Font("Lucida Sans Unicode", 14F)
+        cbUserName.Font = New Font("Lucida Sans Unicode", 12.0F)
         cbUserName.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbUserName.FormattingEnabled = True
-        cbUserName.Location = New Point(149, 75)
+        cbUserName.Location = New Point(70, 10)
         cbUserName.Name = "cbUserName"
-        cbUserName.Size = New Size(262, 31)
+        cbUserName.Size = New Size(220, 28)
         cbUserName.TabIndex = 32
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label9.Font = New Font("Lucida Sans Unicode", 12.0F, FontStyle.Bold)
         Label9.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label9.Location = New Point(15, 78)
+        Label9.Location = New Point(15, 14)
         Label9.Name = "Label9"
-        Label9.Size = New Size(128, 23)
+        Label9.Size = New Size(55, 20)
         Label9.TabIndex = 33
-        Label9.Text = "User Name:"
+        Label9.Text = "User:"
         ' 
         ' cbDateRange
         ' 
@@ -205,94 +213,95 @@ Partial Class ReportsForm
         cbDateRange.Cursor = Cursors.Hand
         cbDateRange.DropDownStyle = ComboBoxStyle.DropDownList
         cbDateRange.FlatStyle = FlatStyle.Popup
-        cbDateRange.Font = New Font("Lucida Sans Unicode", 14F)
+        cbDateRange.Font = New Font("Lucida Sans Unicode", 12.0F)
         cbDateRange.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
         cbDateRange.FormattingEnabled = True
         cbDateRange.Items.AddRange(New Object() {"Today", "Last 7 Days", "Last 28 Days"})
-        cbDateRange.Location = New Point(571, 75)
+        cbDateRange.Location = New Point(370, 10)
         cbDateRange.Name = "cbDateRange"
-        cbDateRange.Size = New Size(262, 31)
+        cbDateRange.Size = New Size(180, 28)
         cbDateRange.TabIndex = 34
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold)
+        Label3.Font = New Font("Lucida Sans Unicode", 12.0F, FontStyle.Bold)
         Label3.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        Label3.Location = New Point(431, 78)
+        Label3.Location = New Point(310, 14)
         Label3.Name = "Label3"
-        Label3.Size = New Size(134, 23)
+        Label3.Size = New Size(56, 20)
         Label3.TabIndex = 35
-        Label3.Text = "Date Range:"
+        Label3.Text = "Date:"
         ' 
-        ' btnLoad
+        ' btnRefresh
         ' 
-        btnLoad.BackColor = Color.LawnGreen
-        btnLoad.Cursor = Cursors.Hand
-        btnLoad.FlatStyle = FlatStyle.Popup
-        btnLoad.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnLoad.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnLoad.Location = New Point(849, 75)
-        btnLoad.Name = "btnLoad"
-        btnLoad.Size = New Size(115, 32)
-        btnLoad.TabIndex = 36
-        btnLoad.TabStop = False
-        btnLoad.Text = "Load"
-        btnLoad.UseVisualStyleBackColor = False
+        btnRefresh.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        btnRefresh.Cursor = Cursors.Hand
+        btnRefresh.FlatStyle = FlatStyle.Flat
+        btnRefresh.Font = New Font("Lucida Sans Unicode", 11.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnRefresh.ForeColor = Color.White
+        btnRefresh.Location = New Point(570, 8)
+        btnRefresh.Name = "btnRefresh"
+        btnRefresh.Size = New Size(100, 32)
+        btnRefresh.TabIndex = 36
+        btnRefresh.TabStop = False
+        btnRefresh.Text = "🔄 Refresh"
+        btnRefresh.UseVisualStyleBackColor = False
         ' 
         ' lblTotalTransactions
         ' 
-        lblTotalTransactions.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        lblTotalTransactions.Font = New Font("Lucida Sans Unicode", 20F, FontStyle.Bold Or FontStyle.Underline)
-        lblTotalTransactions.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        lblTotalTransactions.Location = New Point(552, 709)
+        lblTotalTransactions.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        lblTotalTransactions.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
+        lblTotalTransactions.ForeColor = Color.LawnGreen
+        lblTotalTransactions.Location = New Point(465, 8)
         lblTotalTransactions.Name = "lblTotalTransactions"
-        lblTotalTransactions.Size = New Size(603, 37)
+        lblTotalTransactions.Size = New Size(630, 30)
         lblTotalTransactions.TabIndex = 37
-        lblTotalTransactions.Text = "Total Qty: 0 |  Total: ₱0.00"
+        lblTotalTransactions.Text = "Qty: 0 | Discount: ₱0.00 | Total: ₱0.00"
         lblTotalTransactions.TextAlign = ContentAlignment.MiddleRight
         ' 
         ' lblNDLogs
         ' 
-        lblNDLogs.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         lblNDLogs.AutoSize = True
         lblNDLogs.BackColor = Color.White
-        lblNDLogs.Font = New Font("Lucida Sans Unicode", 30F, FontStyle.Bold)
-        lblNDLogs.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        lblNDLogs.Location = New Point(181, 431)
+        lblNDLogs.Font = New Font("Lucida Sans Unicode", 16.0F, FontStyle.Bold)
+        lblNDLogs.ForeColor = Color.Silver
+        lblNDLogs.Location = New Point(500, 680)
         lblNDLogs.Name = "lblNDLogs"
-        lblNDLogs.Size = New Size(184, 48)
+        lblNDLogs.Size = New Size(178, 27)
         lblNDLogs.TabIndex = 38
-        lblNDLogs.Text = "No Data"
+        lblNDLogs.Text = "No logs found"
         lblNDLogs.TextAlign = ContentAlignment.MiddleCenter
+        lblNDLogs.Visible = False
         ' 
         ' lblNDTransactions
         ' 
-        lblNDTransactions.Anchor = AnchorStyles.None
         lblNDTransactions.AutoSize = True
         lblNDTransactions.BackColor = Color.White
-        lblNDTransactions.Font = New Font("Lucida Sans Unicode", 30F, FontStyle.Bold)
-        lblNDTransactions.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        lblNDTransactions.Location = New Point(770, 431)
+        lblNDTransactions.Font = New Font("Lucida Sans Unicode", 16.0F, FontStyle.Bold)
+        lblNDTransactions.ForeColor = Color.Silver
+        lblNDTransactions.Location = New Point(450, 360)
         lblNDTransactions.Name = "lblNDTransactions"
-        lblNDTransactions.Size = New Size(184, 48)
+        lblNDTransactions.Size = New Size(271, 27)
         lblNDTransactions.TabIndex = 39
-        lblNDTransactions.Text = "No Data"
+        lblNDTransactions.Text = "No transactions found"
         lblNDTransactions.TextAlign = ContentAlignment.MiddleCenter
+        lblNDTransactions.Visible = False
         ' 
         ' btnPrint
         ' 
+        btnPrint.BackColor = Color.ForestGreen
         btnPrint.Cursor = Cursors.Hand
-        btnPrint.FlatStyle = FlatStyle.Popup
-        btnPrint.Font = New Font("Lucida Sans Unicode", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnPrint.ForeColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
-        btnPrint.Location = New Point(970, 75)
+        btnPrint.FlatStyle = FlatStyle.Flat
+        btnPrint.Font = New Font("Lucida Sans Unicode", 11.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnPrint.ForeColor = Color.White
+        btnPrint.Location = New Point(680, 8)
         btnPrint.Name = "btnPrint"
-        btnPrint.Size = New Size(115, 32)
+        btnPrint.Size = New Size(100, 32)
         btnPrint.TabIndex = 40
         btnPrint.TabStop = False
-        btnPrint.Text = "Print"
-        btnPrint.UseVisualStyleBackColor = True
+        btnPrint.Text = "🖨️ Print"
+        btnPrint.UseVisualStyleBackColor = False
         ' 
         ' PrintDocument1
         ' 
@@ -307,30 +316,67 @@ Partial Class ReportsForm
         PrintPreviewDialog1.Name = "PrintPreviewDialog1"
         PrintPreviewDialog1.Visible = False
         ' 
+        ' pnlFilters
+        ' 
+        pnlFilters.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlFilters.BackColor = Color.White
+        pnlFilters.Controls.Add(Label9)
+        pnlFilters.Controls.Add(cbUserName)
+        pnlFilters.Controls.Add(Label3)
+        pnlFilters.Controls.Add(cbDateRange)
+        pnlFilters.Controls.Add(btnRefresh)
+        pnlFilters.Controls.Add(btnPrint)
+        pnlFilters.Location = New Point(12, 55)
+        pnlFilters.Name = "pnlFilters"
+        pnlFilters.Size = New Size(1097, 50)
+        pnlFilters.TabIndex = 41
+        ' 
+        ' pnlSummary
+        ' 
+        pnlSummary.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlSummary.BackColor = Color.FromArgb(CByte(33), CByte(33), CByte(33))
+        pnlSummary.Controls.Add(lblSummaryTitle)
+        pnlSummary.Controls.Add(lblTotalTransactions)
+        pnlSummary.Location = New Point(12, 115)
+        pnlSummary.Name = "pnlSummary"
+        pnlSummary.Size = New Size(1097, 45)
+        pnlSummary.TabIndex = 42
+        ' 
+        ' lblSummaryTitle
+        ' 
+        lblSummaryTitle.Font = New Font("Segoe UI", 14.0F, FontStyle.Bold)
+        lblSummaryTitle.ForeColor = Color.White
+        lblSummaryTitle.Location = New Point(15, 8)
+        lblSummaryTitle.Name = "lblSummaryTitle"
+        lblSummaryTitle.Size = New Size(150, 30)
+        lblSummaryTitle.TabIndex = 0
+        lblSummaryTitle.Text = "📊 SUMMARY"
+        lblSummaryTitle.TextAlign = ContentAlignment.MiddleLeft
+        ' 
         ' ReportsForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
+        AutoScroll = True
         BackColor = Color.Gainsboro
-        ClientSize = New Size(1167, 758)
-        Controls.Add(btnPrint)
+        ClientSize = New Size(1167, 788)
         Controls.Add(lblNDTransactions)
         Controls.Add(lblNDLogs)
-        Controls.Add(lblTotalTransactions)
-        Controls.Add(btnLoad)
-        Controls.Add(cbDateRange)
-        Controls.Add(Label3)
-        Controls.Add(cbUserName)
-        Controls.Add(Label9)
+        Controls.Add(pnlSummary)
+        Controls.Add(pnlFilters)
         Controls.Add(Label2)
         Controls.Add(Label7)
         Controls.Add(dgLogs)
         Controls.Add(dgReports)
         Controls.Add(Label1)
+        FormBorderStyle = FormBorderStyle.None
         Name = "ReportsForm"
         Text = "ReportsForm"
         CType(dgReports, ComponentModel.ISupportInitialize).EndInit()
         CType(dgLogs, ComponentModel.ISupportInitialize).EndInit()
+        pnlFilters.ResumeLayout(False)
+        pnlFilters.PerformLayout()
+        pnlSummary.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -344,11 +390,14 @@ Partial Class ReportsForm
     Friend WithEvents Label9 As Label
     Friend WithEvents cbDateRange As ComboBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents btnLoad As Button
+    Friend WithEvents btnRefresh As Button
     Friend WithEvents lblTotalTransactions As Label
     Friend WithEvents lblNDLogs As Label
     Friend WithEvents lblNDTransactions As Label
     Friend WithEvents btnPrint As Button
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents pnlFilters As Panel
+    Friend WithEvents pnlSummary As Panel
+    Friend WithEvents lblSummaryTitle As Label
 End Class

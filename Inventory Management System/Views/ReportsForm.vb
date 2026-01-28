@@ -1,9 +1,33 @@
 ﻿Imports System.Drawing.Printing
-Imports Windows.Win32.UI.Controls
 
 Public Class ReportsForm
     Dim pt As New PrintTemplates
     Dim isLoaded As Boolean = False
+
+    Private Sub ReportsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PopulateComboBox(cbUserName, "users", "CONCAT(user_firstname, ' ', user_lastname)", "user_id")
+        cbUserName.SelectedIndex = 0
+        cbDateRange.SelectedIndex = 0
+
+        ' Auto-load data on startup
+        LoadData()
+    End Sub
+
+    Private Sub LoadData()
+        LoadLogs()
+        LoadTransactions()
+
+        lblNDLogs.Visible = (dgLogs.Rows.Count = 0)
+        lblNDTransactions.Visible = (dgReports.Rows.Count = 0)
+
+        If dgReports.Rows.Count > 0 Then
+            lblTotalTransactions.Text = GetTotalTransactions()
+        Else
+            lblTotalTransactions.Text = "Qty: 0 | Discount: ₱0.00 | Total: ₱0.00"
+        End If
+
+        isLoaded = True
+    End Sub
 
     Private Sub LoadTransactions()
         Dim dateFilter As String = GetDateFilter("s", "updated_at")
@@ -13,9 +37,11 @@ Public Class ReportsForm
             s.updated_at AS Date,
             i.item_code AS Code,
             i.item_name AS Item,
-            i.price AS Price,
+            COALESCE(s.unit_price, i.price) AS Price,
             s.quantity AS Qty,
-            (s.quantity * i.price) AS `Sub-total`
+            COALESCE(s.discount_amount, 0) AS Discount,
+            COALESCE(s.total_amount, s.quantity * i.price) AS Total,
+            COALESCE(s.customer_type, '-') AS Customer
           FROM items i
           JOIN stock_movements s ON i.item_id = s.item_id
           WHERE s.created_by = '{cbUserName.SelectedValue.ToString}' 
@@ -28,14 +54,30 @@ Public Class ReportsForm
         FormatCurrencyColumns(dgReports)
     End Sub
 
-
     Private Sub FormatCurrencyColumns(dgv As DataGridView)
         If dgv.Columns.Contains("Price") Then
             dgv.Columns("Price").DefaultCellStyle.Format = "₱#,##0.00"
+            dgv.Columns("Price").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         End If
 
-        If dgv.Columns.Contains("Sub-total") Then
-            dgv.Columns("Sub-total").DefaultCellStyle.Format = "₱#,##0.00"
+        If dgv.Columns.Contains("Discount") Then
+            dgv.Columns("Discount").DefaultCellStyle.Format = "₱#,##0.00"
+            dgv.Columns("Discount").DefaultCellStyle.ForeColor = Color.Green
+            dgv.Columns("Discount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        End If
+
+        If dgv.Columns.Contains("Total") Then
+            dgv.Columns("Total").DefaultCellStyle.Format = "₱#,##0.00"
+            dgv.Columns("Total").DefaultCellStyle.Font = New Font(dgv.Font, FontStyle.Bold)
+            dgv.Columns("Total").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        End If
+
+        If dgv.Columns.Contains("Qty") Then
+            dgv.Columns("Qty").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        End If
+
+        If dgv.Columns.Contains("Customer") Then
+            dgv.Columns("Customer").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         End If
     End Sub
 
@@ -57,7 +99,6 @@ Public Class ReportsForm
         LoadDataToGrid(query, dgLogs)
     End Sub
 
-
     Private Function GetDateFilter(ByVal tableAlias As String, ByVal columnName As String) As String
         Dim dateFilter As String = ""
 
@@ -75,67 +116,70 @@ Public Class ReportsForm
         Return dateFilter
     End Function
 
-    Private Sub ReportsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        PopulateComboBox(cbUserName, "users", "CONCAT(user_firstname, ' ', user_lastname)", "user_id")
-        cbUserName.SelectedIndex = 0
-        cbDateRange.SelectedIndex = 0
-    End Sub
-
-    Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
-        LoadLogs()
-        LoadTransactions()
-        lblNDLogs.Visible = (dgLogs.Rows.Count = 0)
-        lblNDTransactions.Visible = (dgReports.Rows.Count = 0)
-        If Not (dgReports.Rows.Count = 0) Then lblTotalTransactions.Text = GetTotalTransactions() Else lblTotalTransactions.Text = "Total Qty: 0 |  Total: ₱0.00"
-        isLoaded = True
-    End Sub
-
     Private Function GetTotalTransactions() As String
-
         Dim dateFilter As String = GetDateFilter("s", "updated_at")
+
         Dim query As String =
         $"SELECT 
-            SUM(s.quantity) AS 'total-qty',
-            SUM(s.quantity * i.price) AS `total`
+            COALESCE(SUM(s.quantity), 0) AS total_qty,
+            COALESCE(SUM(s.discount_amount), 0) AS total_discount,
+            COALESCE(SUM(s.total_amount), SUM(s.quantity * i.price)) AS total_sales
           FROM items i
           JOIN stock_movements s ON i.item_id = s.item_id
           WHERE s.created_by = '{cbUserName.SelectedValue.ToString}' 
           AND s.movement_type = 'OUT'
-          AND {dateFilter}
-          ORDER BY s.updated_at DESC
-          LIMIT 50"
+          AND {dateFilter}"
 
         Dim dt As DataTable = Read(query)
-        If dt.Rows.Count > 0 Then
-            Return $"Total Qty: {Convert.ToInt32(dt.Rows(0)("total-qty"))} |  Total: ₱{Convert.ToDecimal(dt.Rows(0)("total")).ToString("N2")}"
+        If dt.Rows.Count > 0 AndAlso dt.Rows(0)("total_qty") IsNot DBNull.Value Then
+            Dim totalQty As Integer = Convert.ToInt32(dt.Rows(0)("total_qty"))
+            Dim totalDiscount As Decimal = If(dt.Rows(0)("total_discount") Is DBNull.Value, 0D, Convert.ToDecimal(dt.Rows(0)("total_discount")))
+            Dim totalSales As Decimal = If(dt.Rows(0)("total_sales") Is DBNull.Value, 0D, Convert.ToDecimal(dt.Rows(0)("total_sales")))
+
+            Return $"Qty: {totalQty} | Discount: ₱{totalDiscount.ToString("N2")} | Total: ₱{totalSales.ToString("N2")}"
         End If
-        Return "Total Qty: 0 |  Total: ₱0.00"
+        Return "Qty: 0 | Discount: ₱0.00 | Total: ₱0.00"
     End Function
 
+    ' Auto-reload when filters change
+    Private Sub cbUserName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbUserName.SelectedIndexChanged
+        If isLoaded Then LoadData()
+    End Sub
+
+    Private Sub cbDateRange_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbDateRange.SelectedIndexChanged
+        If isLoaded Then LoadData()
+    End Sub
+
+    ' Manual refresh button
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        LoadData()
+        Dim toast As New ToastForm("Data refreshed!")
+        toast.Show()
+    End Sub
+
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-        If isLoaded Then
-            PrintPreviewDialog1.Document = PrintDocument1
-
-            ' Access the internal Form and maximize it
-            Dim previewForm As Form = TryCast(PrintPreviewDialog1, Form)
-            If previewForm IsNot Nothing Then
-                previewForm.WindowState = FormWindowState.Maximized
-            End If
-
-            PrintPreviewDialog1.ShowDialog()
-            'PrintDocument1.Print()
+        If dgReports.Rows.Count = 0 Then
+            Dim toast As New ToastForm("No data to print!")
+            toast.Show()
+            Return
         End If
+
+        PrintPreviewDialog1.Document = PrintDocument1
+
+        Dim previewForm As Form = TryCast(PrintPreviewDialog1, Form)
+        If previewForm IsNot Nothing Then
+            previewForm.WindowState = FormWindowState.Maximized
+        End If
+
+        PrintPreviewDialog1.ShowDialog()
     End Sub
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument1.PrintPage
-        ' Create a temp DataGridView for printing
         Dim dgvTemp As New DataGridView()
 
-        ' Copy only columns except password
+        ' Copy columns
         For Each col As DataGridViewColumn In dgReports.Columns
-            If col.Name.ToLower() <> "password" Then
-                dgvTemp.Columns.Add(col.Name, col.HeaderText)
-            End If
+            dgvTemp.Columns.Add(col.Name, col.HeaderText)
         Next
 
         ' Copy rows with formatting
@@ -143,24 +187,27 @@ Public Class ReportsForm
             If Not row.IsNewRow Then
                 Dim rowData As New List(Of Object)
                 For Each col As DataGridViewColumn In dgReports.Columns
-                    If col.Name.ToLower() <> "password" Then
-                        Dim cellValue = row.Cells(col.Index).Value
+                    Dim cellValue = row.Cells(col.Index).Value
 
-                        ' ✅ Format "Price" and "Sub-total" columns
-                        If col.HeaderText = "Price" OrElse col.HeaderText = "Sub-total" Then
-                            If IsNumeric(cellValue) Then
-                                cellValue = "₱" & Convert.ToDecimal(cellValue).ToString("#,##0.00")
-                            End If
+                    ' Format currency columns for printing
+                    If col.HeaderText = "Price" OrElse col.HeaderText = "Discount" OrElse col.HeaderText = "Total" Then
+                        If cellValue IsNot DBNull.Value AndAlso IsNumeric(cellValue) Then
+                            cellValue = "₱" & Convert.ToDecimal(cellValue).ToString("#,##0.00")
                         End If
-
-                        rowData.Add(cellValue)
                     End If
+
+                    ' Handle null customer type
+                    If col.HeaderText = "Customer" AndAlso (cellValue Is DBNull.Value OrElse cellValue.ToString() = "") Then
+                        cellValue = "-"
+                    End If
+
+                    rowData.Add(cellValue)
                 Next
                 dgvTemp.Rows.Add(rowData.ToArray())
             End If
         Next
 
-        ' ✅ Print with formatted data
+        ' Print with formatted data
         pt.PrintDataGridViewReport(
             e,
             dgvTemp,
@@ -168,6 +215,5 @@ Public Class ReportsForm
             lblTotalTransactions.Text
         )
     End Sub
-
 
 End Class
