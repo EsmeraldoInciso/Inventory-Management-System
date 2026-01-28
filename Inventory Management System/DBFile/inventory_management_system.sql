@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2025 at 07:24 AM
+-- Generation Time: Jan 28, 2026 at 11:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,19 +29,52 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
-  `category_name` varchar(100) NOT NULL
+  `category_name` varchar(100) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_name`) VALUES
-(1, 'Coffee Beans'),
-(2, 'Beverages'),
-(3, 'Sample Category'),
-(4, 'Milk Powder'),
-(5, 'Food');
+INSERT INTO `categories` (`category_id`, `category_name`, `status`) VALUES
+(1, 'Coffee Beans', 1),
+(2, 'Beverages', 1),
+(3, 'Sample Category', 1),
+(4, 'Milk Powder', 1),
+(5, 'Food', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `discount_id` int(11) NOT NULL,
+  `discount_name` varchar(100) DEFAULT NULL,
+  `discount_type` enum('percentage','fixed_amount') DEFAULT NULL,
+  `discount_value` double(10,2) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `customer_type` enum('regular','senior','pwd') DEFAULT NULL,
+  `min_quantity` int(11) DEFAULT 1,
+  `status` int(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`discount_id`, `discount_name`, `discount_type`, `discount_value`, `start_date`, `end_date`, `item_id`, `category_id`, `customer_type`, `min_quantity`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'Senior Citizen Discount', 'percentage', 20.00, NULL, NULL, NULL, NULL, 'senior', 1, 1, '2026-01-28 20:39:24', '2026-01-28 20:39:24'),
+(3, 'PWD Discount', 'percentage', 20.00, NULL, NULL, NULL, NULL, 'pwd', 1, 1, '2026-01-28 20:39:24', '2026-01-28 20:39:24'),
+(4, 'Coffee Discount', 'fixed_amount', 3.00, '2026-01-27', '2026-02-01', 3, NULL, NULL, 1, 1, '2026-01-28 20:46:52', '2026-01-28 21:54:35'),
+(5, 'All Coffee', 'percentage', 5.00, '2026-01-29', '2026-02-05', NULL, 1, NULL, 1, 1, '2026-01-28 20:54:22', '2026-01-28 21:30:27');
 
 -- --------------------------------------------------------
 
@@ -57,6 +90,7 @@ CREATE TABLE `items` (
   `price` double(10,2) NOT NULL DEFAULT 0.00,
   `category_id` int(11) DEFAULT NULL,
   `unit` varchar(50) DEFAULT NULL,
+  `status` int(1) NOT NULL,
   `reorder_level` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -66,11 +100,11 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `item_code`, `item_name`, `description`, `price`, `category_id`, `unit`, `reorder_level`, `created_at`, `updated_at`) VALUES
-(1, 'C001', 'Stick', 'Nescafe Stick', 6.00, 1, 'Pcs', 10, '2025-08-11 19:39:42', '2025-10-16 16:46:30'),
-(2, 'M001', 'Gatas', 'Bear Brand', 16.00, 4, 'Pack', 10, '2025-08-15 18:15:18', '2025-09-29 16:52:21'),
-(3, 'C002', 'Kape', 'barako', 90.00, 1, 'Bag', 10, '2025-08-21 17:02:54', '2025-09-29 16:52:52'),
-(4, 'S001', 'Sugar', 'Brown', 30.00, 3, 'Pack', 10, '2025-10-15 15:05:05', '2025-10-15 15:05:05');
+INSERT INTO `items` (`item_id`, `item_code`, `item_name`, `description`, `price`, `category_id`, `unit`, `status`, `reorder_level`, `created_at`, `updated_at`) VALUES
+(1, 'C001', 'Stick', 'Nescafe Stick', 6.00, 1, 'Pcs', 1, 10, '2025-08-11 19:39:42', '2026-01-28 18:37:36'),
+(2, 'M001', 'Gatas', 'Bear Brand', 16.00, 4, 'Pack', 1, 10, '2025-08-15 18:15:18', '2026-01-28 18:37:33'),
+(3, 'C002', 'Kape', 'barako', 90.00, 1, 'Bag', 1, 10, '2025-08-21 17:02:54', '2026-01-28 18:36:32'),
+(4, 'S001', 'Sugar', 'Brown', 30.00, 3, 'Pack', 1, 10, '2025-10-15 15:05:05', '2026-01-28 18:36:34');
 
 --
 -- Triggers `items`
@@ -824,7 +858,101 @@ INSERT INTO `logs` (`log_id`, `user_id`, `action`, `description`, `table_name`, 
 (717, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2025-10-17 01:02:36'),
 (718, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2025-10-17 01:03:18'),
 (719, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2025-10-18 13:21:32'),
-(720, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2025-10-18 13:21:58');
+(720, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2025-10-18 13:21:58'),
+(721, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 01:05:12'),
+(722, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:20:03'),
+(723, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:24:13'),
+(724, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:24:40'),
+(725, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 02:25:10'),
+(726, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:37:04'),
+(727, 1, 'UPDATE ITEM', 'Updated item with id: 1, item: Stick', 'items', 1, '2026-01-29 02:37:14'),
+(728, 1, 'UPDATE ITEM', 'Updated item with id: 2, item: Gatas', 'items', 2, '2026-01-29 02:37:27'),
+(729, 1, 'UPDATE ITEM', 'Updated item with id: 2, item: Gatas', 'items', 2, '2026-01-29 02:37:33'),
+(730, 1, 'UPDATE ITEM', 'Updated item with id: 1, item: Stick', 'items', 1, '2026-01-29 02:37:36'),
+(731, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 02:38:00'),
+(732, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:39:24'),
+(733, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 02:39:35'),
+(734, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:40:45'),
+(735, 1, 'UPDATE CATEGORY', 'Updated category with id: 5, category: Food', 'categories', NULL, '2026-01-29 02:41:00'),
+(736, 1, 'UPDATE CATEGORY', 'Updated category with id: 5, category: Food', 'categories', NULL, '2026-01-29 02:41:04'),
+(737, 1, 'UPDATE CATEGORY', 'Updated category with id: 2, category: Beverages', 'categories', NULL, '2026-01-29 02:41:38'),
+(738, 1, 'UPDATE CATEGORY', 'Updated category with id: 2, category: Beverages', 'categories', NULL, '2026-01-29 02:42:01'),
+(739, 1, 'UPDATE CATEGORY', 'Updated category with id: 1, category: Coffee Beans', 'categories', NULL, '2026-01-29 02:42:17'),
+(740, 1, 'UPDATE CATEGORY', 'Updated category with id: 2, category: Beverages', 'categories', NULL, '2026-01-29 02:42:54'),
+(741, 1, 'UPDATE CATEGORY', 'Updated category with id: 3, category: Sample Category', 'categories', NULL, '2026-01-29 02:42:58'),
+(742, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 02:43:20'),
+(743, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:47:37'),
+(744, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 02:47:52'),
+(745, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 02:48:24'),
+(746, 1, 'UPDATE CATEGORY', 'Updated category with id: 1, category: Coffee Beans', 'categories', NULL, '2026-01-29 02:49:10'),
+(747, 1, 'UPDATE CATEGORY', 'Updated category with id: 2, category: Beverages', 'categories', NULL, '2026-01-29 02:49:13'),
+(748, 1, 'UPDATE CATEGORY', 'Updated category with id: 3, category: Sample Category', 'categories', NULL, '2026-01-29 02:49:18'),
+(749, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 03:55:59'),
+(750, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 03:56:28'),
+(751, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 03:57:17'),
+(752, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 1, name: Regular', 'discounts', 1, '2026-01-29 03:57:51'),
+(753, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 1, name: Regular', 'discounts', 1, '2026-01-29 03:58:33'),
+(754, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 1, name: Regular', 'discounts', 1, '2026-01-29 04:01:45'),
+(755, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 1, name: Regular', 'discounts', 1, '2026-01-29 04:01:56'),
+(756, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:02:06'),
+(757, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:02:28'),
+(758, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:03:01'),
+(759, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:04:21'),
+(760, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:04:54'),
+(761, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:05:32'),
+(762, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 1, name: Regular', 'discounts', 1, '2026-01-29 04:07:55'),
+(763, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:10:57'),
+(764, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:16:33'),
+(765, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:17:14'),
+(766, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:20:55'),
+(767, 1, 'STOCK-OUT', 'Removed 12 Pcs of Stick | Total: ₱57.60', 'stock_movements', NULL, '2026-01-29 04:21:52'),
+(768, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:22:52'),
+(769, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:23:34'),
+(770, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:24:02'),
+(771, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:40:47'),
+(772, 1, 'STOCK-OUT', 'Sold 5 Pack of Gatas | Total: ₱64.00', 'stock_movements', NULL, '2026-01-29 04:42:18'),
+(773, 1, 'STOCK-OUT', 'Sold 3 Pcs of Stick | Total: ₱14.40', 'stock_movements', NULL, '2026-01-29 04:43:13'),
+(774, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:44:10'),
+(775, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:45:31'),
+(776, 1, 'ADD DISCOUNT', 'Added new discount: Coffee Discount', 'discounts', NULL, '2026-01-29 04:46:52'),
+(777, 1, 'STOCK-OUT', 'Sold 5 Bag of Kape | Total: ₱348.00', 'stock_movements', NULL, '2026-01-29 04:47:40'),
+(778, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:48:54'),
+(779, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:50:03'),
+(780, 1, 'STOCK-IN', 'Added 30 Pack of Gatas', 'stock_movements', NULL, '2026-01-29 04:51:02'),
+(781, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 4, name: Coffee Discount', 'discounts', 4, '2026-01-29 04:51:53'),
+(782, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 4, name: Coffee Discount', 'discounts', 4, '2026-01-29 04:52:44'),
+(783, 1, 'ADD DISCOUNT', 'Added new discount: Tanan Kape', 'discounts', NULL, '2026-01-29 04:54:22'),
+(784, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 4, name: Coffee Discount', 'discounts', 4, '2026-01-29 04:55:03'),
+(785, 1, 'STOCK-OUT', 'Sold 10 Bag of Kape | Total: ₱855.00', 'stock_movements', NULL, '2026-01-29 04:56:26'),
+(786, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 04:58:37'),
+(787, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 04:59:22'),
+(788, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:00:08'),
+(789, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:00:15'),
+(790, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:04:11'),
+(791, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:05:55'),
+(792, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:06:17'),
+(793, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:09:12'),
+(794, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:11:21'),
+(795, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:11:55'),
+(796, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:17:49'),
+(797, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:18:57'),
+(798, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:22:22'),
+(799, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:23:49'),
+(800, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:24:27'),
+(801, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:24:44'),
+(802, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:28:36'),
+(803, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:29:03'),
+(804, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:29:39'),
+(805, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 5, name: All Coffee', 'discounts', 5, '2026-01-29 05:30:27'),
+(806, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:31:05'),
+(807, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:31:06'),
+(808, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:31:25'),
+(809, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:53:01'),
+(810, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:53:08'),
+(811, 1, 'LOGIN', 'User logged in successfully', NULL, NULL, '2026-01-29 05:53:55'),
+(812, 1, 'UPDATE DISCOUNT', 'Updated discount with id: 4, name: Coffee Discount', 'discounts', 4, '2026-01-29 05:54:36'),
+(813, 1, 'STOCK-OUT', 'Sold 5 Bag of Kape | Total: ₱348.00', 'stock_movements', NULL, '2026-01-29 05:55:22'),
+(814, 1, 'LOGOUT', 'User logged out successfully', NULL, NULL, '2026-01-29 05:58:04');
 
 -- --------------------------------------------------------
 
@@ -849,7 +977,9 @@ INSERT INTO `stock_alerts` (`alert_id`, `item_id`, `alert_message`, `created_at`
 (3, 1, 'Stock is low for item ID 1', '2025-08-21 17:16:43'),
 (4, 2, 'Stock is low for item ID 2', '2025-09-29 15:03:03'),
 (5, 2, 'Stock is low for item ID 2', '2025-10-15 16:27:03'),
-(6, 2, 'Stock is low for item ID 2', '2025-10-15 16:34:02');
+(6, 2, 'Stock is low for item ID 2', '2025-10-15 16:34:02'),
+(7, 2, 'Stock is low for item ID 2', '2026-01-28 20:42:17'),
+(8, 3, 'Stock is low for item ID 3', '2026-01-28 21:55:22');
 
 -- --------------------------------------------------------
 
@@ -867,9 +997,9 @@ CREATE TABLE `stock_levels` (
 --
 
 INSERT INTO `stock_levels` (`item_id`, `quantity_on_hand`) VALUES
-(1, 37),
-(2, 6),
-(3, 29),
+(1, 22),
+(2, 31),
+(3, 9),
 (4, 27);
 
 --
@@ -903,44 +1033,25 @@ CREATE TABLE `stock_movements` (
   `remarks` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_by` int(11) DEFAULT NULL
+  `created_by` int(11) DEFAULT NULL,
+  `unit_price` double(10,2) DEFAULT NULL,
+  `discount_amount` double(10,2) DEFAULT 0.00,
+  `total_amount` double(10,2) DEFAULT NULL,
+  `customer_type` varchar(20) DEFAULT NULL,
+  `customer_id_number` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `stock_movements`
 --
 
-INSERT INTO `stock_movements` (`movement_id`, `item_id`, `movement_type`, `quantity`, `reference_no`, `remarks`, `created_at`, `updated_at`, `created_by`) VALUES
-(1, 1, 'IN', 20, 'REFERENCEsample', 'Good', '2025-08-11 21:40:14', '2025-08-11 21:40:14', 1),
-(2, 1, 'IN', 4, 'Sample', 'Add', '2025-08-11 21:55:48', '2025-08-11 21:55:48', 1),
-(3, 1, 'IN', 10, '1234', 'done', '2025-08-12 06:38:38', '2025-08-12 17:52:57', 1),
-(4, 1, 'OUT', 12, '12345678', 'for store', '2025-08-12 06:54:52', '2025-08-12 17:54:32', 1),
-(5, 1, 'OUT', 12, '123123123', 'store', '2025-08-12 06:56:08', '2025-08-12 17:54:24', 2),
-(6, 1, 'IN', 30, '12345456', 'Add-on', '2025-08-12 17:55:29', '2025-08-12 17:55:29', 1),
-(7, 1, 'OUT', 10, '1234561', 'for store', '2025-08-12 17:56:22', '2025-08-12 17:56:22', 1),
-(8, 1, 'IN', 10, '123123', '123123', '2025-08-12 19:34:36', '2025-08-12 19:34:36', 1),
-(9, 1, 'IN', 10, '123123', '123123', '2025-08-12 19:34:52', '2025-08-12 19:34:52', 1),
-(10, 1, 'IN', 30, '123123', '123123', '2025-08-12 20:47:43', '2025-08-12 21:02:19', 1),
-(11, 1, 'OUT', 30, '123123', '123123', '2025-08-12 20:52:11', '2025-08-12 20:52:11', 1),
-(12, 1, 'OUT', 10, '123123', '123123', '2025-08-12 20:53:13', '2025-08-12 20:53:13', 1),
-(13, 1, 'OUT', 10, '123123', '123123', '2025-08-12 20:54:28', '2025-08-20 15:14:46', 1),
-(14, 2, 'IN', 20, '123123', '123456', '2025-08-15 18:23:18', '2025-08-15 18:23:18', 1),
-(15, 2, 'IN', 10, '123123123', '123123132', '2025-08-19 19:02:33', '2025-08-19 19:02:33', 1),
-(16, 1, 'OUT', 20, '', '', '2025-08-21 17:16:43', '2025-08-21 17:16:43', 1),
-(17, 2, 'OUT', 10, '', '', '2025-08-21 18:43:58', '2025-08-21 18:43:58', 1),
-(18, 3, 'IN', 30, '123123', '123123', '2025-09-23 16:43:01', '2025-09-23 16:43:01', 1),
-(19, 2, 'OUT', 5, '', '', '2025-09-23 16:44:06', '2025-09-23 16:44:06', 1),
-(20, 2, 'OUT', 6, '', '', '2025-09-29 15:03:03', '2025-09-29 15:03:03', 1),
-(21, 1, 'IN', 30, '123456', '132', '2025-10-15 15:02:58', '2025-10-15 15:02:58', 1),
-(22, 4, 'IN', 30, '123', '123', '2025-10-15 15:05:35', '2025-10-15 15:05:35', 1),
-(23, 1, 'OUT', 2, '123', '123', '2025-10-15 15:10:16', '2025-10-15 15:10:16', 1),
-(24, 4, 'OUT', 1, '123', '123', '2025-10-15 15:10:51', '2025-10-15 15:10:51', 1),
-(25, 4, 'OUT', 1, '123', '123', '2025-10-15 16:24:53', '2025-10-15 16:24:53', 2),
-(26, 3, 'OUT', 1, '', '', '2025-10-15 16:26:42', '2025-10-15 16:26:42', 2),
-(27, 1, 'OUT', 1, '', '', '2025-10-15 16:26:53', '2025-10-15 16:26:53', 2),
-(28, 2, 'OUT', 2, '', '', '2025-10-15 16:27:03', '2025-10-15 16:27:03', 2),
-(29, 4, 'OUT', 1, '', '', '2025-10-15 16:33:49', '2025-10-15 16:33:49', 2),
-(30, 2, 'OUT', 1, '', '', '2025-10-15 16:34:02', '2025-10-15 16:34:02', 2);
+INSERT INTO `stock_movements` (`movement_id`, `item_id`, `movement_type`, `quantity`, `reference_no`, `remarks`, `created_at`, `updated_at`, `created_by`, `unit_price`, `discount_amount`, `total_amount`, `customer_type`, `customer_id_number`) VALUES
+(32, 2, 'OUT', 5, '123123', '123 | Senior Citizen Discount', '2026-01-28 20:42:17', '2026-01-28 20:42:17', 1, 16.00, 16.00, 64.00, 'Senior', '123123123'),
+(33, 1, 'OUT', 3, '', 'PWD Discount', '2026-01-28 20:43:13', '2026-01-28 20:43:13', 1, 6.00, 3.60, 14.40, 'PWD', '12312'),
+(34, 3, 'OUT', 5, '123132', 'Promo: Coffee Discount | Senior Citizen Discount', '2026-01-28 20:47:39', '2026-01-28 20:47:39', 1, 90.00, 102.00, 348.00, 'Senior', '123123123'),
+(35, 2, 'IN', 30, '123123', '123', '2026-01-28 20:51:01', '2026-01-28 20:51:01', 1, NULL, 0.00, NULL, NULL, NULL),
+(36, 3, 'OUT', 10, '123', 'Promo: Tanan Kape', '2026-01-28 20:56:26', '2026-01-28 20:56:26', 1, 90.00, 45.00, 855.00, NULL, NULL),
+(37, 3, 'OUT', 5, '', 'Promo: Coffee Discount | Senior Citizen Discount', '2026-01-28 21:55:22', '2026-01-28 21:55:22', 1, 90.00, 102.00, 348.00, 'Senior', '1234567890');
 
 --
 -- Triggers `stock_movements`
@@ -1018,6 +1129,14 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`discount_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
@@ -1070,6 +1189,12 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
@@ -1079,19 +1204,19 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=721;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=815;
 
 --
 -- AUTO_INCREMENT for table `stock_alerts`
 --
 ALTER TABLE `stock_alerts`
-  MODIFY `alert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `alert_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `stock_movements`
 --
 ALTER TABLE `stock_movements`
-  MODIFY `movement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `movement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1102,6 +1227,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD CONSTRAINT `discounts_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
+  ADD CONSTRAINT `discounts_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`);
 
 --
 -- Constraints for table `items`
